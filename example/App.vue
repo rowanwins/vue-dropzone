@@ -3,7 +3,7 @@
     <p>
       Welcome to your Vue.js app!
     </p>
-    <dropzone id="myVueDropzone" url="http://httpbin.org/post"></dropzone>
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post"></dropzone>
 
   </div>
 </template>
