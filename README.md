@@ -1,27 +1,82 @@
 # vue-dropzone
 
-> A Vue component for file uploads, powered by Dropzone.js
+A Vue component for file uploads, powered by Dropzone.js
 
-## Build Setup
+## Props
+Many of these props are inherited from [dropzone configuration so see their doco](http://www.dropzonejs.com/#configuration-options) for further details
+Prop Name | Type | Description
+----------|------|-------------
+id | String | A string by which to identify the component, can be anything. **Required**
+url | String | Url to post the upload to. **Required**
+clickable | Boolean | Whether the dropzone area is clickable, if false then users can only drag items on to the area.
+acceptedFileTypes | String | A comma separated string of accepted file types eg 'image/*,application/pdf,.psd' .
+thumbnailHeight | Number | The height of thumbnails in pixels.
+thumbnailWidth | Number | The width of thumbnails in pixels.
+showRemoveLink | Boolean | Whether the Remove link is shown on items.
+maxFileSizeInMB | Number |The maximum file size for a single upload in MB.
+maxNumberOfFiles | Number | The maximum number of files to allow the user to upload.
+autoProcessQueue | Boolean | Whether the files are automatically uploaded ornot.
+useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.
+dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).
+
+## Events
+Events to send to the component.
+Event Name | Description
+-----------|-------------
+removeAllFiles() | Empties the dropzone area.
+processQueue() | Uploads the files, required if autoProcessQueue is set to false.
+
+Events emitted by the component to the parent.
+Event Name | Description
+-----------|-------------
+vdropzone-fileAdded(file) | File added to the dropzone.
+vdropzone-success(file) | File successfully uploaded.
+vdropzone-error(file) | File uploaded encountered an error.
+vdropzone-removedFile(file) | A file was removed from the dropzone.
+
+
+## Usage
+1. Import the module
+2. Register it as a component as you would any other Vue component
+3. Use it within your template
+
+### Example
+````
+<template>
+  <div id="app">
+    <p>
+      Welcome to your Vue.js app!
+    </p>
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post"></dropzone>
+
+  </div>
+</template>
+<script>
+  import Dropzone from 'vue-dropzone/lib/Dropzone'
+
+  export default {
+    name: 'MainApp',
+    components: {
+      Dropzone
+    },
+    events: {
+      'vdropzone-success': function (file) {
+        console.log('A file was successfully uploaded')
+      }
+    }
+  }
+</script>
+````
+
+## Development
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve example at localhost:8080
 npm run dev
 
-# build for production with minification
+# build any changes made
 npm run build
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

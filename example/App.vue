@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import Dropzone from '../src/Dropzone.vue'
-  export default {
-    name: 'MainApp',
-    components: {
-      Dropzone
-    },
-    events: {
-      'vdropzone-success': function (file) {
-        console.log('A file was successfully uploaded')
-      }
+import Dropzone from '../lib/Dropzone'
+export default {
+  name: 'MainApp',
+  components: {
+    Dropzone
+  },
+  events: {
+    'vdropzone-success': function (file) {
+      console.log('A file was successfully uploaded')
     }
   }
+}
 
 </script>
 
