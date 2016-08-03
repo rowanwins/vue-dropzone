@@ -1,6 +1,39 @@
 # vue-dropzone
 
-A Vue component for file uploads, powered by Dropzone.js
+A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/dist/index.html).
+
+## Usage
+1. Import the module
+2. Register it as a component as you would any other Vue component
+3. Use it within your template
+
+### Example
+````
+<template>
+  <div id="app">
+    <p>Welcome to your Vue.js app!</p>
+
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post"></dropzone>
+
+  </div>
+</template>
+
+<script>
+  import Dropzone from 'vue-dropzone/lib/Dropzone'
+
+  export default {
+    name: 'MainApp',
+    components: {
+      Dropzone
+    },
+    events: {
+      'vdropzone-success': function (file) {
+        console.log('A file was successfully uploaded')
+      }
+    }
+  }
+</script>
+````
 
 ## Props
 Many of these props are inherited from [dropzone configuration so see their doco](http://www.dropzonejs.com/#configuration-options) for further details.
@@ -37,39 +70,6 @@ Events emitted by the component to the parent.
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removedFile(file) | A file was removed from the dropzone.|
 
-
-## Usage
-1. Import the module
-2. Register it as a component as you would any other Vue component
-3. Use it within your template
-
-### Example
-````
-<template>
-  <div id="app">
-    <p>
-      Welcome to your Vue.js app!
-    </p>
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post"></dropzone>
-
-  </div>
-</template>
-<script>
-  import Dropzone from 'vue-dropzone/lib/Dropzone'
-
-  export default {
-    name: 'MainApp',
-    components: {
-      Dropzone
-    },
-    events: {
-      'vdropzone-success': function (file) {
-        console.log('A file was successfully uploaded')
-      }
-    }
-  }
-</script>
-````
 
 ## Development
 
