@@ -93,12 +93,12 @@
         vm.$parent.$emit('vdropzone-removedFile', file)
       })
 
-      this.dropzone.on('success', function (file) {
-        vm.$parent.$emit('vdropzone-success', file)
+      this.dropzone.on('success', function (file, response) {
+        vm.$parent.$emit('vdropzone-success', file, response)
       })
 
-      this.dropzone.on('error', function (file) {
-        vm.$parent.$emit('vdropzone-error', file)
+      this.dropzone.on('error', function (file, error, xhr) {
+        vm.$parent.$emit('vdropzone-error', file, error, xhr)
       })
     }
   }
