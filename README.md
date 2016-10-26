@@ -5,11 +5,7 @@ A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs
 ## Install
 ````
 // For Vue.js 2.0+
-npm install vue-dropzone^2.0.0
-
-// For Vue.js 1.0+
-npm install vue-dropzone@1.0.0
-
+npm install vue2-dropzone^2.0.0
 ````
 
 ## Usage
