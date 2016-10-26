@@ -1,5 +1,7 @@
 <template>
-  <form action="{{url}}" class="dropzone" id="{{id}}"></form>
+
+  <form :action="url" class="dropzone" :id="id"></form>
+
 </template>
 
 <script>
@@ -63,7 +65,7 @@
         this.dropzone.processQueue()
       }
     },
-    ready () {
+    mounted () {
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
         this.dropzone = new Dropzone(element, {
@@ -86,19 +88,19 @@
       // Handle the dropzone events
       var vm = this
       this.dropzone.on('addedfile', function (file) {
-        vm.$parent.$emit('vdropzone-fileAdded', file)
+        vm.$emit('vdropzone-fileAdded', file)
       })
 
       this.dropzone.on('removedfile', function (file) {
-        vm.$parent.$emit('vdropzone-removedFile', file)
+        vm.$emit('vdropzone-removedFile', file)
       })
 
       this.dropzone.on('success', function (file, response) {
-        vm.$parent.$emit('vdropzone-success', file, response)
+        vm.$emit('vdropzone-success', file, response)
       })
 
       this.dropzone.on('error', function (file, error, xhr) {
-        vm.$parent.$emit('vdropzone-error', file, error, xhr)
+        vm.$emit('vdropzone-error', file, error, xhr)
       })
     }
   }

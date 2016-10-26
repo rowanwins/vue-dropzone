@@ -2,6 +2,16 @@
 
 A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/dist/index.html).
 
+## Install
+````
+// For Vue.js 2.0+
+npm install vue-dropzone^2.0.0
+
+// For Vue.js 1.0+
+npm install vue-dropzone@1.0.0
+
+````
+
 ## Usage
 1. Import the module
 2. Register it as a component as you would any other Vue component
@@ -13,7 +23,7 @@ A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs
   <div id="app">
     <p>Welcome to your Vue.js app!</p>
 
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post"></dropzone>
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="showSuccess"></dropzone>
 
   </div>
 </template>
@@ -26,8 +36,8 @@ A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs
     components: {
       Dropzone
     },
-    events: {
-      'vdropzone-success': function (file) {
+    methods: {
+      'showSuccess': function (file) {
         console.log('A file was successfully uploaded')
       }
     }
