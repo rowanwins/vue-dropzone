@@ -121,12 +121,12 @@
     color: #777;
     transition: background-color .2s linear;
   }
+  
   .dropzone:hover{
     background-color: #F6F6F6;
   }
 
-
-  i{
+  .dropzone i{
     color: #CCC;
   }
 
