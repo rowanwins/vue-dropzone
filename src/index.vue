@@ -57,7 +57,7 @@
         type: Object
       }
     },
-    events: {
+    methods: {
       removeAllFiles: function () {
         this.dropzone.removeAllFiles(true)
       },
@@ -109,7 +109,6 @@
 
 <style>
   @import url('../node_modules/dropzone/dist/dropzone.css');
-  @import 'https://fonts.googleapis.com/css?family=Roboto';
 
   html{
     background-color: #F9F9F9;
@@ -117,11 +116,12 @@
 
   .dropzone{
     border: 2px solid #E5E5E5;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.2px;
     color: #777;
     transition: background-color .2s linear;
   }
-  
+
   .dropzone:hover{
     background-color: #F6F6F6;
   }

@@ -3,8 +3,8 @@
     <p>
       Welcome to your Vue.js app!
     </p>
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="success"></dropzone>
-
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="success" v-bind:auto-process-queue="processQueue"></dropzone>
+    <button v-on:click="process">process</button>
   </div>
 </template>
 
@@ -15,9 +15,21 @@
     components: {
       Dropzone
     },
+    data () {
+      return {
+        processQueue: false
+      }
+    },
     methods: {
       'success': function (file) {
         console.log('A file was successfully uploaded')
+      },
+      'process': function () {
+        var newArr = this.$children.filter(function(item){
+          return item.id === "myVueDropzone";
+        });
+        var component = newArr[0];
+        component.processQueue()
       }
     }
   }

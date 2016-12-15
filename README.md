@@ -59,14 +59,15 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 
-## Events
-Events to send to the component.
+## Methods
+Methods you can call on the component.
 
-| Event Name | Description |
+| Method | Description |
 |------------|-------------|
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 
+## Events
 Events emitted by the component to the parent.
 
 | Event Name | Description |
