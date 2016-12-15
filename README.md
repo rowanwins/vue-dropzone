@@ -56,6 +56,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | maxFileSizeInMB | Number |The maximum file size for a single upload in MB.|
 | maxNumberOfFiles | Number | The maximum number of files to allow the user to upload.|
 | autoProcessQueue | Boolean | Whether the files are automatically uploaded or not.|
+| useFontAwesome | Boolean | Whether to use Font Awesome instead of Material Icon.|
 | useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 

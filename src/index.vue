@@ -49,6 +49,10 @@
         type: Boolean,
         default: true
       },
+      useFontAwesome: {
+        type: Boolean,
+        default: false      
+      },
       useCustomDropzoneOptions: {
         type: Boolean,
         default: false
@@ -65,6 +69,29 @@
         this.dropzone.processQueue()
       }
     },
+    computed: {
+      cloudIcon: function () {
+        if (this.useFontAwesome) {
+          return '<i class="fa fa-cloud-upload"></i>'
+        } else {
+          return  '<i class="material-icons">cloud_upload</i>'
+        }
+      },
+      doneIcon: function () {
+        if (this.useFontAwesome) {
+          return '<i class="fa fa-check"></i>'
+        } else {
+          return  ' <i class="material-icons">done</i>'
+        }
+      },
+      errorIcon: function () {
+        if (this.useFontAwesome) {
+          return '<i class="fa fa-close"></i>'
+        } else {
+          return  ' <i class="material-icons">error</i>'
+        }
+      }
+    },
     mounted () {
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
@@ -78,8 +105,8 @@
           addRemoveLinks: this.showRemoveLink,
           acceptedFiles: this.acceptedFileTypes,
           autoProcessQueue: this.autoProcessQueue,
-          dictDefaultMessage: '<i class="material-icons">cloud_upload</i><br>Drop files here to upload',
-          previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark"> <i class="material-icons">done</i> </div>  <div class="dz-error-mark"><i class="material-icons">error</i></div></div>'
+          dictDefaultMessage: this.cloudIcon +'<br>Drop files here to upload',
+          previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark' + this.errorIcon + '</div></div>'
         })
       } else {
         this.dropzone = new Dropzone(element, this.dropzoneOptions)
