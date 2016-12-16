@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <p>
-      Welcome to your Vue.js app!
+      Welcome to your Vue.js app with dropzone!
     </p>
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="success" v-bind:auto-process-queue="processQueue"></dropzone>
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="success"></dropzone>
     <button v-on:click="process">process</button>
   </div>
 </template>
@@ -17,7 +17,8 @@
     },
     data () {
       return {
-        processQueue: false
+        processQueue: false,
+        fa: true
       }
     },
     methods: {
