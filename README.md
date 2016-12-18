@@ -31,7 +31,7 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
 </template>
 
 <script>
-  import Dropzone from 'vue-dropzone/lib/Dropzone'
+  import Dropzone from 'vue2-dropzone'
 
   export default {
     name: 'MainApp',
