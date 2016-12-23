@@ -129,6 +129,10 @@
       this.dropzone.on('error', function (file, error, xhr) {
         vm.$emit('vdropzone-error', file, error, xhr)
       })
+
+      this.dropzone.on('sending', function(file, xhr, formData){
+        vm.$emit('vdropzone-sending', file, xhr, formData)
+      })
     }
   }
 
