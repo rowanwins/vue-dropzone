@@ -74,6 +74,21 @@ Methods you can call on the component.
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 
+##Using Methods
+Methods can be called from your parent component by making use of the <a href="https://vuejs.org/v2/api/#ref">special tag "ref"</a>.
+
+When you initialize the compnonent add a unique ID to the dropzone element using the ref tag, like this
+
+```html
+<dropzone ref="myUniqueID"></dropzone>
+```
+Then from your parent Vue instance, you can call the methods by using the following:
+
+```javascript
+vm.$refs.myUniqueID.processQueue()
+//vm refers to your current instance
+```
+
 ## Events
 Events emitted by the component to the parent.
 
