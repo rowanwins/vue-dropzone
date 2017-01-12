@@ -59,7 +59,10 @@
       },
       dropzoneOptions: {
         type: Object
-      }
+      },
+      headers: {
+        type: Object
+      },
     },
     methods: {
       removeAllFiles: function () {
@@ -96,6 +99,7 @@
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
         this.dropzone = new Dropzone(element, {
+          headers: this.headers,
           clickable: this.clickable,
           thumbnailWidth: this.thumbnailWidth,
           thumbnailHeight: this.thumbnailHeight,
