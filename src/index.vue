@@ -51,7 +51,7 @@
       },
       useFontAwesome: {
         type: Boolean,
-        default: false      
+        default: false
       },
       useCustomDropzoneOptions: {
         type: Boolean,
@@ -62,6 +62,9 @@
       },
       headers: {
         type: Object
+      },
+      files: {
+        type: Array
       },
     },
     methods: {
@@ -94,6 +97,17 @@
           return  ' <i class="material-icons">error</i>'
         }
       }
+    },
+    watch: {
+        files(newVal, oldVal) {
+            if (!newVal)
+                return;
+
+            newVal.forEach(file => {
+                this.dropzone.emit('addedfile', file);
+                this.dropzone.emit("complete", file);
+            })
+        }
     },
     mounted () {
       var element = document.getElementById(this.id)
