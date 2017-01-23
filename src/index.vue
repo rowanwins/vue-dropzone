@@ -138,12 +138,8 @@
 
 </script>
 
-<style>
+<style scoped>
   @import url('../node_modules/dropzone/dist/dropzone.css');
-
-  html{
-    background-color: #F9F9F9;
-  }
 
   .dropzone{
     border: 2px solid #E5E5E5;
