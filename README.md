@@ -5,7 +5,7 @@ A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs
 ## Install
 ````
 // For Vue.js 2.0+
-npm install vue2-dropzone^2.0.0
+npm install vue2-dropzone@^2.0.0
 ````
 You'll also need to load either the [Material Icon](https://material.io/icons/) or [FontAwesome](http://fontawesome.io/) icon kits depending on which style of icon you'd like.
 ````
