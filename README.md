@@ -63,6 +63,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | maxNumberOfFiles | Number | The maximum number of files to allow the user to upload.|
 | autoProcessQueue | Boolean | Whether the files are automatically uploaded or not.|
 | useFontAwesome | Boolean | Whether to use Font Awesome instead of Material Icon.|
+| headers | Object | If you want to add additional headers.|
 | useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 
@@ -73,6 +74,8 @@ Methods you can call on the component.
 |------------|-------------|
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
+| removeFile(file) | Removes a file from the dropzone area.|
+
 
 ##Using Methods
 Methods can be called from your parent component by making use of the <a href="https://vuejs.org/v2/api/#ref">special tag "ref"</a>.
@@ -99,6 +102,7 @@ Events emitted by the component to the parent.
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removedFile(file, error, xhr) | A file was removed from the dropzone.|
 | vdropzone-sending(file, xhr, formData) | Modify the request and add addtional parameters to request before sending.|
+| vdropzone-queuecomplete() | Called when all files in the queue finish uploading.|
 
 
 ## Development
