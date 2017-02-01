@@ -67,6 +67,9 @@
       },
       processQueue: function () {
         this.dropzone.processQueue()
+      },
+      removeFile: function (file) {
+        this.dropzone.removeFile(file)
       }
     },
     computed: {
@@ -132,6 +135,10 @@
 
       this.dropzone.on('sending', function(file, xhr, formData){
         vm.$emit('vdropzone-sending', file, xhr, formData)
+      })
+
+      this.dropzone.on('queuecomplete', function(file, xhr, formData){
+        vm.$emit('vdropzone-queuecomplete', file, xhr, formData)
       })
     }
   }
