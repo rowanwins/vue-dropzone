@@ -121,12 +121,15 @@
 
       // Handle the dropzone events
       var vm = this
+      this.dropzone.on('thumbnail', function (file) {
+        vm.$emit('vdropzone-thumbnail', file)
+      })
       this.dropzone.on('addedfile', function (file) {
-        vm.$emit('vdropzone-fileAdded', file)
+        vm.$emit('vdropzone-file-added', file)
       })
 
       this.dropzone.on('removedfile', function (file) {
-        vm.$emit('vdropzone-removedFile', file)
+        vm.$emit('vdropzone-removed-file', file)
       })
 
       this.dropzone.on('success', function (file, response) {
@@ -142,7 +145,7 @@
       })
 
       this.dropzone.on('queuecomplete', function(file, xhr, formData){
-        vm.$emit('vdropzone-queuecomplete', file, xhr, formData)
+        vm.$emit('vdropzone-queue-complete', file, xhr, formData)
       })
     }
   }

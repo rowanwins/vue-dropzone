@@ -97,12 +97,12 @@ Events emitted by the component to the parent.
 
 | Event Name | Description |
 |------------|-------------|
-| vdropzone-fileAdded(file) | File added to the dropzone.|
+| vdropzone-file-added(file) | File added to the dropzone.|
 | vdropzone-success(file, response) | File successfully uploaded.|
 | vdropzone-error(file) | File uploaded encountered an error.|
-| vdropzone-removedFile(file, error, xhr) | A file was removed from the dropzone.|
+| vdropzone-removed-file(file, error, xhr) | A file was removed from the dropzone.|
 | vdropzone-sending(file, xhr, formData) | Modify the request and add addtional parameters to request before sending.|
-| vdropzone-queuecomplete() | Called when all files in the queue finish uploading.|
+| vdropzone-queue-complete() | Called when all files in the queue finish uploading.|
 
 
 ## Development
