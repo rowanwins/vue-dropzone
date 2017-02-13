@@ -5,9 +5,6 @@
 </template>
 
 <script>
-  var Dropzone = require('dropzone')
-  Dropzone.autoDiscover = false
-
   export default {
     props: {
       id: {
@@ -99,6 +96,10 @@
       }
     },
     mounted () {
+      if(this.$isServer)
+        return
+      var Dropzone = require('dropzone')
+      Dropzone.autoDiscover = false
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
         this.dropzone = new Dropzone(element, {
