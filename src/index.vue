@@ -50,7 +50,7 @@
       },
       useFontAwesome: {
         type: Boolean,
-        default: false      
+        default: false
       },
       headers: {
         type: Object
@@ -61,7 +61,13 @@
       },
       dropzoneOptions: {
         type: Object
-      }
+      },
+      headers: {
+        type: Object
+      },
+      files: {
+        type: Array
+      },
     },
     methods: {
       removeAllFiles: function () {
@@ -97,6 +103,17 @@
         }
       }
     },
+    watch: {
+        files(newVal, oldVal) {
+            if (!newVal)
+                return;
+
+            newVal.forEach(file => {
+                this.dropzone.emit('addedfile', file);
+                this.dropzone.emit("complete", file);
+            })
+        }
+    },
     mounted () {
       if (this.$isServer) {
         return
@@ -105,6 +122,7 @@
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
         this.dropzone = new Dropzone(element, {
+          headers: this.headers,
           clickable: this.clickable,
           thumbnailWidth: this.thumbnailWidth,
           thumbnailHeight: this.thumbnailHeight,

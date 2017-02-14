@@ -66,6 +66,8 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | headers | Object | If you want to add additional headers.|
 | useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
+| headers | Object | If you want to add additional headers
+| files | Array | If you want to show already uploaded files
 
 ## Methods
 Methods you can call on the component.
