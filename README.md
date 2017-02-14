@@ -102,7 +102,8 @@ Events emitted by the component to the parent.
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removed-file(file, error, xhr) | A file was removed from the dropzone.|
 | vdropzone-sending(file, xhr, formData) | Modify the request and add addtional parameters to request before sending.|
-| vdropzone-queue-complete() | Called when all files in the queue finish uploading.|
+| vdropzone-success-multiple(files, response) | Fired if the uploadMultiple option is true.|
+| vdropzone-sending-multiple(files, xhr, formData) | Fired if the uploadMultiple option is true.|
 
 
 ## Development

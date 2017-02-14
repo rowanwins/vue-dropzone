@@ -137,12 +137,20 @@
         vm.$emit('vdropzone-success', file, response)
       })
 
+      this.dropzone.on('successmultiple', function (file, response) {
+        vm.$emit('vdropzone-success-multiple', file, response)
+      })
+
       this.dropzone.on('error', function (file, error, xhr) {
         vm.$emit('vdropzone-error', file, error, xhr)
       })
 
       this.dropzone.on('sending', function(file, xhr, formData){
         vm.$emit('vdropzone-sending', file, xhr, formData)
+      })
+
+      this.dropzone.on('sendingmultiple', function(file, xhr, formData){
+        vm.$emit('vdropzone-sending-multiple', file, xhr, formData)
       })
 
       this.dropzone.on('queuecomplete', function(file, xhr, formData){
