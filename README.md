@@ -64,7 +64,8 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | autoProcessQueue | Boolean | Whether the files are automatically uploaded or not.|
 | useFontAwesome | Boolean | Whether to use Font Awesome instead of Material Icon.|
 | headers | Object | If you want to add additional headers.|
-| useCustomDropzoneOptions | Boolean | If you want to define your own Dropzone config set this to true and define a dropzoneOptions.|
+| language | Object | Use dropzone's [dict properties](http://www.dropzonejs.com/#config-dictDefaultMessage) to change texts. |
+| useCustomDropzoneOptions | Boolean | If you want to define your own dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 
 ## Methods
