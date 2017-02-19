@@ -50,11 +50,29 @@
       },
       useFontAwesome: {
         type: Boolean,
-        default: false      
+        default: false
       },
       headers: {
         type: Object
       },
+			language: {
+				type: Object,
+				default: function() {
+					return {
+						dictDefaultMessage: '<br>Drop files here to upload',
+						dictCancelUpload: 'Cancel upload',
+						dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
+						dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
+						dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
+						dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+						dictInvalidFileType: `You can't upload files of this type.`,
+						dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
+						dictRemoveFile: 'Remove',
+						dictRemoveFileConfirmation: null,
+						dictResponseError: 'Server responded with {{statusCode}} code.',
+					}
+				}
+			},
       useCustomDropzoneOptions: {
         type: Boolean,
         default: false
@@ -110,13 +128,22 @@
           thumbnailHeight: this.thumbnailHeight,
           maxFiles: this.maxNumberOfFiles,
           maxFilesize: this.maxFileSizeInMB,
-          dictRemoveFile: 'Remove',
           addRemoveLinks: this.showRemoveLink,
           acceptedFiles: this.acceptedFileTypes,
           autoProcessQueue: this.autoProcessQueue,
           headers: this.headers,
-          dictDefaultMessage: this.cloudIcon +'<br>Drop files here to upload',
-          previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark">' + this.errorIcon + '</div></div>'
+          previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark">' + this.errorIcon + '</div></div>',
+					dictDefaultMessage: this.cloudIcon + this.language.dictDefaultMessage,
+    			dictCancelUpload: this.language.dictCancelUpload,
+    			dictCancelUploadConfirmation: this.language.dictCancelUploadConfirmation,
+    			dictFallbackMessage: this.language.dictFallbackMessage,
+    			dictFallbackText: this.language.dictFallbackText,
+    			dictFileTooBig: this.language.dictFileTooBig,
+    			dictInvalidFileType: this.language.dictInvalidFileType,
+    			dictMaxFilesExceeded: this.language.dictMaxFilesExceeded,
+    			dictRemoveFile: this.language.dictRemoveFile,
+    			dictRemoveFileConfirmation: this.language.dictRemoveFileConfirmation,
+    			dictResponseError: this.language.dictResponseError
         })
       } else {
         this.dropzone = new Dropzone(element, this.dropzoneOptions)
@@ -165,14 +192,14 @@
 
 <style lang="less">
   @import url('../node_modules/dropzone/dist/dropzone.css');
-  
+
   .vue-dropzone{
     border: 2px solid #E5E5E5;
     font-family: 'Arial', sans-serif;
     letter-spacing: 0.2px;
     color: #777;
     transition: background-color .2s linear;
-    
+
     &:hover {
       background-color: #F6F6F6;
     }
@@ -188,11 +215,11 @@
         &:hover {
           img {
             transform: none;
-            -webkit-filter: none;          
+            -webkit-filter: none;
           }
         }
       }
-      
+
       .dz-details {
         bottom: 0px;
         top: 0px;
@@ -213,7 +240,7 @@
       }
 
       .dz-progress .dz-upload {
-        background: #cccccc; 
+        background: #cccccc;
       }
 
       .dz-remove {
@@ -247,9 +274,9 @@
         left: 0;
         i {
           color: white!important;
-          font-size: 5rem!important;        
+          font-size: 5rem!important;
         }
-      }   
+      }
     }
   }
 
