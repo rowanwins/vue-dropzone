@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  var Dropzone = require('dropzone')
 
   export default {
     props: {
@@ -119,6 +118,7 @@
       if (this.$isServer) {
         return
       }
+      var Dropzone = require('dropzone')
       Dropzone.autoDiscover = false
       var element = document.getElementById(this.id)
       if (!this.useCustomDropzoneOptions) {
