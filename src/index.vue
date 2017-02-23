@@ -81,6 +81,9 @@
       }
     },
     methods: {
+      setOption: function (option, value) {
+        this.dropzone.options[option] = value
+      },
       removeAllFiles: function () {
         this.dropzone.removeAllFiles(true)
       },
@@ -148,7 +151,6 @@
       } else {
         this.dropzone = new Dropzone(element, this.dropzoneOptions)
       }
-
       // Handle the dropzone events
       var vm = this
       this.dropzone.on('thumbnail', function (file) {

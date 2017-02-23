@@ -73,6 +73,7 @@ Methods you can call on the component.
 
 | Method | Description |
 |------------|-------------|
+| setOption(optionname, value) | Sets the value of one of the dropzone options after initialisation. Handy if you need to pass through a token after the component has initialised. |
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 | removeFile(file) | Removes a file from the dropzone area.|
