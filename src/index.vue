@@ -187,6 +187,10 @@
       this.dropzone.on('queuecomplete', function(file, xhr, formData){
         vm.$emit('vdropzone-queue-complete', file, xhr, formData)
       })
+    },
+
+    beforeDestroy () {
+      this.dropzone.destroy();
     }
   }
 
