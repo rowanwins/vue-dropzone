@@ -54,6 +54,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 |----------|------|--------------|
 | id | String | A string by which to identify the component, can be anything. **Required**|
 | url | String | Url to post the upload to. **Required**|
+| paramName | String | The name of the file param that gets transferred. Defaults to file. NOTE: If you have the option uploadMultiple set to true, then Dropzone will append [] to the name.|
 | clickable | Boolean | Whether the dropzone area is clickable, if false then users can only drag items on to the area.|
 | acceptedFileTypes | String | A comma separated string of accepted file types eg 'image/*,application/pdf,.psd' .|
 | thumbnailHeight | Number | The height of thumbnails in pixels.|

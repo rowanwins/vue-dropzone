@@ -20,6 +20,10 @@
         type: Boolean,
         default: true
       },
+      paramName: {
+        type: String,
+        default: 'file'
+      },
       acceptedFileTypes: {
         type: String
       },
@@ -127,6 +131,7 @@
       if (!this.useCustomDropzoneOptions) {
         this.dropzone = new Dropzone(element, {
           clickable: this.clickable,
+          paramName: this.paramName,
           thumbnailWidth: this.thumbnailWidth,
           thumbnailHeight: this.thumbnailHeight,
           maxFiles: this.maxNumberOfFiles,
