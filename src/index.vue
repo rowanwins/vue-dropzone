@@ -161,8 +161,13 @@
       this.dropzone.on('thumbnail', function (file) {
         vm.$emit('vdropzone-thumbnail', file)
       })
+
       this.dropzone.on('addedfile', function (file) {
         vm.$emit('vdropzone-file-added', file)
+      })
+
+      this.dropzone.on('addedfiles', function (files) {
+        vm.$emit('vdropzone-files-added', files)
       })
 
       this.dropzone.on('removedfile', function (file) {

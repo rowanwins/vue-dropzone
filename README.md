@@ -101,6 +101,7 @@ Events emitted by the component to the parent.
 | Event Name | Description |
 |------------|-------------|
 | vdropzone-file-added(file) | File added to the dropzone.|
+| vdropzone-files-added(file) | Files added to the dropzone.|
 | vdropzone-success(file, response) | File successfully uploaded.|
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removed-file(file, error, xhr) | A file was removed from the dropzone.|
