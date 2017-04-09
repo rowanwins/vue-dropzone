@@ -203,7 +203,7 @@
       this.dropzone.destroy();
     }
   }
-
+  window.vue2dropzone = exports.default 
 </script>
 
 <style lang="less">
