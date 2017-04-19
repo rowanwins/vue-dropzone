@@ -93,21 +93,11 @@
       removeFile: function (file) {
         this.dropzone.removeFile(file)
       },
-      emit: function (event, mockFile, imageUrl) {
-        switch (event) {
-          case 'addedfile':
-            this.dropzone.emit('addedfile', mockFile)
-            break
-          case 'thumbnail':
-            this.dropzone.emit('thumbnail', mockFile, imageUrl)
-            break
-          case 'complete':
-            this.dropzone.emit('complete', mockFile)
-            break
-        }
-      },
-      createThumbnailFromUrl: function (mockFile, imageUrl, callback, crossOrigin) {
-        this.dropzone.createThumbnailFromUrl(mockFile, imageUrl, callback, crossOrigin)
+      manuallyAddFile: function (mockFile, fileUrl, callback, crossOrigin) {
+        this.dropzone.emit('addedfile', mockFile);
+        this.dropzone.emit('thumbnail', mockFile, fileUrl);
+        this.dropzone.createThumbnailFromUrl(mockFile, fileUrl, callback, crossOrigin);
+        this.dropzone.emit('complete', mockFile);
       },
       decrementFileCounter: function () {
         this.dropzone.options.maxFiles -= 1
