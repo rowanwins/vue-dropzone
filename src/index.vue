@@ -96,6 +96,15 @@
       },
       removeFile: function (file) {
         this.dropzone.removeFile(file)
+      },
+      manuallyAddFile: function (mockFile, fileUrl, callback, crossOrigin) {
+        this.dropzone.emit('addedfile', mockFile);
+        this.dropzone.emit('thumbnail', mockFile, fileUrl);
+        this.dropzone.createThumbnailFromUrl(mockFile, fileUrl, callback, crossOrigin);
+        this.dropzone.emit('complete', mockFile);
+      },
+      decrementFileCounter: function () {
+        this.dropzone.options.maxFiles -= 1
       }
     },
     computed: {

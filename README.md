@@ -78,6 +78,9 @@ Methods you can call on the component.
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 | removeFile(file) | Removes a file from the dropzone area.|
+| emit(event, mockFile, imageUrl) | Allows to show files already stored on server [More info](https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server). This events are allowed: 'addedfile', 'thumbnail', 'complete'. `imageUrl` is optional|
+| createThumbnailFromUrl(mockFile, imageUrl, callback, crossOrigin) | Create a thumbnail from url [More info](https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server).|
+| decrementFileCounter() | Decrements file counter (myDropzone.options.maxFiles) of this dropzone instance.|
 
 
 ##Using Methods
@@ -93,6 +96,27 @@ Then from your parent Vue instance, you can call the methods by using the follow
 ```javascript
 vm.$refs.myUniqueID.processQueue()
 //vm refers to your current instance
+```
+
+## Adding files already stored on server
+
+Dropzone haven't builtin functionality to do that but you can use Dropzone's default event handlers to your advantage [More info](https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server).
+
+This could be done with the exposed dropzone methods as follow:
+
+```javascript
+const mockFile = {
+  name: 'image-name.png',
+  size: 12345,
+  type: 'image/png',
+  accepted: true
+}
+const dz = this.$refs.myVueDropzone
+dz.emit('addedfile', mockFile)
+dz.emit('thumbnail', mockFile, 'http://placehold.it/150x150')
+dz.createThumbnailFromUrl(mockFile, 'http://placehold.it/150x150', null, 'anonymous')
+dz.emit('complete', mockFile, 'http://placehold.it/150x150')
+dz.decrementFileCounter()
 ```
 
 ## Events
