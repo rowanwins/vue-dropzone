@@ -1,6 +1,8 @@
 <template>
 
-  <form :action="url" class="vue-dropzone dropzone" :id="id"></form>
+  <form :action="url" class="vue-dropzone dropzone" :id="id">
+    <slot></slot>
+  </form>
 
 </template>
 
