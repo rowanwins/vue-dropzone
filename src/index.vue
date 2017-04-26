@@ -209,6 +209,10 @@
       this.dropzone.on('queuecomplete', function(file, xhr, formData){
         vm.$emit('vdropzone-queue-complete', file, xhr, formData)
       })
+
+      this.dropzone.on('totaluploadprogress', function(totaluploadprogress, totalBytes, totalBytesSent){
+        vm.$emit('vdropzone-total-upload-progress', totaluploadprogress, totalBytes, totalBytesSent)
+      })
     },
 
     beforeDestroy () {
