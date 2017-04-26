@@ -96,6 +96,18 @@
       },
       removeFile: function (file) {
         this.dropzone.removeFile(file)
+      },
+      getAcceptedFiles: function () {
+        return this.dropzone.getAcceptedFiles();
+      },
+      getRejectedFiles: function () {
+        return this.dropzone.getRejectedFiles();
+      },
+      getUploadingFiles:function () {
+        return this.dropzone.getUploadingFiles();
+      },
+      getQueuedFiles:function () {
+        return this.dropzone.getQueuedFiles();
       }
     },
     computed: {

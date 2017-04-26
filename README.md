@@ -78,6 +78,11 @@ Methods you can call on the component.
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 | removeFile(file) | Removes a file from the dropzone area.|
+| getAcceptedFiles() | Returns array of valid/ accepted files. |
+| getRejectedFiles() | Returns array of Invalid/ rejected files. |
+| getUploadingFiles() | Returns array of uploading files. |
+| getUploadingFiles() | Returns array of uploading files. |
+| getQueuedFiles() | Returns array of uploading files. |
 
 
 ##Using Methods
@@ -108,7 +113,7 @@ Events emitted by the component to the parent.
 | vdropzone-sending(file, xhr, formData) | Modify the request and add addtional parameters to request before sending.|
 | vdropzone-success-multiple(files, response) | Fired if the uploadMultiple option is true.|
 | vdropzone-sending-multiple(files, xhr, formData) | Fired if the uploadMultiple option is true.|
-
+| vdropzone-queue-complete(file, xhr, formData) | Fired when queue has been completely processed/uploaded.
 
 ## Development
 
