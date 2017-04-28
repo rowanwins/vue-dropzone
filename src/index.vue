@@ -90,7 +90,8 @@
     this.dropzone.emit("thumbnail", file,  fileUrl);
     this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin);
     this.dropzone.emit("complete", file);
-    this.$emit('vdropzone-file-added-manually', file)
+    this.$emit('vdropzone-file-added-manually', file)    
+    this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1;
   },
   setOption: function (option, value) {
     this.dropzone.options[option] = value
