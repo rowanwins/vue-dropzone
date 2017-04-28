@@ -86,12 +86,15 @@
   },
   methods: {
    manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
+   	var should_add_remove_links = this.dropzone.options['addRemoveLinks']; //Backup user choice
+   	this.dropzone.options['addRemoveLinks'] = false; //make it temprory false
     this.dropzone.emit("addedfile", file);
     this.dropzone.emit("thumbnail", file,  fileUrl);
     this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin);
     this.dropzone.emit("complete", file);
     this.$emit('vdropzone-file-added-manually', file)    
     this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1;
+    this.dropzone.options['addRemoveLinks'] = should_add_remove_links; //restore user choice
   },
   setOption: function (option, value) {
     this.dropzone.options[option] = value
