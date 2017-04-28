@@ -58,24 +58,24 @@
       headers: {
         type: Object
       },
-			language: {
-				type: Object,
-				default: function() {
-					return {
-						dictDefaultMessage: '<br>Drop files here to upload',
-						dictCancelUpload: 'Cancel upload',
-						dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
-						dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
-						dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
-						dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
-						dictInvalidFileType: `You can't upload files of this type.`,
-						dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
-						dictRemoveFile: 'Remove',
-						dictRemoveFileConfirmation: null,
-						dictResponseError: 'Server responded with {{statusCode}} code.',
-					}
-				}
-			},
+      language: {
+        type: Object,
+        default: function() {
+         return {
+          dictDefaultMessage: '<br>Drop files here to upload',
+          dictCancelUpload: 'Cancel upload',
+          dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
+          dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
+          dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
+          dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+          dictInvalidFileType: `You can't upload files of this type.`,
+          dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
+          dictRemoveFile: 'Remove',
+          dictRemoveFileConfirmation: null,
+          dictResponseError: 'Server responded with {{statusCode}} code.',
+        }
+       }
+      },
       useCustomDropzoneOptions: {
         type: Boolean,
         default: false
@@ -83,91 +83,98 @@
       dropzoneOptions: {
         type: Object
       }
-    },
-    methods: {
-      setOption: function (option, value) {
-        this.dropzone.options[option] = value
-      },
-      removeAllFiles: function () {
-        this.dropzone.removeAllFiles(true)
-      },
-      processQueue: function () {
-        this.dropzone.processQueue()
-      },
-      removeFile: function (file) {
-        this.dropzone.removeFile(file)
-      },
-      getAcceptedFiles: function () {
-        return this.dropzone.getAcceptedFiles();
-      },
-      getRejectedFiles: function () {
-        return this.dropzone.getRejectedFiles();
-      },
-      getUploadingFiles:function () {
-        return this.dropzone.getUploadingFiles();
-      },
-      getQueuedFiles:function () {
-        return this.dropzone.getQueuedFiles();
-      }
-    },
-    computed: {
-      cloudIcon: function () {
-        if (this.useFontAwesome) {
-          return '<i class="fa fa-cloud-upload"></i>'
-        } else {
-          return  '<i class="material-icons">cloud_upload</i>'
-        }
-      },
-      doneIcon: function () {
-        if (this.useFontAwesome) {
-          return '<i class="fa fa-check"></i>'
-        } else {
-          return  ' <i class="material-icons">done</i>'
-        }
-      },
-      errorIcon: function () {
-        if (this.useFontAwesome) {
-          return '<i class="fa fa-close"></i>'
-        } else {
-          return  ' <i class="material-icons">error</i>'
-        }
-      }
-    },
-    mounted () {
-      if (this.$isServer) {
-        return
-      }
-      var Dropzone = require('dropzone')
-      Dropzone.autoDiscover = false
-      var element = document.getElementById(this.id)
-      if (!this.useCustomDropzoneOptions) {
-        this.dropzone = new Dropzone(element, {
-          clickable: this.clickable,
-          paramName: this.paramName,
-          thumbnailWidth: this.thumbnailWidth,
-          thumbnailHeight: this.thumbnailHeight,
-          maxFiles: this.maxNumberOfFiles,
-          maxFilesize: this.maxFileSizeInMB,
-          addRemoveLinks: this.showRemoveLink,
-          acceptedFiles: this.acceptedFileTypes,
-          autoProcessQueue: this.autoProcessQueue,
-          headers: this.headers,
-          previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark">' + this.errorIcon + '</div></div>',
-					dictDefaultMessage: this.cloudIcon + this.language.dictDefaultMessage,
-    			dictCancelUpload: this.language.dictCancelUpload,
-    			dictCancelUploadConfirmation: this.language.dictCancelUploadConfirmation,
-    			dictFallbackMessage: this.language.dictFallbackMessage,
-    			dictFallbackText: this.language.dictFallbackText,
-    			dictFileTooBig: this.language.dictFileTooBig,
-    			dictInvalidFileType: this.language.dictInvalidFileType,
-    			dictMaxFilesExceeded: this.language.dictMaxFilesExceeded,
-    			dictRemoveFile: this.language.dictRemoveFile,
-    			dictRemoveFileConfirmation: this.language.dictRemoveFileConfirmation,
-    			dictResponseError: this.language.dictResponseError
-        })
-      } else {
-        this.dropzone = new Dropzone(element, this.dropzoneOptions)
-      }
+  },
+  methods: {
+   manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
+    this.dropzone.emit("addedfile", file);
+    this.dropzone.emit("thumbnail", file,  fileUrl);
+    this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin);
+    this.dropzone.emit("complete", file);
+    this.$emit('vdropzone-file-added-manually', file)
+  },
+  setOption: function (option, value) {
+    this.dropzone.options[option] = value
+  },
+  removeAllFiles: function () {
+    this.dropzone.removeAllFiles(true)
+  },
+  processQueue: function () {
+    this.dropzone.processQueue()
+  },
+  removeFile: function (file) {
+    this.dropzone.removeFile(file)
+  },
+  getAcceptedFiles: function () {
+    return this.dropzone.getAcceptedFiles();
+  },
+  getRejectedFiles: function () {
+    return this.dropzone.getRejectedFiles();
+  },
+  getUploadingFiles:function () {
+    return this.dropzone.getUploadingFiles();
+  },
+  getQueuedFiles:function () {
+    return this.dropzone.getQueuedFiles();
+  }
+},
+computed: {
+  cloudIcon: function () {
+    if (this.useFontAwesome) {
+      return '<i class="fa fa-cloud-upload"></i>'
+    } else {
+      return  '<i class="material-icons">cloud_upload</i>'
+    }
+  },
+  doneIcon: function () {
+    if (this.useFontAwesome) {
+      return '<i class="fa fa-check"></i>'
+    } else {
+      return  ' <i class="material-icons">done</i>'
+    }
+  },
+  errorIcon: function () {
+    if (this.useFontAwesome) {
+      return '<i class="fa fa-close"></i>'
+    } else {
+      return  ' <i class="material-icons">error</i>'
+    }
+  }
+},
+mounted () {
+  if (this.$isServer) {
+    return
+  }
+  var Dropzone = require('dropzone')
+  Dropzone.autoDiscover = false
+  var element = document.getElementById(this.id)
+  if (!this.useCustomDropzoneOptions) {
+    this.dropzone = new Dropzone(element, {
+      clickable: this.clickable,
+      paramName: this.paramName,
+      thumbnailWidth: this.thumbnailWidth,
+      thumbnailHeight: this.thumbnailHeight,
+      maxFiles: this.maxNumberOfFiles,
+      maxFilesize: this.maxFileSizeInMB,
+      addRemoveLinks: this.showRemoveLink,
+      acceptedFiles: this.acceptedFileTypes,
+      autoProcessQueue: this.autoProcessQueue,
+      headers: this.headers,
+      previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark">' + this.errorIcon + '</div></div>',
+      dictDefaultMessage: this.cloudIcon + this.language.dictDefaultMessage,
+      dictCancelUpload: this.language.dictCancelUpload,
+      dictCancelUploadConfirmation: this.language.dictCancelUploadConfirmation,
+      dictFallbackMessage: this.language.dictFallbackMessage,
+      dictFallbackText: this.language.dictFallbackText,
+      dictFileTooBig: this.language.dictFileTooBig,
+      dictInvalidFileType: this.language.dictInvalidFileType,
+      dictMaxFilesExceeded: this.language.dictMaxFilesExceeded,
+      dictRemoveFile: this.language.dictRemoveFile,
+      dictRemoveFileConfirmation: this.language.dictRemoveFileConfirmation,
+      dictResponseError: this.language.dictResponseError
+    })
+  } else {
+    this.dropzone = new Dropzone(element, this.dropzoneOptions)
+  }
       // Handle the dropzone events
       var vm = this
       this.dropzone.on('thumbnail', function (file) {

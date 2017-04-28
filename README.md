@@ -78,6 +78,7 @@ Methods you can call on the component.
 | removeAllFiles() | Empties the dropzone area.|
 | processQueue() | Uploads the files, required if autoProcessQueue is set to false.|
 | removeFile(file) | Removes a file from the dropzone area.|
+| manuallyAddFile(file, fileUrl, callback, crossOrigin) | Manually adds a file to the dropzone area. See the [dropzone doco](https://github.com/enyo/dropzone/wiki/FAQ#how-to-show-files-already-stored-on-server) for more information. |
 | getAcceptedFiles() | Returns array of valid/ accepted files. |
 | getRejectedFiles() | Returns array of Invalid/ rejected files. |
 | getUploadingFiles() | Returns array of uploading files. |
