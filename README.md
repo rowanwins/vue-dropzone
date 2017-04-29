@@ -82,7 +82,6 @@ Methods you can call on the component.
 | getAcceptedFiles() | Returns array of valid/ accepted files. |
 | getRejectedFiles() | Returns array of Invalid/ rejected files. |
 | getUploadingFiles() | Returns array of uploading files. |
-| getUploadingFiles() | Returns array of uploading files. |
 | getQueuedFiles() | Returns array of uploading files. |
 
 
