@@ -25,7 +25,10 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
   <div id="app">
     <p>Welcome to your Vue.js app!</p>
 
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="showSuccess"></dropzone>
+    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="showSuccess">
+        <!-- Optional parameters if any! -->
+        <input type="hidden" name="token" value="xxx">
+    </dropzone>
 
   </div>
 </template>
