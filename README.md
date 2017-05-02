@@ -9,8 +9,7 @@ npm install vue2-dropzone@^2.0.0
 ````
 You'll also need to load either the [Material Icon](https://material.io/icons/) or [FontAwesome](http://fontawesome.io/) icon kits depending on which style of icon you'd like.
 ````html
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 ````
 
