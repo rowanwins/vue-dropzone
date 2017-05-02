@@ -115,6 +115,8 @@ Events emitted by the component to the parent.
 | vdropzone-sending-multiple(files, xhr, formData) | Fired if the uploadMultiple option is true.|
 | vdropzone-queue-complete(file, xhr, formData) | Fired when queue has been completely processed/ uploaded.|
 | vdropzone-total-upload-progress(totaluploadprogress, totalBytes, totalBytesSent) | This event can be used to show the overall upload progress of all files. Note : `totaluploadprogress (0-100)`|
+| vdropzone-mounted() | Fired when dropzone component is mounted. |
+
 
 ## Development
 

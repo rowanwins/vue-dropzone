@@ -224,6 +224,8 @@ mounted () {
       this.dropzone.on('totaluploadprogress', function(totaluploadprogress, totalBytes, totalBytesSent){
         vm.$emit('vdropzone-total-upload-progress', totaluploadprogress, totalBytes, totalBytesSent)
       })
+
+      vm.$emit('vdropzone-mounted');
     },
 
     beforeDestroy () {
