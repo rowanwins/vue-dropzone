@@ -87,7 +87,7 @@ Methods you can call on the component.
 | getQueuedFiles() | Returns array of uploading files. |
 
 
-##Using Methods
+## Using Methods
 Methods can be called from your parent component by making use of the <a href="https://vuejs.org/v2/api/#ref">special tag "ref"</a>.
 
 When you initialize the compnonent add a unique ID to the dropzone element using the ref tag, like this
