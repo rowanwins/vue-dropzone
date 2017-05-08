@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Open Sans";
+    src: url("./font/OpenSans-Regular.eot?") format("eot"), url("./font/OpenSans-Regular.woff") format("woff"), url("./font/OpenSans-Regular.ttf") format("truetype"), url("./font/OpenSans-Regular.svg#OpenSans") format("svg");
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', 'Source Sans Pro', 'Helvetica Neue', 'Microsoft Yahei', Arial, sans-serif;
+    color: #2c3e50;
+}
+
+a {
+    color: #4F92C0;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#app {
+    width: 600px;
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+}
+
+#main {
+    margin-top: 70px;
+}
+
+.title {
+    font-size: 4em;
+    color: #4F92C0;
+}
+
+.desc {
+    font-size: 15px;
+    color: #7f8c8d;
+}
+
+.github-link {
+    font-size: 22px;
+}
+
+.button {
+    box-sizing: content-box;
+    display: inline-block;
+    width: 180px;
+    margin: 0.5em;
+    padding: 12px 14px;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 2px solid;
+    border-radius: 4px;
+    -webkit-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+.button.green {
+    background-color: #4fc08d;
+    border-bottom-color: #3aa373;
+}
+
+.button.blue {
+    background-color: #4F92C0;
+    border-bottom-color: #4881A9;
+}
+
+.button:hover {
+    text-decoration: none;
+    -webkit-transform: translate(0, -2px);
+    -ms-transform: translate(0, -2px);
+    transform: translate(0, -2px);
+}
