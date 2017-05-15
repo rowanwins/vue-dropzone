@@ -17,7 +17,7 @@
     data () {
       return {
         processQueue: false,
-        fa: true
+        fa: true,
       }
     },
     methods: {
