@@ -14,7 +14,7 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
 ````
 
 ## Usage
-1. Import the module (`import Dropzone from 'vue2-dropzone') 
+1. Import the module (`import Dropzone from 'vue2-dropzone'`) 
 2. Register it as a component as you would any other Vue component
 3. Use it within your template
 
