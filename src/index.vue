@@ -62,21 +62,7 @@
       },
       language: {
         type: Object,
-        default: function() {
-         return {
-          dictDefaultMessage: '<br>Drop files here to upload',
-          dictCancelUpload: 'Cancel upload',
-          dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
-          dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
-          dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
-          dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
-          dictInvalidFileType: `You can't upload files of this type.`,
-          dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
-          dictRemoveFile: 'Remove',
-          dictRemoveFileConfirmation: null,
-          dictResponseError: 'Server responded with {{statusCode}} code.',
-        }
-       }
+        default: {}
       },
       useCustomDropzoneOptions: {
         type: Boolean,
@@ -124,6 +110,25 @@
   }
 },
 computed: {
+    languageSettings(){
+      var defaultValues = {
+            dictDefaultMessage: '<br>Drop files here to upload',
+            dictCancelUpload: 'Cancel upload',
+            dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
+            dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
+            dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
+            dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+            dictInvalidFileType: `You can't upload files of this type.`,
+            dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
+            dictRemoveFile: 'Remove',
+            dictRemoveFileConfirmation: null,
+            dictResponseError: 'Server responded with {{statusCode}} code.',
+      }
+
+      for (var attrname in this.language) { defaultValues[attrname] = this.language[attrname]; }
+      return defaultValues;
+  },
+
   cloudIcon: function () {
     if (this.useFontAwesome) {
       return '<i class="fa fa-cloud-upload"></i>'
@@ -166,17 +171,17 @@ mounted () {
       autoProcessQueue: this.autoProcessQueue,
       headers: this.headers,
       previewTemplate: '<div class="dz-preview dz-file-preview">  <div class="dz-image" style="width:' + this.thumbnailWidth + 'px;height:' + this.thumbnailHeight + 'px"><img data-dz-thumbnail /></div>  <div class="dz-details">    <div class="dz-size"><span data-dz-size></span></div>    <div class="dz-filename"><span data-dz-name></span></div>  </div>  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>  <div class="dz-error-message"><span data-dz-errormessage></span></div>  <div class="dz-success-mark">' + this.doneIcon + ' </div>  <div class="dz-error-mark">' + this.errorIcon + '</div></div>',
-      dictDefaultMessage: this.cloudIcon + this.language.dictDefaultMessage,
-      dictCancelUpload: this.language.dictCancelUpload,
-      dictCancelUploadConfirmation: this.language.dictCancelUploadConfirmation,
-      dictFallbackMessage: this.language.dictFallbackMessage,
-      dictFallbackText: this.language.dictFallbackText,
-      dictFileTooBig: this.language.dictFileTooBig,
-      dictInvalidFileType: this.language.dictInvalidFileType,
-      dictMaxFilesExceeded: this.language.dictMaxFilesExceeded,
-      dictRemoveFile: this.language.dictRemoveFile,
-      dictRemoveFileConfirmation: this.language.dictRemoveFileConfirmation,
-      dictResponseError: this.language.dictResponseError
+      dictDefaultMessage: this.cloudIcon + this.languageSettings.dictDefaultMessage,
+      dictCancelUpload: this.languageSettings.dictCancelUpload,
+      dictCancelUploadConfirmation: this.languageSettings.dictCancelUploadConfirmation,
+      dictFallbackMessage: this.languageSettings.dictFallbackMessage,
+      dictFallbackText: this.languageSettings.dictFallbackText,
+      dictFileTooBig: this.languageSettings.dictFileTooBig,
+      dictInvalidFileType: this.languageSettings.dictInvalidFileType,
+      dictMaxFilesExceeded: this.languageSettings.dictMaxFilesExceeded,
+      dictRemoveFile: this.languageSettings.dictRemoveFile,
+      dictRemoveFileConfirmation: this.languageSettings.dictRemoveFileConfirmation,
+      dictResponseError: this.languageSettings.dictResponseError
     })
   } else {
     this.dropzone = new Dropzone(element, this.dropzoneOptions)
