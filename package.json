@@ -2,7 +2,7 @@
   "name": "vue2-dropzone",
   "description": "A wrapper around Dropzone.js for Vue 2",
   "author": "rowanwins <rowanwins@yahoo.com.au>",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "main": "./dist/vue2-dropzone.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config ./build/dev.js --port 8080",
