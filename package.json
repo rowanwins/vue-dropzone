@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "dropzone": "^4.3.0",
+    "graceful-fs": "^4.1.11",
     "vue": "^2.0.0"
   },
   "devDependencies": {
