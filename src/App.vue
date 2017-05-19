@@ -3,7 +3,14 @@
     <p>
       Welcome to your Vue.js app with dropzone!
     </p>
-    <dropzone id="myVueDropzone" url="https://httpbin.org/post" v-on:vdropzone-success="success"></dropzone>
+    <div v-if="ok">
+<dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post" 
+      v-on:vdropzone-success="showSuccess" 
+      v-bind:dropzone-options="dropzoneOptions"
+      v-bind:use-custom-dropzone-options="true">
+</dropzone>
+    </div>
+    <button v-on:click="process">process</button>
   </div>
 </template>
 
@@ -16,20 +23,19 @@
     },
     data () {
       return {
-        processQueue: false,
-        fa: true,
+        ok: true,
+        dropzoneOptions: {autoProcessQueue: false}
       }
     },
     methods: {
-      'success': function (file) {
-        console.log('A file was successfully uploaded')
+      'showSuccess': function (file) {
+        console.log('im added')
+        console.log(this.$refs.myVueDropzone)
       },
       'process': function () {
-        var newArr = this.$children.filter(function(item){
-          return item.id === "myVueDropzone";
-        });
-        var component = newArr[0];
-        component.processQueue()
+        console.log(this.$refs.myVueDropzone)
+        // this.$refs.myVueDropzone.setOption('maxFiles', this.$refs.myVueDropzone.dropzone.options.maxFiles + 1)
+        console.log(this.$refs.myVueDropzone.dropzone.options.maxFiles)
       }
     }
   }
