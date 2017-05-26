@@ -1,6 +1,6 @@
 <template>
 
-  <form :action="url" class="vue-dropzone dropzone" :id="id">
+  <form :action="url" :class="'vue-dropzone dropzone ' + styled ? 'vue-dropzone-styled' : ''" :id="id">
     <slot></slot>
   </form>
 
@@ -13,6 +13,10 @@ export default {
       id: {
         type: String,
         required: true
+      },
+      styled: {
+        type: Boolean,
+        default: true
       },
       url: {
         type: String,
@@ -248,7 +252,7 @@ export default {
 <style lang="less">
   @import url('~dropzone/dist/dropzone.css');
 
-  .vue-dropzone{
+  .vue-dropzone-styled{
     border: 2px solid #E5E5E5;
     font-family: 'Arial', sans-serif;
     letter-spacing: 0.2px;
