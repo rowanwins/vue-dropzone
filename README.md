@@ -2,6 +2,9 @@
 
 A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/dist/index.html).
 
+## Up for adoption
+This component is looking for a new owner, see [here for further details](https://github.com/rowanwins/vue-dropzone/issues/105) if you're interested in helping out.
+
 ## Install
 ````
 // For Vue.js 2.0+
