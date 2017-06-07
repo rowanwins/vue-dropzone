@@ -73,6 +73,14 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | language | Object | Use dropzone's [dict properties](http://www.dropzonejs.com/#config-dictDefaultMessage) to change texts. |
 | useCustomDropzoneOptions | Boolean | If you want to define your own dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
+| preview-template | Function | A custom preview template which will be passed as function. See following Note |
+
+## Custom Dropzone preview template
+
+> NOTE : Props like `thumbnailWidth,thumbnailHeight, useFontAwesome` will not work when you override the dropzone preview. No worry you can refer [demo file](demo/custom-dropzone-preview.vue) to achieve same. :) Don't forgot to add your styles in `<style>`
+
+[Custom Dropzone Template Demo File](demo/custom-dropzone-preview.vue)
+
 
 ## Methods
 Methods you can call on the component.
