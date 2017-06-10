@@ -90,6 +90,26 @@
             dropzoneOptions: {
                 type: Object
             },
+            resizeWidth:{
+                type : Number,
+                default : null
+            },
+            resizeHeight:{
+                type : Number,
+                default : null
+            },
+            resizeMimeType:{
+                type : String,
+                default : null
+            },
+            resizeQuality:{
+                type : Number,
+                default : 0.8
+            },
+            resizeMethod:{
+                type : String,
+                default : 'contain'
+            }
         },
         methods: {
             manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
@@ -184,7 +204,7 @@
             Dropzone.autoDiscover = false;
             let element = document.getElementById(this.id);
 
-            if (!this.useCustomDropzoneOptions) {
+            if (!this.useCustomDropzoneOptions) {                
                 this.dropzone = new Dropzone(element, {
                     clickable: this.clickable,
                     paramName: this.paramName,
@@ -208,6 +228,11 @@
                     dictRemoveFile: this.languageSettings.dictRemoveFile,
                     dictRemoveFileConfirmation: this.languageSettings.dictRemoveFileConfirmation,
                     dictResponseError: this.languageSettings.dictResponseError,
+                    resizeWidth:this.resizeWidth,
+                    resizeHeight:this.resizeHeight,
+                    resizeMimeType:this.resizeMimeType,
+                    resizeQuality:this.resizeQuality,
+                    resizeMethod:this.resizeMethod,
                 })
             } else {
                 this.dropzone = new Dropzone(element, this.dropzoneOptions);
