@@ -11,7 +11,7 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "dropzone": "^4.3.0",
+    "dropzone": "^5.0.1",
     "vue": "^2.0.0"
   },
   "devDependencies": {
