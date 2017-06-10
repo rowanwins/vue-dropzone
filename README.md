@@ -74,6 +74,11 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | useCustomDropzoneOptions | Boolean | If you want to define your own dropzone config set this to true and define a dropzoneOptions.|
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 | preview-template | Function | A custom preview template which will be passed as function. See following Note |
+| resizeWidth | Number | If set, images will be resized to these dimensions before being uploaded. If only one, `resizeWidth` or `resizeHeight` is provided, the original aspect ratio of the file will be preserved. `Default : null` |
+| resizeHeight | Number | Height of image to be resized. `Default : null` | 
+| resizeMimeType | String | The mime type of the resized image (before it gets uploaded to the server). If `null` the original mime type will be used. To force `jpeg`, for example, use `image/jpeg`. `Default : null` |
+| resizeQuality | Number | The quality of the resized images. `Default : null` |
+| resizeMethod | String | How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided. Can be either `contain` or `crop`. `Default : 'contain'` | 
 
 ## Custom Dropzone preview template
 
