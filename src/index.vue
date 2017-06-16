@@ -88,7 +88,10 @@
                 default: false
             },
             dropzoneOptions: {
-                type: Object
+                type: Object,
+                default (){
+                    return {}
+                }
             },
             resizeWidth:{
                 type : Number,
