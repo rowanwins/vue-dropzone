@@ -177,7 +177,7 @@
                     dictRemoveFileConfirmation  : null,
                     dictResponseError           : 'Server responded with {{statusCode}} code.'
                 };                
-                
+
                 for (let attrname in this.language) {
                     defaultValues[attrname] = this.language[attrname]
                 }
@@ -215,7 +215,6 @@
             }
         },
         mounted () {
-
             if (this.$isServer) {
                 return
             }
