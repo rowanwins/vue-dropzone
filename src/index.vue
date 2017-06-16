@@ -150,26 +150,44 @@
             },
             getQueuedFiles: function () {
                 return this.dropzone.getQueuedFiles();
-            }
+            },
+            getProp:function(attribute_prop,object_prop){
+                if (!this.useCustomDropzoneOptions)
+                    return attribute_prop;
+
+                if (object_prop !== undefined && object_prop !== null && object_prop !== '')
+                    return object_prop;
+                else
+                    return attribute_prop;
+            },
+
         },
         computed: {
             languageSettings () {
                 let defaultValues = {
-                    dictDefaultMessage: '<br>Drop files here to upload',
-                    dictCancelUpload: 'Cancel upload',
+                    dictDefaultMessage          : '<br>Drop files here to upload',
+                    dictCancelUpload            : 'Cancel upload',
                     dictCancelUploadConfirmation: 'Are you sure you want to cancel this upload?',
-                    dictFallbackMessage: 'Your browser does not support drag and drop file uploads.',
-                    dictFallbackText: 'Please use the fallback form below to upload your files like in the olden days.',
-                    dictFileTooBig: 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
-                    dictInvalidFileType: `You can't upload files of this type.`,
-                    dictMaxFilesExceeded: 'You can not upload any more files. (max: {{maxFiles}})',
-                    dictRemoveFile: 'Remove',
-                    dictRemoveFileConfirmation: null,
-                    dictResponseError: 'Server responded with {{statusCode}} code.'
-                };
+                    dictFallbackMessage         : 'Your browser does not support drag and drop file uploads.',
+                    dictFallbackText            : 'Please use the fallback form below to upload your files like in the olden days.',
+                    dictFileTooBig              : 'File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.',
+                    dictInvalidFileType         : `You can't upload files of this type.`,
+                    dictMaxFilesExceeded        : 'You can not upload any more files. (max: {{maxFiles}})',
+                    dictRemoveFile              : 'Remove',
+                    dictRemoveFileConfirmation  : null,
+                    dictResponseError           : 'Server responded with {{statusCode}} code.'
+                };                
 
                 for (let attrname in this.language) {
                     defaultValues[attrname] = this.language[attrname]
+                }
+
+                if (this.useCustomDropzoneOptions) {
+                    if (this.dropzoneOptions.language) {
+                        for (let attrname in this.dropzoneOptions.language) {
+                            defaultValues[attrname] = this.dropzoneOptions.language[attrname]
+                        }
+                    }
                 }
 
                 return defaultValues
@@ -202,41 +220,36 @@
             }
             let Dropzone = require('dropzone');
             Dropzone.autoDiscover = false;
-            let element = document.getElementById(this.id);
-
-            if (!this.useCustomDropzoneOptions) {                
-                this.dropzone = new Dropzone(element, {
-                    clickable: this.clickable,
-                    paramName: this.paramName,
-                    thumbnailWidth: this.thumbnailWidth,
-                    thumbnailHeight: this.thumbnailHeight,
-                    maxFiles: this.maxNumberOfFiles,
-                    maxFilesize: this.maxFileSizeInMB,
-                    addRemoveLinks: this.showRemoveLink,
-                    acceptedFiles: this.acceptedFileTypes,
-                    autoProcessQueue: this.autoProcessQueue,
-                    headers: this.headers,
-                    previewTemplate: this.previewTemplate(this),
-                    dictDefaultMessage: this.cloudIcon + this.languageSettings.dictDefaultMessage,
-                    dictCancelUpload: this.languageSettings.dictCancelUpload,
-                    dictCancelUploadConfirmation: this.languageSettings.dictCancelUploadConfirmation,
-                    dictFallbackMessage: this.languageSettings.dictFallbackMessage,
-                    dictFallbackText: this.languageSettings.dictFallbackText,
-                    dictFileTooBig: this.languageSettings.dictFileTooBig,
-                    dictInvalidFileType: this.languageSettings.dictInvalidFileType,
-                    dictMaxFilesExceeded: this.languageSettings.dictMaxFilesExceeded,
-                    dictRemoveFile: this.languageSettings.dictRemoveFile,
-                    dictRemoveFileConfirmation: this.languageSettings.dictRemoveFileConfirmation,
-                    dictResponseError: this.languageSettings.dictResponseError,
-                    resizeWidth:this.resizeWidth,
-                    resizeHeight:this.resizeHeight,
-                    resizeMimeType:this.resizeMimeType,
-                    resizeQuality:this.resizeQuality,
-                    resizeMethod:this.resizeMethod,
-                })
-            } else {
-                this.dropzone = new Dropzone(element, this.dropzoneOptions);
-            }
+            let element = document.getElementById(this.id);            
+            this.dropzone = new Dropzone(element, {
+                clickable                   : this.getProp(this.clickable,this.dropzoneOptions.clickable),
+                paramName                   : this.getProp(this.paramName,this.dropzoneOptions.paramName),
+                thumbnailWidth              : this.getProp(this.thumbnailWidth,this.dropzoneOptions.thumbnailWidth),
+                thumbnailHeight             : this.getProp(this.thumbnailHeight,this.dropzoneOptions.thumbnailHeight),
+                maxFiles                    : this.getProp(this.maxNumberOfFiles,this.dropzoneOptions.maxNumberOfFiles),
+                maxFilesize                 : this.getProp(this.maxFileSizeInMB,this.dropzoneOptions.maxFileSizeInMB),
+                addRemoveLinks              : this.getProp(this.showRemoveLink,this.dropzoneOptions.showRemoveLink),
+                acceptedFiles               : this.getProp(this.acceptedFileTypes,this.dropzoneOptions.acceptedFileTypes),
+                autoProcessQueue            : this.getProp(this.autoProcessQueue,this.dropzoneOptions.autoProcessQueue),
+                headers                     : this.getProp(this.headers,this.dropzoneOptions.headers),
+                previewTemplate             : this.previewTemplate(this),
+                dictDefaultMessage          : this.cloudIcon + this.languageSettings.dictDefaultMessage,
+                dictCancelUpload            : this.languageSettings.dictCancelUpload,
+                dictCancelUploadConfirmation: this.languageSettings.dictCancelUploadConfirmation,
+                dictFallbackMessage         : this.languageSettings.dictFallbackMessage,
+                dictFallbackText            : this.languageSettings.dictFallbackText,
+                dictFileTooBig              : this.languageSettings.dictFileTooBig,
+                dictInvalidFileType         : this.languageSettings.dictInvalidFileType,
+                dictMaxFilesExceeded        : this.languageSettings.dictMaxFilesExceeded,
+                dictRemoveFile              : this.languageSettings.dictRemoveFile,
+                dictRemoveFileConfirmation  : this.languageSettings.dictRemoveFileConfirmation,
+                dictResponseError           : this.languageSettings.dictResponseError,
+                resizeWidth                 : this.getProp(this.resizeWidth,this.dropzoneOptions.resizeWidth),
+                resizeHeight                : this.getProp(this.resizeHeight,this.dropzoneOptions.resizeHeight),
+                resizeMimeType              : this.getProp(this.resizeMimeType,this.dropzoneOptions.resizeMimeType),
+                resizeQuality               : this.getProp(this.resizeQuality,this.dropzoneOptions.resizeQuality),
+                resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod)
+            })            
 
             // Handle the dropzone events
             let vm = this;
