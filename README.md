@@ -2,9 +2,6 @@
 
 A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/dist/index.html).
 
-## Up for adoption
-This component is looking for a new owner, see [here for further details](https://github.com/rowanwins/vue-dropzone/issues/105) if you're interested in helping out.
-
 ## Install
 ````
 // For Vue.js 2.0+
@@ -54,6 +51,8 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
 
 ## Props
 Many of these props are inherited from [dropzone configuration so see their doco](http://www.dropzonejs.com/#configuration-options) for further details.
+
+> <b>Important</b> :<br> - If you are using following options as `props` (attributes) to component then use `dash-seperated` names of `props`. <br>E.g. `paramName` becomes `:param-name=""`, `showRemoveLink` becomes `:show-remove-link=""`. <br><br> - If you are passing props using `dropzoneOptions` object then, use prop names <b>same</b> as given in below table. <br>E.g. `:dropzone-options="customOptionsObject"`. `customOptionsObject` is defined in `data()` with following `props` names.
 
 | Prop Name | Type | Description |
 |----------|------|--------------|
