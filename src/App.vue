@@ -7,7 +7,7 @@
             <dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post"
                       v-on:vdropzone-success="showSuccess"
                       v-bind:dropzone-options="dropzoneOptions"
-                      v-bind:max-number-of-files="2"                    
+                      v-bind:max-number-of-files="2"
                       v-bind:use-custom-dropzone-options="true">
             </dropzone>
         </div>
@@ -25,7 +25,7 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    autoProcessQueue: true,                    
+                    autoProcessQueue: true,
                 },
                 language: {
                     dictDefaultMessage : 'Hi'
