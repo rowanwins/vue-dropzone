@@ -112,6 +112,10 @@
             resizeMethod:{
                 type : String,
                 default : 'contain'
+            },
+            uploadMultiple:{
+                type: Boolean,
+                default: false
             }
         },
         methods: {
@@ -179,7 +183,7 @@
                     dictRemoveFile              : 'Remove',
                     dictRemoveFileConfirmation  : null,
                     dictResponseError           : 'Server responded with {{statusCode}} code.'
-                };                
+                };
 
                 for (let attrname in this.language) {
                     defaultValues[attrname] = this.language[attrname]
@@ -223,7 +227,7 @@
             }
             let Dropzone = require('dropzone');
             Dropzone.autoDiscover = false;
-            let element = document.getElementById(this.id);            
+            let element = document.getElementById(this.id);
             this.dropzone = new Dropzone(element, {
                 clickable                   : this.getProp(this.clickable,this.dropzoneOptions.clickable),
                 paramName                   : this.getProp(this.paramName,this.dropzoneOptions.paramName),
@@ -251,8 +255,9 @@
                 resizeHeight                : this.getProp(this.resizeHeight,this.dropzoneOptions.resizeHeight),
                 resizeMimeType              : this.getProp(this.resizeMimeType,this.dropzoneOptions.resizeMimeType),
                 resizeQuality               : this.getProp(this.resizeQuality,this.dropzoneOptions.resizeQuality),
-                resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod)
-            })            
+                resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod),
+                uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple)
+            })
 
             // Handle the dropzone events
             let vm = this;
