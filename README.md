@@ -105,7 +105,7 @@ Methods you can call on the component.
 ## Using Methods
 Methods can be called from your parent component by making use of the <a href="https://vuejs.org/v2/api/#ref">special tag "ref"</a>.
 
-When you initialize the compnonent add a unique ID to the dropzone element using the ref tag, like this
+When you initialize the component add a unique ID to the dropzone element using the ref tag, like this
 
 ```html
 <dropzone ref="myUniqueID"></dropzone>
