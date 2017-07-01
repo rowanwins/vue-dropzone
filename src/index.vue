@@ -68,13 +68,12 @@
                 default: (options) => {
                     return `
                         <div class="dz-preview dz-file-preview">
-                            <div class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">
-                                <img data-dz-thumbnail /></div>
+                            <div class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">                                
+                            <img data-dz-thumbnail /></div>
                             <div class="dz-details">
-                              <div class="dz-size"><span data-dz-size></span></div>
-                              <div class="dz-filename"><span data-dz-name></span></div>
+                                <div class="dz-size"><span data-dz-size></span></div>
+                                <div class="dz-filename"><span data-dz-name></span></div>
                             </div>
-
                             <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
                             <div class="dz-error-message"><span data-dz-errormessage></span></div>
                             <div class="dz-success-mark">${options.doneIcon}</div>
@@ -400,6 +399,11 @@
                     color: white !important;
                     font-size: 5rem !important;
                 }
+            }
+
+            .dz-error-message {
+                top: calc(50% + 25px);
+                left: calc(50% - 35px);
             }
         }
     }
