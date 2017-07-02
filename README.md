@@ -78,6 +78,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | resizeMimeType | String | The mime type of the resized image (before it gets uploaded to the server). If `null` the original mime type will be used. To force `jpeg`, for example, use `image/jpeg`. `Default : null` |
 | resizeQuality | Number | The quality of the resized images. `Default : null` |
 | resizeMethod | String | How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided. Can be either `contain` or `crop`. `Default : 'contain'` | 
+| duplicateCheck | Boolean | Whether to check for duplicate file by file name. if true `duplicate-file` event will be emitted. `Default : 'false'` | 
 
 ## Custom Dropzone preview template
 
@@ -133,6 +134,7 @@ Events emitted by the component to the parent.
 | vdropzone-queue-complete(file, xhr, formData) | Fired when queue has been completely processed/ uploaded.|
 | vdropzone-total-upload-progress(totaluploadprogress, totalBytes, totalBytesSent) | This event can be used to show the overall upload progress of all files. Note : `totaluploadprogress (0-100)`|
 | vdropzone-mounted() | Fired when dropzone component is mounted. |
+| duplicate-file(file) | Fired when duplicateCheck is enabled. |
 
 
 ## Development
