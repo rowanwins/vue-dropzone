@@ -7,9 +7,9 @@
             <dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post"
                       v-on:vdropzone-success="showSuccess"
                       v-bind:dropzone-options="dropzoneOptions"
-                      v-bind:max-number-of-files="1"
                       v-bind:use-custom-dropzone-options="true">
             </dropzone>
+            <button @click="submitFiles()">Start Upload</button>
             <button @click="process">Process</button>
         </div>
     </div>
@@ -26,7 +26,10 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    autoProcessQueue: true,
+                    autoProcessQueue: false,
+                    uploadMultiple: true,
+                    parallelUploads: 1000,
+                    maxNumberOfFiles: 1000,
                 },
                 language: {
                     dictDefaultMessage : 'Hi'
@@ -37,6 +40,9 @@
             'showSuccess': function (file) {
                 console.log('im added');
                 console.log(this.$refs.myVueDropzone)
+            },
+            'submitFiles': function () {
+                this.$refs.myVueDropzone.processQueue()
             },
             'process': function () {
                 console.log(this.$refs.myVueDropzone);

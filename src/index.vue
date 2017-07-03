@@ -115,7 +115,11 @@
             uploadMultiple:{
                 type: Boolean,
                 default: false
-            }
+            },
+            parallelUploads:{
+                type : Number,
+                default : 2
+            },
         },
         methods: {
             manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
@@ -255,7 +259,8 @@
                 resizeMimeType              : this.getProp(this.resizeMimeType,this.dropzoneOptions.resizeMimeType),
                 resizeQuality               : this.getProp(this.resizeQuality,this.dropzoneOptions.resizeQuality),
                 resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod),
-                uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple)
+                uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple),
+                parallelUploads             : this.getProp(this.parallelUploads, this.dropzoneOptions.parallelUploads),
             })
 
             // Handle the dropzone events
