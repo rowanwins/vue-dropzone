@@ -115,6 +115,10 @@
             uploadMultiple:{
                 type: Boolean,
                 default: false
+            },
+            duplicateCheck:{
+                type: Boolean,
+                default: false
             }
         },
         methods: {
@@ -271,6 +275,21 @@
             });
 
             this.dropzone.on('addedfile', function (file) {
+                /**
+                 * If Duplicate Check enabled remove duplicate file and emit the event.
+                 */
+                if (vm.duplicateCheck) {
+                    if (this.files.length) {
+                        var _i, _len;
+                        for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) {
+                            if (this.files[_i].name === file.name) {
+                                this.removeFile(file);
+                                vm.$emit('duplicate-file', file)
+                            }
+                        }
+                    }
+                }
+                
                 vm.$emit('vdropzone-file-added', file)
             });
 
