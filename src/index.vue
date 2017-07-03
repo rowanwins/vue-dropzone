@@ -118,13 +118,15 @@
             }
         },
         methods: {
-            manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
+            manuallyAddFile: function (file, fileUrl, callback, crossOrigin, options) {
                 this.dropzone.emit("addedfile", file);
                 this.dropzone.emit("thumbnail", file, fileUrl);
                 this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin);
                 this.dropzone.emit("complete", file);
                 this.$emit('vdropzone-file-added-manually', file);
-                this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1;
+                if ((typeof options.dontSubstractMaxFiles == 'undefined') || !options.dontSubstractMaxFiles) {
+                    this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1;
+                }
             },
             setOption: function (option, value) {
                 this.dropzone.options[option] = value
