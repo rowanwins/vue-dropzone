@@ -124,6 +124,10 @@
                 type : Number,
                 default : 2
             },
+            timeout:{
+                type : Number,
+                default : 30000
+            },
         },
         methods: {
             manuallyAddFile: function (file, fileUrl, callback, crossOrigin, options) {
@@ -270,6 +274,7 @@
                 resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod),
                 uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple),
                 parallelUploads             : this.getProp(this.parallelUploads, this.dropzoneOptions.parallelUploads),
+                timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout)
             })
 
             // Handle the dropzone events
