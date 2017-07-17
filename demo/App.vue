@@ -3,15 +3,9 @@
         <p>
             Welcome to your Vue.js app with dropzone!
         </p>
-        <div v-if="ok">
-            <dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post"
-                      v-on:vdropzone-success="showSuccess"
-                      v-bind:dropzone-options="dropzoneOptions"
-                      v-bind:use-custom-dropzone-options="true">
-            </dropzone>
+            <dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></dropzone>
             <button @click="submitFiles()">Start Upload</button>
             <button @click="process">Process</button>
-        </div>
     </div>
 </template>
 
@@ -26,13 +20,8 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    autoProcessQueue: false,
-                    uploadMultiple: true,
-                    parallelUploads: 1000,
-                    maxNumberOfFiles: 1000,
-                },
-                language: {
-                    dictDefaultMessage : 'Hi'
+                    url:'https://httpbin.org/post',
+                    thumbnailHeight: 2000
                 }
             }
         },

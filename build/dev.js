@@ -3,11 +3,11 @@ var webpack = require('webpack');
 var config = require('./base');
 
 module.exports = Object.assign({}, config, {
-    entry: './dev/index.js',
+    entry: './demo/main.js',
     output: {
-      path: path.resolve(__dirname, '../dev'),
-      publicPath: '/dev/',
-      filename: 'bundle.js'
+      path: path.resolve(__dirname, '../demo'),
+      publicPath: '/demo/',
+      filename: 'assets/bundle.js'
     },
     devServer: {
       historyApiFallback: true,
