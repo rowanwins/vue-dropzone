@@ -14,7 +14,7 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
 ````
 
 ## Usage
-1. Import the module (`import Dropzone from 'vue2-dropzone'`) 
+1. Import the module (`import Dropzone from 'vue2-dropzone'`)
 2. Register it as a component as you would any other Vue component
 3. Use it within your template
 
@@ -59,7 +59,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | id | String | A string by which to identify the component, can be anything. **Required**|
 | url | String | Url to post the upload to. **Required**|
 | paramName | String | The name of the file param that gets transferred. Defaults to file. NOTE: If you have the option uploadMultiple set to true, then Dropzone will append [] to the name.|
-| clickable | Boolean | Whether the dropzone area is clickable, if false then users can only drag items on to the area.|
+| clickable | Boolean, String | Whether the dropzone area is clickable, if false then users can only drag items on to the area. Can also accept a CSS selector of an element that will open the file dialog when clicked. |
 | acceptedFileTypes | String | A comma separated string of accepted file types eg 'image/*,application/pdf,.psd' .|
 | thumbnailHeight | Number | The height of thumbnails in pixels.|
 | thumbnailWidth | Number | The width of thumbnails in pixels.|
@@ -74,12 +74,13 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | dropzoneOptions | Object | A custom set of rules to define your dropzone object, use anything available in the [dropzone config](http://www.dropzonejs.com/#configuration-options).|
 | preview-template | Function | A custom preview template which will be passed as function. See following Note |
 | resizeWidth | Number | If set, images will be resized to these dimensions before being uploaded. If only one, `resizeWidth` or `resizeHeight` is provided, the original aspect ratio of the file will be preserved. `Default : null` |
-| resizeHeight | Number | Height of image to be resized. `Default : null` | 
+| resizeHeight | Number | Height of image to be resized. `Default : null` |
 | resizeMimeType | String | The mime type of the resized image (before it gets uploaded to the server). If `null` the original mime type will be used. To force `jpeg`, for example, use `image/jpeg`. `Default : null` |
 | resizeQuality | Number | The quality of the resized images. `Default : null` |
-| resizeMethod | String | How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided. Can be either `contain` or `crop`. `Default : 'contain'` | 
+| resizeMethod | String | How the images should be scaled down in case both, `resizeWidth` and `resizeHeight` are provided. Can be either `contain` or `crop`. `Default : 'contain'` |
 | duplicateCheck | Boolean | Whether to check for duplicate file by file name. if true `duplicate-file` event will be emitted. `Default : 'false'` |
 | timeout | Number | The timeout for the XHR requests in milliseconds. `Default:30000`|
+| method | String | The HTTP method used to submit form file data. `Default:post`|
 
 ## Custom Dropzone preview template
 
