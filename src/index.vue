@@ -16,7 +16,7 @@
                 required: true
             },
             clickable: {
-                type: Boolean,
+                type: [Boolean, String],
                 default: true
             },
             paramName: {
@@ -68,7 +68,7 @@
                 default: (options) => {
                     return `
                         <div class="dz-preview dz-file-preview">
-                            <div class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">                                
+                            <div class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">
                             <img data-dz-thumbnail /></div>
                             <div class="dz-details">
                                 <div class="dz-size"><span data-dz-size></span></div>
@@ -128,13 +128,17 @@
                 type : Number,
                 default : 30000
             },
+            method:{
+                type : String,
+                default : 'POST'
+            }
         },
         methods: {
             manuallyAddFile: function (file, fileUrl, callback, crossOrigin, options) {
                 this.dropzone.emit("addedfile", file);
                 this.dropzone.emit("thumbnail", file, fileUrl);
                 this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin);
-                this.dropzone.emit("complete", file);                
+                this.dropzone.emit("complete", file);
                 if ((typeof options.dontSubstractMaxFiles == 'undefined') || !options.dontSubstractMaxFiles) {
                     this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1;
                 }
@@ -274,7 +278,8 @@
                 resizeMethod                : this.getProp(this.resizeMethod,this.dropzoneOptions.resizeMethod),
                 uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple),
                 parallelUploads             : this.getProp(this.parallelUploads, this.dropzoneOptions.parallelUploads),
-                timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout)
+                timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout),
+                method                     : this.getProp(this.method, this.dropzoneOptions.method)
             })
 
             // Handle the dropzone events
@@ -299,7 +304,7 @@
                         }
                     }
                 }
-                
+
                 vm.$emit('vdropzone-file-added', file)
             });
 
