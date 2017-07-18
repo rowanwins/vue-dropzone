@@ -16,18 +16,35 @@ export default {
       required: true
     }
   },
+  computed: {
+    dropzoneSettings () {
+      let defaultValues = {
+        thumbnailWidth: 200,
+        thumbnailHeight: 200
+      }
+      Object.keys(this.options).forEach(function (key) {
+        defaultValues[key] = this.options[key]
+      }, this)
+
+      return defaultValues
+    }
+  },
   methods: {
-    manuallyAddFile: function (file, fileUrl, callback, crossOrigin, options) {
+    manuallyAddFile: function (file, fileUrl, callback, crossOrigin) {
+      file.manuallyAdded = true
       this.dropzone.emit("addedfile", file)
       this.dropzone.emit("thumbnail", file, fileUrl)
-      this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin)
+      if (crossOrigin) {
+        this.dropzone.createThumbnailFromUrl(file, fileUrl, callback, crossOrigin)
+      } else {
+        file.previewElement.children[0].children[0].style.width = this.dropzoneSettings.thumbnailWidth + 'px'
+        file.previewElement.children[0].children[0].style.height = this.dropzoneSettings.thumbnailHeight + 'px'
+        file.previewElement.children[0].children[0].style['object-fit'] = 'cover'
+      }
+
       this.dropzone.emit("complete", file)
-      if ((typeof options.dontSubstractMaxFiles == 'undefined') || !options.dontSubstractMaxFiles) {
-          this.dropzone.options['maxFiles'] = this.dropzone.options['maxFiles'] - 1
-      }
-      if ((typeof options.addToFiles != 'undefined') && options.addToFiles) {
-          this.dropzone.files.push(file)
-      }
+      if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--
+      this.dropzone.files.push(file)
       this.$emit('vdropzone-file-added-manually', file)
     },
     setOption: function (option, value) {
@@ -62,20 +79,6 @@ export default {
       return this.dropzone.getQueuedFiles()
     }
   },
-  computed: {
-    dropzoneSettings () {
-      let defaultValues = {
-        thumbnailWidth: 200,
-        thumbnailHeight: 200
-      }
-
-      for (let attrname in this.options) {
-        defaultValues[attrname] = this.options[attrname]
-      }
-
-      return defaultValues
-    }
-  },
   mounted () {
     if (this.$isServer && this.hasBeenMounted) {
       return
@@ -84,7 +87,6 @@ export default {
     let Dropzone = require('dropzone') //eslint-disable-line
     Dropzone.autoDiscover = false
     this.dropzone = new Dropzone(this.$refs.dropzoneElement, this.dropzoneSettings)
-
     let vm = this
 
     this.dropzone.on('thumbnail', function (file) {
@@ -111,6 +113,7 @@ export default {
 
     this.dropzone.on('removedfile', function (file) {
       vm.$emit('vdropzone-removed-file', file)
+      if (file.manuallyAdded) vm.dropzone.options.maxFiles++
     })
 
     this.dropzone.on('success', function (file, response) {
@@ -137,15 +140,18 @@ export default {
       vm.$emit('vdropzone-queue-complete', file, xhr, formData)
     })
 
-    this.dropzone.on('totaluploadprogress', function (totaluploadprogress, totalBytes, totalBytesSent) {
-      vm.$emit('vdropzone-total-upload-progress', totaluploadprogress, totalBytes, totalBytesSent)
+    this.dropzone.on('totaluploadprogress', function (prog, bytes, bytesSent) {
+      vm.$emit('vdropzone-total-upload-progress', prog, bytes, bytesSent)
     })
 
     vm.$emit('vdropzone-mounted')
 
   },
   beforeDestroy () {
-    this.dropzone.disable();
+    this.dropzone.disable()
+    document.querySelectorAll('input.dz-hidden-input').forEach(function (elem) {
+      elem.parentNode.removeChild(elem) 
+    })
   }
 }
 
@@ -173,6 +179,8 @@ export default {
 
     .dz-image {
       border-radius: 0;
+      width: 100%;
+      height: 100%;
       &:hover {
         img {
           transform: none;
@@ -231,7 +239,7 @@ export default {
       margin-left: auto!important;
       margin-top: auto!important;
       width: 100%!important;
-      top: 35% !important;
+      top: 35%!important;
       left: 0;
       svg {
         margin-left: auto!important;
@@ -240,8 +248,14 @@ export default {
     }
 
     .dz-error-message {
-      top: calc(50% + 25px);
+      top: calc(15%);
       left: calc(50% - 35px);
+      &:after {
+        bottom: -6px;
+        top: initial;
+        border-top: 6px solid #a92222;
+        border-bottom: none;
+      }
       }
     }
   }

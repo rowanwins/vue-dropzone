@@ -3,8 +3,12 @@
         <p>
             Welcome to your Vue.js app with dropzone!
         </p>
+        <div v-if="ok">
             <dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></dropzone>
+        </div>
             <button @click="submitFiles()">Start Upload</button>
+            <button @click="hideComponent">Hide Component</button>
+
             <button @click="process">Process</button>
     </div>
 </template>
@@ -20,12 +24,20 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    url:'https://httpbin.org/post',
-                    thumbnailHeight: 2000
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 200,
+                    maxFilesize: 0.5,
+                    headers: { "My-Awesome-Header": "header value" },
+                    maxFiles: 2,
+                    addRemoveLinks: true
                 }
             }
         },
         methods: {
+            'hideComponent': function () {
+                if (this.ok) return this.ok = false
+                this.ok = true
+            },
             'showSuccess': function (file) {
                 console.log('im added');
                 console.log(this.$refs.myVueDropzone)
@@ -34,12 +46,9 @@
                 this.$refs.myVueDropzone.processQueue()
             },
             'process': function () {
-                console.log(this.$refs.myVueDropzone);
-                // this.$refs.myVueDropzone.setOption('maxFiles', this.$refs.myVueDropzone.dropzone.options.maxFiles + 1)
                 var file = { size: 123, name: "Icon" };
                 var url = "https://myvizo.com/img/logo_sm.png";
                 this.$refs.myVueDropzone.manuallyAddFile(file, url);
-                console.log(this.$refs.myVueDropzone.dropzone.options.maxFiles);
             }
         }
     }
