@@ -47,8 +47,8 @@
             'process': function () {
                 console.log(this.$refs.myVueDropzone);
                 // this.$refs.myVueDropzone.setOption('maxFiles', this.$refs.myVueDropzone.dropzone.options.maxFiles + 1)
-                var file = { size: 123, name: "Icon" };
-                var url = "https://myvizo.com/img/logo_sm.png";
+                const file = { size: 123, name: 'Icon' };
+                const url = 'https://myvizo.com/img/logo_sm.png';
                 this.$refs.myVueDropzone.manuallyAddFile(file, url);
                 console.log(this.$refs.myVueDropzone.dropzone.options.maxFiles);
             }
