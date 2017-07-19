@@ -48,7 +48,7 @@
   }
 </script>
 
-<style>
+<style lang="less">
     .vue-dropzone {
         border: 2px solid #000000;
         font-family: 'Arial', sans-serif;
