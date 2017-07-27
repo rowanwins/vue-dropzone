@@ -143,12 +143,15 @@ Events emitted by the component to the parent.
 If you've referenced your tag with a ref property/tag as described in 'Using Methods', you can then access the Dropzone instance as well. This is useful if, for example, you want to add event listeners that have not been pre-configured (see below)
 From your parent Vue instance:
 ```javascript
-mounted() {
-    // vm.$refs.myUniqueID.dropzone refers to your dropbox instance
-    vm.$refs.myUniqueID.dropzone.on('maxfilesexceeded', function (file) {
-      // You may wish to remove an existing file here which your new upload will replace
-      alert('You cannot upload any more files')
-    })
+mounted () {
+  this.$refs.dropzone.dropzone.on('addedfile', function (file) {
+    if (this.files.length > 1) {
+      this.removeFile(this.files[0])
+    }
+  })
+  this.$refs.dropzone.dropzone.on('maxfilesexceeded', function (file) {
+    this.removeFile(file)
+  })
 }
 ```
 
