@@ -139,6 +139,19 @@ Events emitted by the component to the parent.
 | duplicate-file(file) | Fired when duplicateCheck is enabled. |
 
 
+## Listening to other Dropzone events
+If you've referenced your tag with a ref property/tag as described in 'Using Methods', you can then access the Dropzone instance as well. This is useful if, for example, you want to add event listeners that have not been pre-configured (see below)
+From your parent Vue instance:
+```javascript
+mounted() {
+    // vm.$refs.myUniqueID.dropzone refers to your dropbox instance
+    vm.$refs.myUniqueID.dropzone.on('maxfilesexceeded', function (file) {
+      // You may wish to remove an existing file here which your new upload will replace
+      alert('You cannot upload any more files')
+    })
+}
+```
+
 ## Development
 
 ``` bash
