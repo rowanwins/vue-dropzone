@@ -25,8 +25,8 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    url: 'sdfom',
-                    thumbnailWidth: 200,
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 150,
                     maxFilesize: 0.5,
                     headers: { "My-Awesome-Header": "header value" },
                     addRemoveLinks: true,
@@ -46,29 +46,6 @@
                   maxSteps = 60,
                   timeBetweenSteps = 100,
                   bytesPerStep = 100000;
-
-                var totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
-
-                  for (var step = 0; step < totalSteps; step++) {
-                    var duration = timeBetweenSteps * (step + 1);
-                    setTimeout(function(file, totalSteps, step) {
-                      return function() {
-                        file.upload = {
-                          progress: 100 * (step + 1) / totalSteps,
-                          total: file.size,
-                          bytesSent: (step + 1) * file.size / totalSteps
-                        };
-
-                        self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
-                        if (file.upload.progress == 100) {
-                          file.status = Dropzone.SUCCESS;
-                          self.emit("success", file, 'success', null);
-                          self.emit("complete", file);
-                          self.processQueue();
-                        }
-                      };
-                    }(file, totalSteps, step), duration);
-                  }
             },
             'submitFiles': function () {
                 this.$refs.myVueDropzone.processQueue()

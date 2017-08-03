@@ -1,6 +1,6 @@
 <template>
   <div 
-    v-bind:class="{ includeStyling: vue-dropzone dropzone }"
+    v-bind:class="{ 'vue-dropzone dropzone': includeStyling }"
     :id="id" 
     ref="dropzoneElement">
     <slot></slot>
@@ -189,6 +189,10 @@ export default {
       border-radius: 0;
       width: 100%;
       height: 100%;
+      img:not([src]){
+        width:200px;
+        height: 200px;
+      }
       &:hover {
         img {
           transform: none;
@@ -257,7 +261,10 @@ export default {
 
     .dz-error-message {
       top: calc(15%);
-      left: calc(50% - 35px);
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      width: 100%;
       &:after {
         bottom: -6px;
         top: initial;
