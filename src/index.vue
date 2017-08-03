@@ -1,5 +1,8 @@
 <template>
-  <div class="vue-dropzone dropzone" :id="id" ref="dropzoneElement">
+  <div 
+    v-bind:class="{ includeStyling: vue-dropzone dropzone }"
+    :id="id" 
+    ref="dropzoneElement">
     <slot></slot>
   </div>
 </template>
@@ -14,6 +17,11 @@ export default {
     options: {
       type: Object,
       required: true
+    },
+    includeStyling: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   },
   computed: {

@@ -4,16 +4,17 @@
             Welcome to your Vue.js app with dropzone!
         </p>
         <div v-if="ok">
-            <dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></dropzone>
+            <dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" v-on:vdropzone-file-added="showSuccess"></dropzone>
         </div>
             <button @click="submitFiles()">Start Upload</button>
-            <button @click="hideComponent">Hide Component</button>
+            <button @click="removeAll">Remove all files</button>
 
             <button @click="process">Process</button>
     </div>
 </template>
 
 <script>
+
     import Dropzone from '../src/index'
     export default {
         name: 'MainApp',
@@ -24,23 +25,50 @@
             return {
                 ok: true,
                 dropzoneOptions: {
-                    url: 'https://httpbin.org/post',
+                    url: 'sdfom',
                     thumbnailWidth: 200,
                     maxFilesize: 0.5,
                     headers: { "My-Awesome-Header": "header value" },
-                    maxFiles: 2,
-                    addRemoveLinks: true
+                    addRemoveLinks: true,
+                    autoProcessQueue: true
                 }
             }
         },
         methods: {
-            'hideComponent': function () {
-                if (this.ok) return this.ok = false
-                this.ok = true
+            'removeAll': function () {
+                this.$refs.myVueDropzone.removeAllFiles()
             },
             'showSuccess': function (file) {
-                console.log('im added');
-                console.log(this.$refs.myVueDropzone)
+                this.makething(file)
+            },
+            makething: function (file) {
+                var minSteps = 6,
+                  maxSteps = 60,
+                  timeBetweenSteps = 100,
+                  bytesPerStep = 100000;
+
+                var totalSteps = Math.round(Math.min(maxSteps, Math.max(minSteps, file.size / bytesPerStep)));
+
+                  for (var step = 0; step < totalSteps; step++) {
+                    var duration = timeBetweenSteps * (step + 1);
+                    setTimeout(function(file, totalSteps, step) {
+                      return function() {
+                        file.upload = {
+                          progress: 100 * (step + 1) / totalSteps,
+                          total: file.size,
+                          bytesSent: (step + 1) * file.size / totalSteps
+                        };
+
+                        self.emit('uploadprogress', file, file.upload.progress, file.upload.bytesSent);
+                        if (file.upload.progress == 100) {
+                          file.status = Dropzone.SUCCESS;
+                          self.emit("success", file, 'success', null);
+                          self.emit("complete", file);
+                          self.processQueue();
+                        }
+                      };
+                    }(file, totalSteps, step), duration);
+                  }
             },
             'submitFiles': function () {
                 this.$refs.myVueDropzone.processQueue()
