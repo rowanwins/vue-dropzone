@@ -81,7 +81,8 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | duplicateCheck | Boolean | Whether to check for duplicate file by file name. if true `duplicate-file` event will be emitted. `Default : 'false'` |
 | timeout | Number | The timeout for the XHR requests in milliseconds. `Default:30000`|
 | method | String | The HTTP method used to submit form file data. `Default:post`|
-
+| capture | boolean | The HTTP method used to submit form file data. `Default:null`|
+| hiddenInputContainer | String | Element the hidden input field will be appended to. This might be important in case you use frameworks to switch the content of your page. `Default:body`|
 ## Custom Dropzone preview template
 
 > NOTE : Props like `thumbnailWidth,thumbnailHeight, useFontAwesome` will not work when you override the dropzone preview. No worry you can refer [demo file](demo/custom-dropzone-preview.vue) to achieve same. :) Don't forgot to add your styles in `<style>`
