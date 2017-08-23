@@ -286,7 +286,9 @@
                 uploadMultiple              : this.getProp(this.uploadMultiple, this.dropzoneOptions.uploadMultiple),
                 parallelUploads             : this.getProp(this.parallelUploads, this.dropzoneOptions.parallelUploads),
                 timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout),
-                method                     : this.getProp(this.method, this.dropzoneOptions.method)
+                method                      : this.getProp(this.method, this.dropzoneOptions.method),
+                capture                     : this.getProp(this.method, this.dropzoneOptions.method),
+                hiddenInputContainer        : this.getProp(this.method, this.dropzoneOptions.method) 
             })
 
             // Handle the dropzone events
