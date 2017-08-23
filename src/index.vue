@@ -347,7 +347,7 @@
             vm.$emit('vdropzone-mounted');
         },
         beforeDestroy () {
-            this.dropzone.disable();
+            this.dropzone.destroy();
         }
     }
 </script>
