@@ -83,6 +83,9 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | method | String | The HTTP method used to submit form file data. `Default:post`|
 | capture | boolean | If `null`, no capture type will be specified If camera, mobile devices will skip the file selection and choose camera If microphone, mobile devices will skip the file selection and choose the microphone If camcorder, mobile devices will skip the file selection and choose the camera in video mode On apple devices multiple must be set to false. AcceptedFiles may need to be set to an appropriate mime type `(e.g. "image/", "audio/", or "video/*")`. `Default:null` |
 | hiddenInputContainer | String | Element the hidden input field will be appended to. This might be important in case you use frameworks to switch the content of your page. `Default:body`|
+| confirm | Function | A function for overriding native confirmation dialog box of browser. `Parameters: question, accepted, rejected`|
+
+
 ## Custom Dropzone preview template
 
 > NOTE : Props like `thumbnailWidth,thumbnailHeight, useFontAwesome` will not work when you override the dropzone preview. No worry you can refer [demo file](demo/custom-dropzone-preview.vue) to achieve same. :) Don't forgot to add your styles in `<style>`
@@ -128,6 +131,7 @@ Events emitted by the component to the parent.
 |------------|-------------|
 | vdropzone-file-added(file) | File added to the dropzone.|
 | vdropzone-files-added(file) | Files added to the dropzone.|
+| vdropzone-file-added-manually(file) | Manually added file to the dropzone |
 | vdropzone-success(file, response) | File successfully uploaded.|
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removed-file(file, error, xhr) | A file was removed from the dropzone.|
@@ -139,6 +143,22 @@ Events emitted by the component to the parent.
 | vdropzone-mounted() | Fired when dropzone component is mounted. |
 | duplicate-file(file) | Fired when duplicateCheck is enabled. |
 
+
+## Listening to other Dropzone events
+If you've referenced your tag with a ref property/tag as described in 'Using Methods', you can then access the Dropzone instance as well. This is useful if, for example, you want to add event listeners that have not been pre-configured (see below)
+From your parent Vue instance:
+```javascript
+mounted () {
+  this.$refs.dropzone.dropzone.on('addedfile', function (file) {
+    if (this.files.length > 1) {
+      this.removeFile(this.files[0])
+    }
+  })
+  this.$refs.dropzone.dropzone.on('maxfilesexceeded', function (file) {
+    this.removeFile(file)
+  })
+}
+```
 
 ## Development
 

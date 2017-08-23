@@ -19,6 +19,10 @@
                 type: [Boolean, String],
                 default: true
             },
+            confirm: {
+                type: Function,
+                default: undefined
+            },
             paramName: {
                 type: String,
                 default: 'file'
@@ -247,6 +251,9 @@
             }
             let Dropzone = require('dropzone');
             Dropzone.autoDiscover = false;
+            if (this.confirm) {
+                Dropzone.confirm = this.getProp(this.confirm, this.dropzoneOptions.confirm);
+            }
             let element = document.getElementById(this.id);
             this.dropzone = new Dropzone(element, {
                 clickable                   : this.getProp(this.clickable,this.dropzoneOptions.clickable),
@@ -349,7 +356,7 @@
             vm.$emit('vdropzone-mounted');
         },
         beforeDestroy () {
-            this.dropzone.disable();
+            this.dropzone.destroy();
         }
     }
 </script>
