@@ -164,6 +164,7 @@ mounted () {
 In order to use vue-dropzone with laravel, you need to add the csrf-token to the component. Note that you need 2 things for it to work with Laravel:
  
 1. A hidden input with name="csrf-token" and :value that can be set in data() of your component.
+
 2.Additionally, you need to set :headers attribute for dropzone component where you pass a csrfHeader object created under the data() function in your vue component. See below for example:
  
 ```html
@@ -175,14 +176,19 @@ In order to use vue-dropzone with laravel, you need to add the csrf-token to the
 ```
  
 ```html
-  data() {
-    return {
-      csrfToken: document.head.querySelector('meta[name="csrf-token"]').content,
+
+<script>
+export default {
+    data() {
+        return {
+            csrfToken: document.head.querySelector('meta[name="csrf-token"]').content,
             csrfHeader: {
                 'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
             }
     }
   }
+}
+</script>
 ```
 
 ## Development
