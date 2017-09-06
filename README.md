@@ -66,6 +66,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | showRemoveLink | Boolean | Whether the Remove link is shown on items.|
 | maxFileSizeInMB | Number |The maximum file size for a single upload in MB.|
 | maxNumberOfFiles | Number | The maximum number of files to allow the user to upload.|
+| parallelUploads | Number | How many file uploads to process in parallel. `Default : 2`|
 | autoProcessQueue | Boolean | Whether the files are automatically uploaded or not.|
 | useFontAwesome | Boolean | Whether to use Font Awesome instead of Material Icon.|
 | headers | Object | If you want to add additional headers.|
