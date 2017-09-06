@@ -135,6 +135,10 @@
             method:{
                 type : String,
                 default : 'POST'
+            },
+            withCredentials: {
+                type : Boolean,
+                default : false
             }
         },
         methods: {
@@ -288,7 +292,8 @@
                 timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout),
                 method                      : this.getProp(this.method, this.dropzoneOptions.method),
                 capture                     : this.getProp(this.method, this.dropzoneOptions.method),
-                hiddenInputContainer        : this.getProp(this.method, this.dropzoneOptions.method) 
+                hiddenInputContainer        : this.getProp(this.method, this.dropzoneOptions.method),
+                withCredentials             : this.getProp(this.withCredentials, this.dropzoneOptions.withCredentials)
             })
 
             // Handle the dropzone events
