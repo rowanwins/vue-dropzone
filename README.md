@@ -84,7 +84,7 @@ Many of these props are inherited from [dropzone configuration so see their doco
 | capture | String | If `null`, no capture type will be specified If `camera`, mobile devices will skip the file selection and choose camera If `microphone`, mobile devices will skip the file selection and choose the microphone If `camcorder`, mobile devices will skip the file selection and choose the camera in `video` mode On apple devices multiple must be set to false. AcceptedFiles may need to be set to an appropriate mime type `(e.g. "image/", "audio/", or "video/*")`. `Default:null` |
 | hiddenInputContainer | String | Element the hidden input field will be appended to. This might be important in case you use frameworks to switch the content of your page. `Default:body`|
 | confirm | Function | A function for overriding native confirmation dialog box of browser. `Parameters: question, accepted, rejected`|
-
+| withCredentials | Boolean | Whether or not cross-site Access-Control requests should be made using credentials such as cookies, authorization headers or TLS client certificates. `Default:false`|
 
 ## Custom Dropzone preview template
 
