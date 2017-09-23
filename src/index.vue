@@ -299,8 +299,8 @@
             // Handle the dropzone events
             let vm = this;
 
-            this.dropzone.on('thumbnail', function (file) {
-                vm.$emit('vdropzone-thumbnail', file)
+            this.dropzone.on('thumbnail', function (file, dataUrl) {
+                vm.$emit('vdropzone-thumbnail', file, dataUrl)
             });
 
             this.dropzone.on('addedfile', function (file) {

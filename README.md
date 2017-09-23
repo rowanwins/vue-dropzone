@@ -133,6 +133,7 @@ Events emitted by the component to the parent.
 | vdropzone-file-added(file) | File added to the dropzone.|
 | vdropzone-files-added(file) | Files added to the dropzone.|
 | vdropzone-file-added-manually(file) | Manually added file to the dropzone |
+| vdropzone-thumbnail(file, dataUrl) | When the thumbnail has been generated. Receives the dataUrl as second parameter. |
 | vdropzone-success(file, response) | File successfully uploaded.|
 | vdropzone-error(file) | File uploaded encountered an error.|
 | vdropzone-removed-file(file, error, xhr) | A file was removed from the dropzone.|
