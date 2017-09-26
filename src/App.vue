@@ -7,12 +7,12 @@
             <dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post"
                       v-on:vdropzone-success="showSuccess"
                       v-bind:dropzone-options="dropzoneOptions"
-                      v-bind:clickable='"#upload-button"'                   
+                      :clickable='".btn"'                   
                       v-bind:use-custom-dropzone-options="true">
             </dropzone>
             <button @click="submitFiles()">Start Upload</button>
             <button @click="process">Process</button>
-            <button id="upload-button">Process1</button>
+            <button class="btn btn-primary btn-block">Process1</button>
         </div>
     </div>
 </template>
