@@ -144,6 +144,12 @@ Events emitted by the component to the parent.
 | vdropzone-total-upload-progress(totaluploadprogress, totalBytes, totalBytesSent) | This event can be used to show the overall upload progress of all files. Note : `totaluploadprogress (0-100)`|
 | vdropzone-mounted() | Fired when dropzone component is mounted. |
 | duplicate-file(file) | Fired when duplicateCheck is enabled. |
+| vdropzone-drop(event) | The user dropped something onto the dropzone |
+| vdropzone-drag-start(event) | The user started to drag anywhere |
+| vdropzone-drag-end(event) | Dragging has ended |
+| vdropzone-drag-enter(event) | The user dragged a file onto the Dropzone |
+| vdropzone-drag-over(event) | The user is dragging a file over the Dropzone |
+| vdropzone-drag-leave(event) | The user dragged a file out of the Dropzone |
 
 
 ## Listening to other Dropzone events

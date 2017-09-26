@@ -5,14 +5,12 @@
         </p>
         <div v-if="ok">
             <dropzone ref="myVueDropzone" id="dropzone" url="https://httpbin.org/post"
-                      v-on:vdropzone-success="showSuccess"
+                      v-on:vdropzone-drop="showSuccess"
                       v-bind:dropzone-options="dropzoneOptions"
-                      :clickable='".btn"'                   
                       v-bind:use-custom-dropzone-options="true">
             </dropzone>
             <button @click="submitFiles()">Start Upload</button>
             <button @click="process">Process</button>
-            <button class="btn btn-primary btn-block">Process1</button>
         </div>
     </div>
 </template>
@@ -41,7 +39,7 @@
         methods: {
             'showSuccess': function (file) {
                 console.log('im added');
-                console.log(this.$refs.myVueDropzone)
+                console.log(file)
             },
             'submitFiles': function () {
                 this.$refs.myVueDropzone.processQueue()

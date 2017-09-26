@@ -366,6 +366,30 @@
                 vm.$emit('vdropzone-total-upload-progress', totaluploadprogress, totalBytes, totalBytesSent)
             });
 
+            this.dropzone.on('drop', function (event) {
+                vm.$emit('vdropzone-drop', event)
+            });
+
+            this.dropzone.on('dragstart', function (event) {
+                vm.$emit('vdropzone-drag-start', event)
+            });
+
+            this.dropzone.on('dragend', function (event) {
+                vm.$emit('vdropzone-drag-end', event)
+            });
+
+            this.dropzone.on('dragenter', function (event) {
+                vm.$emit('vdropzone-drag-enter', event)
+            });
+
+            this.dropzone.on('dragover', function (event) {
+                vm.$emit('vdropzone-drag-over', event)
+            });
+
+            this.dropzone.on('dragleave', function (event) {
+                vm.$emit('vdropzone-drag-leave', event)
+            });
+
             vm.$emit('vdropzone-mounted');
         },
         beforeDestroy () {
