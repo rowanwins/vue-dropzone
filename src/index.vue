@@ -139,6 +139,14 @@
             withCredentials: {
                 type : Boolean,
                 default : false
+            },
+            capture:{
+                type: String,
+                default: null
+            },
+            hiddenInputContainer:{
+                type: String,
+                default : 'body'
             }
         },
         methods: {
@@ -291,8 +299,8 @@
                 parallelUploads             : this.getProp(this.parallelUploads, this.dropzoneOptions.parallelUploads),
                 timeout                     : this.getProp(this.timeout, this.dropzoneOptions.timeout),
                 method                      : this.getProp(this.method, this.dropzoneOptions.method),
-                capture                     : this.getProp(this.method, this.dropzoneOptions.method),
-                hiddenInputContainer        : this.getProp(this.method, this.dropzoneOptions.method),
+                capture                     : this.getProp(this.capture, this.dropzoneOptions.capture),
+                hiddenInputContainer        : this.getProp(this.hiddenInputContainer, this.dropzoneOptions.hiddenInputContainer),
                 withCredentials             : this.getProp(this.withCredentials, this.dropzoneOptions.withCredentials)
             })
 
