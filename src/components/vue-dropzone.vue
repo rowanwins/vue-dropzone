@@ -97,8 +97,8 @@ export default {
     this.dropzone = new Dropzone(this.$refs.dropzoneElement, this.dropzoneSettings)
     let vm = this
 
-    this.dropzone.on('thumbnail', function (file) {
-      vm.$emit('vdropzone-thumbnail', file)
+    this.dropzone.on('thumbnail', function (file, dataUrl) {
+      vm.$emit('vdropzone-thumbnail', file, dataUrl)
     })
 
     this.dropzone.on('addedfile', function (file) {
@@ -132,8 +132,12 @@ export default {
       vm.$emit('vdropzone-success-multiple', file, response)
     })
 
-    this.dropzone.on('error', function (file, error, xhr) {
-      vm.$emit('vdropzone-error', file, error, xhr)
+    this.dropzone.on('error', function (file, message, xhr) {
+      vm.$emit('vdropzone-error', file, message, xhr)
+    })
+
+    this.dropzone.on('errormultiple', function (files, message, xhr) {
+      vm.$emit('vdropzone-error-multiple', files, message, xhr)
     })
 
     this.dropzone.on('sending', function (file, xhr, formData) {
@@ -148,8 +152,44 @@ export default {
       vm.$emit('vdropzone-queue-complete', file, xhr, formData)
     })
 
-    this.dropzone.on('totaluploadprogress', function (prog, bytes, bytesSent) {
-      vm.$emit('vdropzone-total-upload-progress', prog, bytes, bytesSent)
+    this.dropzone.on('processing', function (file) {
+      vm.$emit('vdropzone-processing', file)
+    })
+
+    this.dropzone.on('processingmultiple', function (files) {
+      vm.$emit('vdropzone-processing-multiple', files)
+    })
+
+    this.dropzone.on('uploadprogress', function (file, progress, bytesSent) {
+      vm.$emit('vdropzone-upload-progress', file, progress, bytesSent)
+    })
+
+    this.dropzone.on('totaluploadprogress', function (totaluploadprogress, totalBytes, totalBytesSent) {
+      vm.$emit('vdropzone-total-upload-progress', totaluploadprogress, totalBytes, totalBytesSent)
+    })
+
+    this.dropzone.on('drop', function (event) {
+      vm.$emit('vdropzone-drop', event)
+    })
+
+    this.dropzone.on('dragstart', function (event) {
+      vm.$emit('vdropzone-drag-start', event)
+    })
+
+    this.dropzone.on('dragend', function (event) {
+      vm.$emit('vdropzone-drag-end', event)
+    })
+
+    this.dropzone.on('dragenter', function (event) {
+      vm.$emit('vdropzone-drag-enter', event)
+    })
+
+    this.dropzone.on('dragover', function (event) {
+      vm.$emit('vdropzone-drag-over', event)
+    })
+
+    this.dropzone.on('dragleave', function (event) {
+      vm.$emit('vdropzone-drag-leave', event)
     })
 
     vm.$emit('vdropzone-mounted')

@@ -7,7 +7,7 @@
     </thead>
     <tbody>
       <tr v-for="(row, i) in rows" :key="i">
-        <td v-for="(cell, j) in row" :key="j">{{cell}}</td>
+        <td v-for="(cell, j) in row" :key="j" v-html="cell"></td>
       </tr>
     </tbody>
   </table>
@@ -27,4 +27,3 @@ export default {
   }
 }
 </script>
-
