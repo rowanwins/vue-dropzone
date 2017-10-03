@@ -31,9 +31,10 @@ export default {
           ]
         },
         {
-          title: 'Components',
+          title: 'Documentation',
           pages: [
-            { to: '/vueDropzone', title: 'Demo' }
+            { to: '/demo', title: 'Demo' },
+            { to: '/events', title: 'Events'}
           ]
         }
       ]

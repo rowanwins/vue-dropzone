@@ -10,8 +10,6 @@
 
 <script>
 import { vueDropzone } from '../../../src/';
-import UsageSection from '../sections/UsageSection.vue';
-import PropsSection from '../sections/PropsSection.vue';
 
 export default {
   data () {
