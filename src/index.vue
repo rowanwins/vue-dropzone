@@ -346,8 +346,12 @@
                 vm.$emit('vdropzone-success-multiple', file, response)
             });
 
-            this.dropzone.on('error', function (file, error, xhr) {
-                vm.$emit('vdropzone-error', file, error, xhr)
+            this.dropzone.on('error', function (file, message, xhr) {
+                vm.$emit('vdropzone-error', file, message, xhr)
+            });
+
+            this.dropzone.on('errormultiple', function (files, message, xhr) {
+                vm.$emit('vdropzone-error-multiple', files, message, xhr)
             });
 
             this.dropzone.on('sending', function (file, xhr, formData) {
@@ -360,6 +364,18 @@
 
             this.dropzone.on('queuecomplete', function (file, xhr, formData) {
                 vm.$emit('vdropzone-queue-complete', file, xhr, formData)
+            });
+
+            this.dropzone.on('processing', function (file) {
+                vm.$emit('vdropzone-processing', file)
+            });
+
+            this.dropzone.on('processingmultiple', function (files) {
+                vm.$emit('vdropzone-processing-multiple', files)
+            });
+
+            this.dropzone.on('uploadprogress', function (file, progress, bytesSent) {
+                vm.$emit('vdropzone-upload-progress', file, progress, bytesSent)
             });
 
             this.dropzone.on('totaluploadprogress', function (totaluploadprogress, totalBytes, totalBytesSent) {
