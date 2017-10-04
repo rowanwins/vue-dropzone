@@ -34,7 +34,8 @@ export default {
           title: 'Documentation',
           pages: [
             { to: '/demo', title: 'Demo' },
-            { to: '/events', title: 'Events'}
+            { to: '/events', title: 'Events'},
+            { to: '/methods', title: 'Methods'}
           ]
         }
       ]
