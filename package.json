@@ -49,6 +49,7 @@
     "dist"
   ],
   "dependencies": {
-    "dropzone": "^5.1.1"
+    "dropzone": "^5.1.1",
+    "marked": "^0.3.6"
   }
 }
