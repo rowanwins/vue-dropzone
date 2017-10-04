@@ -4,7 +4,7 @@
     <p>The following methods you are able to call through the vue2-Dropzone component.</p>
     <simple-table
       :headers="['Method Name', 'Description']" 
-      :rows="events" />
+      :rows="methods" />
   </div>
 </template>
 
@@ -14,7 +14,7 @@ import SimpleTable from '../components/SimpleTable.vue';
 export default {
   data: function () {
     return {
-      events: [
+      methods: [
         ['.removeAllFiles()', 'Removes all files. Files that are in the process of being uploaded won’t be removed. If you want files that are currently uploading to be canceled, call `.removeAllFiles(true)` which will cancel the uploads.'],
         ['.processQueue()', 'If you have `autoProcessQueue` disabled, you’ll need to call .processQueue() yourself.'],
         ['.getAcceptedFiles()', 'Gets all accepted files'],
