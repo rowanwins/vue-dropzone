@@ -1,8 +1,9 @@
 <template>
   <aside class="sidebar">
     <h1>
-      <a class="app-name-link" data-nosearch="" href="/">Vue2-Dropzone</a>
+      <a class="app-name-link" data-nosearch="" href="/"><img src="http://vrajroham.me/vue-dropzone-page/static/img/vue-drp1.93d2bf4.png"></a>
     </h1>
+    <hr class="border">
     <div class="sidebar-nav">
       <ul>
         <li v-for="section in sections" :key="section.title">
@@ -42,3 +43,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .border{
+    border:none;
+    border-bottom:1px solid rgba(0,0,0,.07);
+  }
+</style>
