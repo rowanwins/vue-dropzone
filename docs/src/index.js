@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import routes from './routes';
 var marked = require('marked');
-
 Vue.mixin({
   methods: {
     marked: function(input) {
