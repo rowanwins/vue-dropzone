@@ -34,9 +34,17 @@ export default {
         {
           title: 'Documentation',
           pages: [
-            { to: '/demo', title: 'Demo' },
             { to: '/events', title: 'Events'},
             { to: '/methods', title: 'Methods'}
+          ]
+        },
+        {
+          title: 'Demos',
+          pages: [
+            { to: '/demo', title: 'Basic Demo' },
+            { to: '/iconDemo', title: 'Adding icons' },
+            { to: '/manual', title: 'Manually Load Files' },
+            { to: '/additionalParams', title: 'Sending additional params' }
           ]
         }
       ]

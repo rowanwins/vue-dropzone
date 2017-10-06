@@ -21,3 +21,18 @@ export default {
   }
 }
 </script>
+
+<style>
+ .markdown-section strong{
+    color: white;
+  }
+  button {
+    padding: 10px 20px;
+    background: #314B5F;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+  }
+</style>

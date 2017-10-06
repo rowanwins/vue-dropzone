@@ -138,7 +138,7 @@ export default {
               addRemoveLinks: true,
               autoProcessQueue: true,
               accept(file, done) {
-                // console.log(file);
+                console.log(file);
                 done();
               },
           },
@@ -363,4 +363,5 @@ export default {
   .event-active{
     background-color : lavender;
   }
+
 </style>

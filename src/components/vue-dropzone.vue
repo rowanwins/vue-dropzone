@@ -319,6 +319,9 @@ export default {
       background-color: rgba(33, 150, 243, 0.8);
       transition: opacity .2s linear;
       text-align: left;
+      .dz-filename {
+        overflow: hidden;
+      }
       .dz-filename span, .dz-size span {
         background-color: transparent;
       }
@@ -359,14 +362,14 @@ export default {
     }
 
     .dz-success-mark, .dz-error-mark {
-      margin-left: auto!important;
-      margin-top: auto!important;
-      width: 100%!important;
-      top: 35%!important;
+      margin-left: auto;
+      margin-top: auto;
+      width: 100%;
+      top: 35%;
       left: 0;
       svg {
-        margin-left: auto!important;
-        margin-right: auto!important;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
 
