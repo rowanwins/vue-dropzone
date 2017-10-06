@@ -3,7 +3,6 @@
     v-bind:class="{ 'vue-dropzone dropzone': includeStyling }"
     :id="id" 
     ref="dropzoneElement">
-    <slot></slot>
   </div>
 </template>
 
@@ -45,7 +44,7 @@ export default {
       
       file.previewElement.children[0].children[0].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
       file.previewElement.children[0].children[0].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
-      file.previewElement.children[0].children[0].style['object-fit'] = 'cover';
+      file.previewElement.children[0].children[0].style['object-fit'] = 'contain';
 
       this.dropzone.emit("complete", file)
       if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--

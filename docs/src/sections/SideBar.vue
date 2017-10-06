@@ -15,6 +15,19 @@
             </router-link>
           </ul>
         </li>
+        <li>      
+          <button class="sideBtn github">
+            <a href="https://github.com/rowanwins/vue-dropzone">
+              <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+              <span>GITHUB</span>
+            </a>
+          </button>
+        </li>
+        <li>
+          <a href="https://www.worldvision.com.au/give/donate/make-a-general-donation">
+            <img src="https://www.dropbox.com/s/f6086lensozvp9i/cause.jpg?dl=1">
+          </a>
+        </li>
       </ul>
     </div>
   </aside>
@@ -34,6 +47,7 @@ export default {
         {
           title: 'Documentation',
           pages: [
+            { to: '/props', title: 'Props'},
             { to: '/events', title: 'Events'},
             { to: '/methods', title: 'Methods'}
           ]
@@ -42,9 +56,10 @@ export default {
           title: 'Demos',
           pages: [
             { to: '/demo', title: 'Basic Demo' },
-            { to: '/iconDemo', title: 'Adding icons' },
+            { to: '/iconDemo', title: 'Adding Icons' },
             { to: '/manual', title: 'Manually Load Files' },
-            { to: '/additionalParams', title: 'Sending additional params' }
+            { to: '/additionalParams', title: 'Sending Additional Params' },
+            { to: '/slotsDemo', title: 'Custom Preview with Slots' }
           ]
         }
       ]
@@ -57,5 +72,41 @@ export default {
   .border{
     border:none;
     border-bottom:1px solid rgba(0,0,0,.07);
+  }
+
+  .sidebar li {
+    margin: 2px 0 2px 15px;
+  }
+  .sideBtn{
+    cursor: pointer;
+    transition: 0.3s;
+    padding: 10px;
+    margin: 20px 0px;
+  }
+  .github {
+    background: #747b8b;
+    padding: 10px 48px;
+    margin: 40px 0px;
+  }
+  .github:hover {
+    background: #00b782;
+  }
+  
+  .sidebar .sideBtn a {
+    color:  white;
+    letter-spacing: 0.1rem;
+  }
+  .cause .sideBtn a{
+    font-weight: 500;
+  }
+  .sidebar .github a {
+    font-weight: 700;
+  }
+  .sidebar .sideBtn a:hover {
+    text-decoration: none;
+  }
+  .fa{
+    vertical-align: middle;
+    margin-right: 10px;
   }
 </style>

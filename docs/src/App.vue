@@ -23,8 +23,14 @@ export default {
 </script>
 
 <style>
+ .markdown-section {
+  max-width: 950px;
+ }
  .markdown-section strong{
     color: white;
+  }
+  .markdown-section table {
+    display: table;
   }
   button {
     padding: 10px 20px;
@@ -34,5 +40,10 @@ export default {
     border: none;
     border-radius: 4px;
     margin-top: 20px;
+  }
+
+  .markdown-section td p {
+    line-height: 1.3rem;
+    margin: 0.5em 0;
   }
 </style>

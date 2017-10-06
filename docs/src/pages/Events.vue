@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Events</h1>
-    <p>The vue2-Dropzone component will emit the following events.</p>
+    <p>The Vue2-Dropzone component will emit the following <a href="https://vuejs.org/v2/guide/components.html#Using-v-on-with-Custom-Events">events</a>.</p>
     <simple-table
       :headers="['Event Name', 'Description']" 
       :rows="events" />

@@ -4,8 +4,13 @@
     <p v-html="marked(description)"></p>
     <vue-dropzone ref="myVueDropzone"
       id="dropzone"
-      :options="dropzoneOptions">
+      :options="dropzoneOptions"
+      @vdropzone-file-added="getFileCount"        
+      @vdropzone-removed-file="getFileCount"
+      @vdropzone-file-added-manually="getFileCount"
+    >
     </vue-dropzone>
+    <p>Filecount: {{fileCount}}</p>
     <button v-on:click="addFile">Manually add file</button>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
@@ -29,6 +34,7 @@ var example = `
 export default {
   data () {
       return {
+          fileCount: 0,
           description: "Using the `manuallyAddFile` method allows you to programatically add files to your dropzone area. For example if you already have files on your server that you'd like to pre-populate your dropzone area with then simply use the function when the `vdropzone-mounted` event is fired.",
           example: "````" + example + "````",
           dropzoneOptions: {
@@ -38,7 +44,11 @@ export default {
           }
       }
   },
+
   methods: {
+    getFileCount () {
+      this.fileCount = this.$refs.myVueDropzone.dropzone.files.length
+    },
     addFile () {
       var file = { size: 123, name: "Icon" };
       var url = "https://myvizo.com/img/logo_sm.png";
