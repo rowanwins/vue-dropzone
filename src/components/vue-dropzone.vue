@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import  awsEndpoint  from '../services/urlsigner'
 export default {
   props: {
     id: {
@@ -21,6 +22,17 @@ export default {
       type: Boolean,
       default: true,
       required: false
+    },
+    awss3: {
+      type: Object,
+      required: false,
+      default: null
+    }
+  },
+  data () {
+    return {
+      isS3: false,
+      wasQueueAutoProcess: true
     }
   },
   computed: {
@@ -32,7 +44,12 @@ export default {
       Object.keys(this.options).forEach(function (key) {
         defaultValues[key] = this.options[key]
       }, this)
-
+      if (this.awss3 !== undefined) {
+        defaultValues['autoProcessQueue'] = false;
+        this.isS3 = true;
+        if (this.options.autoProcessQueue !== undefined)
+          this.wasQueueAutoProcess = this.options.autoProcessQueue;
+      }
       return defaultValues
     }
   },
@@ -154,6 +171,21 @@ export default {
         }
       }
       vm.$emit('vdropzone-file-added', file)
+      if (vm.isS3 && vm.wasQueueAutoProcess){
+        awsEndpoint.sendFile(file,vm.awss3.signingURL)
+        .then((response) => {
+          if (response.success) {
+            vm.$emit('vdropzone-s3-upload-success',response.message);
+            vm.setOption('autoProcessQueue',true);
+            vm.processQueue();
+          }else{
+            vm.$emit('vdropzone-s3-upload-error', response.message);
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
+      }
     })
 
     this.dropzone.on('addedfiles', function (files) {
@@ -167,6 +199,9 @@ export default {
 
     this.dropzone.on('success', function (file, response) {
       vm.$emit('vdropzone-success', file, response)
+      if (vm.isS3 && vm.wasQueueAutoProcess){
+        vm.setOption('autoProcessQueue',false);
+      }
     })
 
     this.dropzone.on('successmultiple', function (file, response) {
@@ -266,7 +301,6 @@ export default {
     })
 
     vm.$emit('vdropzone-mounted')
-
   },
   beforeDestroy () {
     this.destroy();

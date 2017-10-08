@@ -49,6 +49,7 @@
     "dist"
   ],
   "dependencies": {
+    "axios": "^0.16.2",
     "dropzone": "^5.2.0",
     "marked": "^0.3.6"
   }
