@@ -1,8 +1,13 @@
 <template>
   <aside class="sidebar">
     <h1>
-      <a class="app-name-link" data-nosearch="" href="/"><img src="http://vrajroham.me/vue-dropzone-page/static/img/vue-drp1.93d2bf4.png"></a>
+        <a class="app-name-link" data-nosearch="" href="/"><img src="http://vrajroham.me/vue-dropzone-page/static/img/vue-drp1.93d2bf4.png"></a>
     </h1>
+    <!-- Place this tag where you want the button to render. -->
+    <div class="center-c">
+      <a class="github-button" href="https://github.com/rowanwins/vue-dropzone" data-size="large" data-show-count="true" aria-label="Star rowanwins/vue-dropzone on GitHub">Star</a> &nbsp;&nbsp;
+<a class="github-button" href="https://github.com/rowanwins/vue-dropzone/issues" data-size="large" data-show-count="true" aria-label="Issue rowanwins/vue-dropzone on GitHub">Issue</a>
+    </div>
     <hr class="border">
     <div class="sidebar-nav">
       <ul>
@@ -108,5 +113,10 @@ export default {
   .fa{
     vertical-align: middle;
     margin-right: 10px;
+  }
+  .center-c{
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>
