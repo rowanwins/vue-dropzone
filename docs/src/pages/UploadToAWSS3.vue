@@ -10,6 +10,7 @@
       v-on:vdropzone-s3-upload-success="s3UploadSuccess"
       :options="dropzoneOptions">
     </vue-dropzone>
+    <button @click="uploadFiles">Upload Files</button>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
   </div>
@@ -52,7 +53,7 @@ export default {
           dropzoneOptions: {
               url: 'https://httpbin.org/post',
               thumbnailWidth: 200,
-              addRemoveLinks: true
+              addRemoveLinks: true,
           },
           awss3: {
             signingURL : 'http://aws-direct-s3.dev/'
@@ -67,7 +68,11 @@ export default {
       alert(message)
     },
     s3UploadSuccess(message){
-      alert(message)
+      // alert(message)
+      console.log(message)
+    },
+    uploadFiles(){
+      this.$refs.myVueDropzone.processQueue();
     }
   },
   components: {

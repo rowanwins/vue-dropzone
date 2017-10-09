@@ -32,7 +32,7 @@ export default {
   data () {
     return {
       isS3: false,
-      wasQueueAutoProcess: true
+      wasQueueAutoProcess: true,
     }
   },
   computed: {
@@ -44,7 +44,7 @@ export default {
       Object.keys(this.options).forEach(function (key) {
         defaultValues[key] = this.options[key]
       }, this)
-      if (this.awss3 !== undefined) {
+      if (this.awss3 !== null) {
         defaultValues['autoProcessQueue'] = false;
         this.isS3 = true;
         if (this.options.autoProcessQueue !== undefined)
@@ -76,9 +76,15 @@ export default {
     },
     processQueue: function () {
       let dropzoneEle = this.dropzone;
-      this.dropzone.processQueue();
+      if (this.isS3 && !this.wasQueueAutoProcess){
+        this.getQueuedFiles().forEach((file) => {
+          this.getSignedAndUploadToS3(file);
+        });
+      }else{
+        this.dropzone.processQueue();
+      }
       this.dropzone.on("success", function () {
-        dropzoneEle.options.autoProcessQueue = true
+          dropzoneEle.options.autoProcessQueue = true
       });
       this.dropzone.on('queuecomplete', function () {
         dropzoneEle.options.autoProcessQueue = false
@@ -144,6 +150,22 @@ export default {
     getActiveFiles: function () {
       return this.dropzone.getActiveFiles()
     },
+    getSignedAndUploadToS3(file){
+      awsEndpoint.sendFile(file,this.awss3.signingURL)
+        .then((response) => {
+          if (response.success) {
+            // this.setOption('autoProcessQueue',true);
+            file.s3ObjectLocation = response.message
+            setTimeout(() => this.dropzone.processFile(file))
+            this.$emit('vdropzone-s3-upload-success',response.message);
+          }else{
+            this.$emit('vdropzone-s3-upload-error', response.message);
+          }
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
   },
   mounted () {
     if (this.$isServer && this.hasBeenMounted) {
@@ -172,19 +194,7 @@ export default {
       }
       vm.$emit('vdropzone-file-added', file)
       if (vm.isS3 && vm.wasQueueAutoProcess){
-        awsEndpoint.sendFile(file,vm.awss3.signingURL)
-        .then((response) => {
-          if (response.success) {
-            vm.$emit('vdropzone-s3-upload-success',response.message);
-            vm.setOption('autoProcessQueue',true);
-            vm.processQueue();
-          }else{
-            vm.$emit('vdropzone-s3-upload-error', response.message);
-          }
-        })
-        .catch((error) => {
-          alert(error);
-        });
+        vm.getSignedAndUploadToS3(file);
       }
     })
 
@@ -217,6 +227,8 @@ export default {
     })
 
     this.dropzone.on('sending', function (file, xhr, formData) {
+      if (vm.isS3)
+        formData.append('s3ObjectLocation', file.s3ObjectLocation);
       vm.$emit('vdropzone-sending', file, xhr, formData)
     })
 
