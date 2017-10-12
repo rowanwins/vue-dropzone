@@ -64,7 +64,8 @@ export default {
             { to: '/iconDemo', title: 'Adding Icons' },
             { to: '/manual', title: 'Manually Load Files' },
             { to: '/additionalParams', title: 'Sending Additional Params' },
-            { to: '/slotsDemo', title: 'Custom Preview with Slots' }
+            { to: '/slotsDemo', title: 'Custom Preview with Slots' },
+            { to: '/aws-s3-upload', title: 'AWS S3 Upload' }
           ]
         }
       ]

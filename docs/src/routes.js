@@ -7,6 +7,7 @@ import slots from './pages/SlotsDemo.vue';
 import additionalParams from './pages/SendAdditionalParamsDemo.vue';
 import events from './pages/Events.vue'
 import methods from './pages/Methods.vue'
+import s3upload from './pages/UploadToAWSS3.vue'
 
 export default [
   { path: '/installation', component: Installation },
@@ -18,5 +19,6 @@ export default [
   { path: '/slotsDemo', component: slots },
   { path: '/manual', component: manual },
   { path: '/additionalParams', component: additionalParams },
+  { path: '/aws-s3-upload', component: s3upload },
   { path: '*', redirect: '/installation' }
 ]
