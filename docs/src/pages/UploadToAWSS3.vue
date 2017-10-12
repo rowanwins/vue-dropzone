@@ -74,7 +74,7 @@ export default {
       return {
           description: "Send file directly to AWS S3 from browser using AWS Pre-Signed URL.",
           awsNote: "> Firstly your file is uploaded to S3 then request is sent to your server with file as expected behaviour. But extra field to your request will be added as `s3ObjectLocation` containing location of your s3 object/file, which you may require to store in database.",
-          urlsignnote: "> You may need external libraries to create below response. Here is example for [php aws url signer](link)",
+          urlsignnote: "> You may need external libraries to create below response. Here is example for [php aws url signer](https://github.com/vrajroham/aws-s3-url-signer-php)",
           example: "````" + example + "````",
           signurl : '',
           dropzoneOptions: {
