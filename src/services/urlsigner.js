@@ -10,6 +10,7 @@ export default {
           return Promise.resolve(res.data)
       })
       .catch((err) => {
+        console.error("Network Error : Could not send request to AWS (Maybe CORS error)");
         return Promise.resolve(err)
       })
   },

@@ -154,17 +154,25 @@ export default {
       awsEndpoint.sendFile(file,this.awss3.signingURL)
         .then((response) => {
           if (response.success) {
-            // this.setOption('autoProcessQueue',true);
             file.s3ObjectLocation = response.message
             setTimeout(() => this.dropzone.processFile(file))
             this.$emit('vdropzone-s3-upload-success',response.message);
           }else{
-            this.$emit('vdropzone-s3-upload-error', response.message);
+            if ('undefined' !== typeof message){
+              this.$emit('vdropzone-s3-upload-error', response.message);
+            }else{
+              this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
+            }
           }
         })
         .catch((error) => {
           alert(error);
         });
+    },
+    setAWSSigningURL(location){
+      if (this.isS3) {
+        this.awss3.signingURL = location;
+      }
     }
   },
   mounted () {

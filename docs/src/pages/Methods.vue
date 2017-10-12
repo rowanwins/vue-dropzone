@@ -38,6 +38,7 @@ export default {
         ['.getUploadingFiles()', 'Gets all uploading files'],
         ['.disable()', 'Disable the dropzone component. If you want to enable it again use `.enable()`'],
         ['.enable()', 'Enables a disabled dropzone component'],
+        ['.setAWSSigningURL(url)','Change your Aws S3 singing URL on the fly']
       ]
     }
   },
