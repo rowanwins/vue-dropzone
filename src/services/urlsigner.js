@@ -1,18 +1,27 @@
-import axios from 'axios'
 export default {
   getSignedURL (file, endpoint) {
     let payload = {
       filePath: file.name,
       contentType: file.type
     }
-    return axios.post(endpoint, payload)
-      .then((res) => {
-          return Promise.resolve(res.data)
-      })
-      .catch((err) => {
-        console.error("Network Error : Could not send request to AWS (Maybe CORS error)");
-        return Promise.resolve(err)
-      })
+
+    return new Promise((resolve, reject) =>{
+      let request = new XMLHttpRequest();
+      request.open("POST", endpoint);
+      request.onload = function() {
+        if (request.status == 200) {
+          resolve(JSON.parse(request.response));
+        }
+        else {
+          reject((request.statusText));
+        }
+      };
+      request.onerror = function(err){
+        console.error("Network Error : Could not send request to AWS (Maybe CORS errors)");
+        reject(err)
+      };
+      request.send();
+    });
   },
   sendFile(file, endpoint){
     var fd = new FormData();
@@ -29,17 +38,28 @@ export default {
           }
         });
         fd.append('file', file);
-        return axios.post(response.postEndpoint,fd)
-          .then((res) => {
-            var s3Error = ( new window.DOMParser() ).parseFromString(res.data, "text/xml");
-            var successMsg = s3Error.firstChild.children[0].innerHTML;
-            return Promise.resolve({'success':true, 'message': successMsg})
-          })
-          .catch((err) => {
-            var s3Error = ( new window.DOMParser() ).parseFromString(err.response.data, "text/xml");
-            var errMsg = s3Error.firstChild.children[1].innerHTML;
-            return Promise.reject({'success':false,'message':errMsg})
-          })
+        return new Promise((resolve, reject) => {
+          let request = new XMLHttpRequest();
+          request.open('POST', response.postEndpoint);
+          request.onload = function() {
+            if (request.status == 201) {
+              var s3Error = ( new window.DOMParser() ).parseFromString(request.response, "text/xml");
+              var successMsg = s3Error.firstChild.children[0].innerHTML;
+              resolve({'success':true, 'message': successMsg})
+            }
+            else {
+              var s3Error = ( new window.DOMParser() ).parseFromString(request.response, "text/xml");
+              var errMsg = s3Error.firstChild.children[0].innerHTML;
+              reject({'success':false,'message':errMsg + ". Request is marked as resolved when returns as status 201"})
+            }
+          };
+          request.onerror = function(err){
+              var s3Error = ( new window.DOMParser() ).parseFromString(request.response, "text/xml");
+              var errMsg = s3Error.firstChild.children[1].innerHTML;
+              reject({'success':false,'message':errMsg})
+          };
+          request.send(fd);
+        });
       })
       .catch((error) => {
         return error;
