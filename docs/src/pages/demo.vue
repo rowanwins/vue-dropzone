@@ -119,12 +119,14 @@
         </tr>
       </tbody>
   </table>
+  <edit-doc :link="'demo.vue'"></edit-doc>
   </div>
 
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
+import editDoc from '../components/DocEditLink.vue';
 
 export default {
   data () {
@@ -164,7 +166,8 @@ export default {
       }
   },
   components: {
-    vueDropzone
+    vueDropzone,
+    'edit-doc' : editDoc
   },
   methods: {
     vfileAdded (file) {

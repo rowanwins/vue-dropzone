@@ -46,4 +46,25 @@ export default {
     line-height: 1.3rem;
     margin: 0.5em 0;
   }
+
+.float{
+  position:fixed;
+  width:auto;
+  height:30px;
+  top:50px;
+  right:64px;
+  padding: 5px 20px;
+  border-radius: 4px;
+}
+a.float.doc-link{
+  color: #aaa;
+  border: dashed 1px #aaa;
+  /*background: #314B5F;*/
+  text-decoration: none;
+  text-transform: uppercase;
+}
+a.float:hover{
+  color:#42b983;
+  border: dashed 1px #42b983;
+}
 </style>

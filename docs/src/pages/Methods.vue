@@ -7,12 +7,14 @@
       :rows="methods" />
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
-
+    <edit-doc :link="'Methods.vue'"></edit-doc>
   </div>
 </template>
 
 <script>
 import SimpleTable from '../components/SimpleTable.vue';
+import editDoc from '../components/DocEditLink.vue';
+
 var example = `
   <vue-dropzone ref="myVueDropzone">
   ....
@@ -43,7 +45,8 @@ export default {
     }
   },
   components: {
-    'simple-table': SimpleTable
+    'simple-table': SimpleTable,
+    'edit-doc': editDoc
   }  
 }
 </script>

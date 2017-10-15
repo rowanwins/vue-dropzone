@@ -11,7 +11,7 @@
       :options="dropzoneOptions">
     </vue-dropzone>
     <hr>
-    <label>Enter your URL Signer Endpoint</label><br>
+    <label>Enter your URL Signer Endpoint</label> <span class="note">(POST request will be sent to endpoint)</span><br>
     <input type="text" v-model="signurl" ref="urlsigner" placeholder="http://mydomain.com/" required="">
     <button @click="uploadFiles">Upload Files</button>
     <h3>Response of your URL Signer should be as below</h3>
@@ -38,11 +38,13 @@
     <div v-html="marked(awsNote)"></div>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
+    <edit-doc :link="'UploadToAWSS3.vue'"></edit-doc>
   </div>
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
+import editDoc from '../components/DocEditLink.vue';
 
 var example = `
   <vue-dropzone 
@@ -110,7 +112,8 @@ export default {
     }
   },
   components: {
-    vueDropzone
+    vueDropzone,
+    'edit-doc': editDoc
   }
 }
 </script>
@@ -123,5 +126,8 @@ input[type=text] {
 }
 label{
   font-weight: bold;
+}
+.note{
+  color: red;
 }
 </style>

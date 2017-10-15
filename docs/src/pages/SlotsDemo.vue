@@ -9,12 +9,14 @@
     </vue-dropzone>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
+    <edit-doc :link="'SlotsDemo.vue'"></edit-doc>
   </div>
 
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
+import editDoc from '../components/DocEditLink.vue';
 
 var example = `
   <vue-dropzone :options="dropzoneOptions">
@@ -147,7 +149,8 @@ export default {
       }
   },
   components: {
-    vueDropzone
+    vueDropzone,
+    'edit-doc': editDoc
   },
   methods:{
     'template':function() {
