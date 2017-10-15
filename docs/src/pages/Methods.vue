@@ -2,9 +2,7 @@
   <div>
     <h1>Methods</h1>
     <p>The following methods are able to called from the parent component using the ref tag.</p>
-    <simple-table
-      :headers="['Method Name', 'Description']" 
-      :rows="methods" />
+    <simple-table :headers="['Method Name', 'Description']" :rows="methods" />
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
     <edit-doc :link="'Methods.vue'"></edit-doc>
@@ -16,16 +14,16 @@ import SimpleTable from '../components/SimpleTable.vue';
 import editDoc from '../components/DocEditLink.vue';
 
 var example = `
-  <vue-dropzone ref="myVueDropzone">
-  ....
-  methods: {
-    someMethod: {
-      this.$refs.myVueDropzone.processQueue()
-    }
-  }
-  `
+      <vue-dropzone ref="myVueDropzone">
+      ....
+      methods: {
+        someMethod: {
+          this.$refs.myVueDropzone.processQueue()
+        }
+      }
+      `
 export default {
-  data: function () {
+  data: function() {
     return {
       example: "````" + example + "````",
       methods: [
@@ -40,14 +38,14 @@ export default {
         ['.getUploadingFiles()', 'Gets all uploading files'],
         ['.disable()', 'Disable the dropzone component. If you want to enable it again use `.enable()`'],
         ['.enable()', 'Enables a disabled dropzone component'],
-        ['.setAWSSigningURL(url)','Change your Aws S3 singing URL on the fly']
+        ['.setAWSSigningURL(url)', 'Change your Aws S3 singing URL on the fly']
       ]
     }
   },
   components: {
     'simple-table': SimpleTable,
     'edit-doc': editDoc
-  }  
+  }
 }
 </script>
 

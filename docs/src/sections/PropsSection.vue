@@ -1,9 +1,7 @@
 <template>
   <div>
     <h2>Props</h2>
-    <simple-table v-if="props"
-      :headers="['Property', 'Desc', 'Type', 'Accepted Values', 'Default value']" 
-      :rows="props" />
+    <simple-table v-if="props" :headers="['Property', 'Desc', 'Type', 'Accepted Values', 'Default value']" :rows="props" />
   </div>
 </template>
 
@@ -19,7 +17,7 @@ export default {
   },
   components: {
     'simple-table': SimpleTable
-  }  
+  }
 }
 </script>
 

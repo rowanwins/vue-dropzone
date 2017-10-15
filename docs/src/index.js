@@ -6,7 +6,7 @@ var marked = require('marked');
 
 Vue.mixin({
   methods: {
-    marked: function(input) {
+    marked: function (input) {
       return marked(input);
     }
   }
