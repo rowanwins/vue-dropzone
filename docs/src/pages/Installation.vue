@@ -13,8 +13,18 @@
 cd vue-dropzone
 npm install
 npm run build</code></pre>
+<edit-doc :link="'Installation.vue'"></edit-doc>
   </div>
 </template>
+<script>
+  import editDoc from '../components/DocEditLink.vue';
+  
+  export default{
+    components:{
+      'edit-doc': editDoc
+    }
+  }
+</script>
 <style>
 	.center-c{
 		display: flex;

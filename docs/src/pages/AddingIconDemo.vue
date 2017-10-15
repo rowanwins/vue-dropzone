@@ -8,13 +8,14 @@
     </vue-dropzone>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
+    <edit-doc :link="'AddingIconDemo.vue'"></edit-doc>
   </div>
 
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
-
+import editDoc from '../components/DocEditLink.vue';
 var example = `
   @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
@@ -42,7 +43,8 @@ export default {
       }
   },
   components: {
-    vueDropzone
+    vueDropzone,
+    'edit-doc' : editDoc
   }
 }
 </script>

@@ -14,12 +14,14 @@
     <button v-on:click="addFile">Manually add file</button>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
+    <edit-doc :link="'ManuallyAddDemo.vue'"></edit-doc>
   </div>
 
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
+import editDoc from '../components/DocEditLink.vue';
 
 var example = `
   <vue-dropzone ref="myVueDropzone">
@@ -56,7 +58,8 @@ export default {
     }
   },
   components: {
-    vueDropzone
+    vueDropzone,
+    'edit-doc' : editDoc
   }
 }
 </script>

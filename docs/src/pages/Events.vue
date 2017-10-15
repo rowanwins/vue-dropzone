@@ -5,11 +5,13 @@
     <simple-table
       :headers="['Event Name', 'Description']" 
       :rows="events" />
+      <edit-doc :link="'Events.vue'"></edit-doc>
   </div>
 </template>
 
 <script>
 import SimpleTable from '../components/SimpleTable.vue';
+import editDoc from '../components/DocEditLink.vue';
 
 export default {
   data: function () {
@@ -51,7 +53,8 @@ export default {
     }
   },
   components: {
-    'simple-table': SimpleTable
+    'simple-table': SimpleTable,
+    'edit-doc': editDoc
   }  
 }
 </script>

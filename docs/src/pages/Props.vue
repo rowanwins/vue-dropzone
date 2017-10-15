@@ -5,11 +5,13 @@
     <simple-table
       :headers="['Prop Name', 'Type', 'Description', 'Required']" 
       :rows="props" />
+      <edit-doc :link="'Props.vue'"></edit-doc>
   </div>
 </template>
 
 <script>
 import SimpleTable from '../components/SimpleTable.vue';
+import editDoc from '../components/DocEditLink.vue';
 
 export default {
   data: function () {
@@ -23,7 +25,8 @@ export default {
     }
   },
   components: {
-    'simple-table': SimpleTable
+    'simple-table': SimpleTable,
+    'edit-doc': editDoc
   }  
 }
 </script>
