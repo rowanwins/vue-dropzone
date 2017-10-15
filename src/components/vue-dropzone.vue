@@ -59,9 +59,12 @@ export default {
       this.dropzone.emit("addedfile", file);
       this.dropzone.emit("thumbnail", file, fileUrl);
       
-      file.previewElement.children[0].children[0].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
-      file.previewElement.children[0].children[0].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
-      file.previewElement.children[0].children[0].style['object-fit'] = 'contain';
+      var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
+      for(var i = 0;i < thumbnails.length; i++) {
+        thumbnails[i].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
+        thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
+        thumbnails[i].style['object-fit'] = 'contain';
+      }
 
       this.dropzone.emit("complete", file)
       if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--

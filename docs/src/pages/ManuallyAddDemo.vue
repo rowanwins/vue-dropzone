@@ -47,11 +47,15 @@ export default {
 
   methods: {
     getFileCount () {
-      this.fileCount = this.$refs.myVueDropzone.dropzone.files.length
+      if('undefined' !== typeof this.$refs.myVueDropzone.dropzone) {
+        this.fileCount = this.$refs.myVueDropzone.dropzone.files.length
+      } else {
+        this.fileCount = 0;
+      }
     },
     addFile () {
       var file = { size: 123, name: "Icon" };
-      var url = "https://myvizo.com/img/logo_sm.png";
+      var url = "http://via.placeholder.com/200x200";
       this.$refs.myVueDropzone.manuallyAddFile(file, url);
     }
   },
