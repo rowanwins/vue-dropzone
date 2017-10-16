@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<a href="#" class="float doc-link" :href="url" target="_blank" v-if="link">
-			Edit this Doc
+			Edit on Github
 		</a>
 	</div>
 </template>
