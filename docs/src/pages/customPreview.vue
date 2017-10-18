@@ -161,7 +161,6 @@ export default {
 </script>
 <style>
   .vue-dropzone.dropzone {
-    border: 0px solid #000000;
     background-color: transparent;
     font-family: 'Arial', sans-serif;
     letter-spacing: 0.2px;
