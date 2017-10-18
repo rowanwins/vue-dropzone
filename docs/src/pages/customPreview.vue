@@ -6,16 +6,110 @@
       :options="dropzoneOptions"
       v-on:vdropzone-thumbnail="thumbnail">
     </vue-dropzone>
+    <hr />
+    <h3>HTML</h3>
+    <p v-html="marked(html)"></p>
+    <hr />
+    <h3>Javascript</h3>
+    <p v-html="marked(javascript)"></p>
+    <hr />
+    <h3>Style</h3>
+    <p v-html="marked(style)"></p>
   </div>
 </template>
 
 <script>
 import { vueDropzone } from '../../../src/';
 
+var html = `
+    <vue-dropzone 
+      :options="dropzoneOptions"
+      v-on:vdropzone-thumbnail="thumbnail">
+    `
+var javascript = `
+    ....
+    data () {
+        return {
+            ....
+            dropzoneOptions: {
+              ...
+              previewTemplate: this.template(),
+              ...
+            }
+        }
+    ....
+    methods: {
+      template: function () {
+        return \`<div class="dz-preview dz-file-preview">
+                <div class="dz-image">
+                    <div data-dz-thumbnail-bg></div>
+                </div>
+                <div class="dz-details">
+                    <div class="dz-size"><span data-dz-size></span></div>
+                    <div class="dz-filename"><span data-dz-name></span></div>
+                </div>
+                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                <div class="dz-success-mark"><i class="fa fa-check"></i></div>
+                <div class="dz-error-mark"><i class="fa fa-close"></i></div>
+            </div>
+        \`;
+      },
+      thumbnail: function(file, dataUrl) {
+        var j, len, ref, thumbnailElement;
+        if (file.previewElement) {
+            file.previewElement.classList.remove("dz-file-preview");
+            ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
+            for (j = 0, len = ref.length; j < len; j++) {
+                thumbnailElement = ref[j];
+                thumbnailElement.alt = file.name;
+                thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
+            }
+            return setTimeout(((function(_this) {
+                return function() {
+                    return file.previewElement.classList.add("dz-image-preview");
+                };
+            })(this)), 1);
+        }
+      },
+    }
+    ...
+  `
+var style = `
+    <style>
+      .vue-dropzone.dropzone .dz-preview {
+        width: calc(20% - 32px);
+        padding-top: calc(20% - 32px);
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+      }
+      .vue-dropzone.dropzone .dz-preview .dz-image {
+        border-radius: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+      }
+      .vue-dropzone.dropzone .dz-preview .dz-image > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+      }
+    </style>
+      `
+
 export default {
   data() {
     return {
       ok: true,
+      html: "````" + html + "````",
+      javascript: "````" + javascript + "````",
+      style: "````" + style + "````",
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 200,
@@ -46,21 +140,21 @@ export default {
       `;
     },
     thumbnail: function(file, dataUrl) {
-        var j, len, ref, thumbnailElement;
-        if (file.previewElement) {
-            file.previewElement.classList.remove("dz-file-preview");
-            ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
-            for (j = 0, len = ref.length; j < len; j++) {
-                thumbnailElement = ref[j];
-                thumbnailElement.alt = file.name;
-                thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
-            }
-            return setTimeout(((function(_this) {
-                return function() {
-                    return file.previewElement.classList.add("dz-image-preview");
-                };
-            })(this)), 1);
-        }
+      var j, len, ref, thumbnailElement;
+      if (file.previewElement) {
+          file.previewElement.classList.remove("dz-file-preview");
+          ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
+          for (j = 0, len = ref.length; j < len; j++) {
+              thumbnailElement = ref[j];
+              thumbnailElement.alt = file.name;
+              thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
+          }
+          return setTimeout(((function(_this) {
+              return function() {
+                  return file.previewElement.classList.add("dz-image-preview");
+              };
+          })(this)), 1);
+      }
     },
   }
 }
