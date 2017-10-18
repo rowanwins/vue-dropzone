@@ -29,8 +29,7 @@ export default {
     vueDropzone,
   },
   methods: {
-    template: function (options) {
-      console.log(options)
+    template: function () {
       return `<div class="dz-preview dz-file-preview">
               <div class="dz-image">
                   <div data-dz-thumbnail-bg></div>
