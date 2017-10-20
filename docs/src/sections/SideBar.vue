@@ -60,6 +60,7 @@ export default {
           title: 'Demos',
           pages: [
             { to: '/demo', title: 'Basic Demo' },
+            { to: '/custom-preview', title: 'Custom preview' },
             { to: '/iconDemo', title: 'Adding Icons' },
             { to: '/manual', title: 'Manually Load Files' },
             { to: '/additionalParams', title: 'Sending Additional Params' },
