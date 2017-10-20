@@ -15,9 +15,6 @@ export default {
 			defaut: "#"
 		}
 	},
-	mounted() {
-		console.log(docConfig.branch)
-	},
 	computed: {
 		url() {
 			return docConfig.repository + "/blob/" + docConfig.branch + "/" + docConfig.docSource + "/" + this.link;

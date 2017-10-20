@@ -3,7 +3,6 @@
         <h1>Custom preview template</h1>
         <p v-html="marked(description)"></p>
         <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions">
-            <p slot="size">Something wild!</p>
         </vue-dropzone>
         <h3>Snippet</h3>
         <p v-html="marked(example)"></p>
@@ -187,19 +186,21 @@ export default {
         .dz-image {
             border-radius: 2px;
             box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-            borde &:hover {
+            border {
+                &:hover {
                 img {
                     transform: none;
                     -webkit-filter: none;
                 }
+            }
             }
         }
         .dz-details {
             bottom: 0;
             top: 0;
             color: white;
-            background-color: rgba(33, 150, 243, 0.8);
-            transition: opacity .2s linear;
+            background-color: rgb(247, 107, 20);
+            transition: opacity .2s ease-in-out;
             text-align: left;
             .dz-filename span,
             .dz-size span {
@@ -224,13 +225,13 @@ export default {
             padding: 10px;
             top: inherit;
             bottom: 15px;
-            /*border: 2px white solid;*/
             text-decoration: none;
             text-transform: uppercase;
             font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 1.1px;
             opacity: 0;
+            border: none!important;
         }
         &:hover {
             .dz-remove {

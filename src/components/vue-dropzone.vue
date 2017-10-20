@@ -24,6 +24,11 @@ export default {
       type: Object,
       required: false,
       default: null
+    },
+    destroyDropzone: {
+      type: Boolean,
+      default: true,
+      required: false
     }
   },
   data() {
@@ -51,7 +56,7 @@ export default {
     }
   },
   methods: {
-    manuallyAddFile: function(file, fileUrl, callback, crossOrigin) {
+    manuallyAddFile: function(file, fileUrl) {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
       this.dropzone.emit("thumbnail", file, fileUrl);
@@ -62,7 +67,6 @@ export default {
         thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
         thumbnails[i].style['object-fit'] = 'contain';
       }
-
       this.dropzone.emit("complete", file)
       if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--
       this.dropzone.files.push(file)
@@ -323,7 +327,7 @@ export default {
     vm.$emit('vdropzone-mounted')
   },
   beforeDestroy() {
-    this.destroy();
+    if (this.destroyDropzone) this.dropzone.destroy()
   }
 }
 

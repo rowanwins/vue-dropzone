@@ -5,7 +5,7 @@
     <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" @vdropzone-file-added="getFileCount" @vdropzone-removed-file="getFileCount" @vdropzone-file-added-manually="getFileCount">
     </vue-dropzone>
     <p>Filecount: {{fileCount}}</p>
-    <button v-on:click="addFile">Manually add file</button>
+    <button v-on:click="addFile" class="manual">Manually add file</button>
     <h3>Snippet</h3>
     <p v-html="marked(example)"></p>
     <edit-doc :link="'ManuallyAddDemo.vue'"></edit-doc>
@@ -60,3 +60,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .manual {
+    cursor: pointer;
+  }
+</style>

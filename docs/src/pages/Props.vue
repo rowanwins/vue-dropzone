@@ -19,6 +19,7 @@ export default {
         ['options', 'Object', 'A dropzone [configuration object](http://www.dropzonejs.com/#configuration-options), accepts all valid dropzone configuration', 'True'],
         ['includeStyling', 'Boolean', 'Whether to include the dropzone and component styling, defaults to true', 'False'],
         ['awss3', 'Object', 'Object accepts only `signingURL` key, which points to AWS signing URL. See [Demo and config](#aws-s3-upload)', 'False'],
+        ['destroyDropzone', 'Boolean', 'Destroy the dropzone object when the component is destroyed.', 'True'],
       ]
     }
   },
