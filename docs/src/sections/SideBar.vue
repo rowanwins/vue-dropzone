@@ -3,11 +3,7 @@
     <h1>
       <a class="app-name-link" data-nosearch="" href="/"><img src="http://vrajroham.me/vue-dropzone-page/static/img/vue-drp1.93d2bf4.png"></a>
     </h1>
-    <!-- Place this tag where you want the button to render. -->
-    <div class="center-c">
-      <a class="github-button" href="https://github.com/rowanwins/vue-dropzone" data-size="large" data-show-count="true" aria-label="Star rowanwins/vue-dropzone on GitHub">Star</a> &nbsp;&nbsp;
-      <a class="github-button" href="https://github.com/rowanwins/vue-dropzone/issues" data-size="large" data-show-count="true" aria-label="Issue rowanwins/vue-dropzone on GitHub">Issue</a>
-    </div>
+
     <hr class="border">
     <div class="sidebar-nav">
       <ul>
@@ -63,7 +59,7 @@ export default {
             { to: '/iconDemo', title: 'Adding Icons' },
             { to: '/manual', title: 'Manually Load Files' },
             { to: '/additionalParams', title: 'Sending Additional Params' },
-            { to: '/slotsDemo', title: 'Custom Preview with Slots' },
+            { to: '/custom-preview', title: 'Custom Styling' },
             { to: '/aws-s3-upload', title: 'AWS S3 Upload' }
           ]
         }
