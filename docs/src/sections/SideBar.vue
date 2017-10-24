@@ -1,7 +1,7 @@
 <template>
   <aside class="sidebar">
     <h1>
-      <a class="app-name-link" data-nosearch="" href="/"><img src="http://vrajroham.me/vue-dropzone-page/static/img/vue-drp1.93d2bf4.png"></a>
+      <a class="app-name-link" data-nosearch="" href="/"><img src="../assets/vue2-dropzone1.png"></a>
     </h1>
 
     <hr class="border">
