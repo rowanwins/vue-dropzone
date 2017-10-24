@@ -4,6 +4,10 @@ A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs
 
 A **Nuxt SSR-compatible** component can be found at [npm](https://www.npmjs.com/package/nuxt-dropzone) and [github](https://github.com/Etheryte/nuxt-dropzone). Thanks to [@Etheryte](https://github.com/Etheryte)
 
+---
+
+![](https://i.imgur.com/kUbjks1.gif)
+
 ## Development
 
 ``` bash
