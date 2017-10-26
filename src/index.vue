@@ -72,16 +72,16 @@
                 default: (options) => {
                     return `
                         <div class="dz-preview dz-file-preview">
-                            <div class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">
-                            <img data-dz-thumbnail /></div>
-                            <div class="dz-details">
-                                <div class="dz-size"><span data-dz-size></span></div>
-                                <div class="dz-filename"><span data-dz-name></span></div>
+                            <div slot="image" class="dz-image" style="width: ${options.thumbnailWidth}px;height: ${options.thumbnailHeight}px">
+                            <img slot="thumbnail" data-dz-thumbnail /></div>
+                            <div slot="details" class="dz-details">
+                                <div slot="size" class="dz-size"><span data-dz-size></span></div>
+                                <div slot="name" class="dz-filename"><span data-dz-name></span></div>
                             </div>
-                            <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                            <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                            <div class="dz-success-mark">${options.doneIcon}</div>
-                            <div class="dz-error-mark">${options.errorIcon}</div>
+                            <div slot="progress" class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                            <div slot="error-message" class="dz-error-message"><span data-dz-errormessage></span></div>
+                            <div slot="success-mark" class="dz-success-mark">${options.doneIcon}</div>
+                            <div slot="error-mark" class="dz-error-mark">${options.errorIcon}</div>
                         </div>
                     `;
                 }

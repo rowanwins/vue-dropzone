@@ -101,6 +101,24 @@ Many of these props are inherited from [dropzone configuration so see their doco
 
 [Custom Dropzone Template Demo File](demo/custom-dropzone-preview.vue)
 
+### Slots
+Besides adding a complete custom dropzone preview template, it is also possible to use [slots](https://vuejs.org/v2/guide/components.html#Named-Slots)
+The following slots exist:
+
+- image
+- thumbnail
+- details
+- size
+- progress
+- error-message
+- success-mark
+- error-mark
+
+You could insert a custom icon to the `error-mark` by doing the following
+
+```
+<vue-dropzone //options><slot="error-mark"><i class="fa fa-trash" aria-hidden="true"></i></vue-dropzone>
+```
 
 ## Methods
 Methods you can call on the component.
