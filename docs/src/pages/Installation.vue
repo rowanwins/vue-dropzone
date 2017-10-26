@@ -33,7 +33,7 @@ export default {
   },
   data: function () {
     return {
-      dropzoneOptions: () {
+      dropzoneOptions: {
           url: 'https://httpbin.org/post',
           thumbnailWidth: 150,
           maxFilesize: 0.5,
