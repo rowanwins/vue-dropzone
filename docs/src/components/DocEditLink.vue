@@ -17,7 +17,7 @@ export default {
 	},
 	computed: {
 		url() {
-			return docConfig.repository + "/blob/" + docConfig.branch + "/" + docConfig.docSource + "/" + this.link;
+			return docConfig.repository + "/edit/" + docConfig.branch + "/" + docConfig.docSource + "/" + this.link;
 		}
 	}
 }

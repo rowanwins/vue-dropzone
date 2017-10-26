@@ -54,7 +54,7 @@ button {
   position: fixed;
   width: auto;
   height: 30px;
-  top: 50px;
+  top: 90px;
   right: 64px;
   padding: 5px 20px;
   border-radius: 4px;
