@@ -12,7 +12,14 @@ You'll also need to load either the [Material Icon](https://material.io/icons/) 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 ````
-> A **Nuxt SSR-compatible** component can be found at [npm](https://www.npmjs.com/package/nuxt-dropzone) and [github](https://github.com/Etheryte/nuxt-dropzone). Thanks to [@Etheryte](https://github.com/Etheryte)
+
+## Nuxt Implementation 
+
+A **Nuxt SSR-compatible** component can be found at [npm](https://www.npmjs.com/package/nuxt-dropzone) and [github](https://github.com/Etheryte/nuxt-dropzone). Thanks to [@Etheryte](https://github.com/Etheryte)
+
+---
+
+![](https://i.imgur.com/kUbjks1.gif)
 
 ## Usage
 1. Import the module (`import Dropzone from 'vue2-dropzone'`)
