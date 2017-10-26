@@ -4,8 +4,7 @@
     <p>Below you can see Vue2-Dropzone in action.</p>
     <vue-dropzone ref="myVueDropzone" id="dropzone" @vdropzone-file-added="vfileAdded" @vdropzone-success="vsuccess" @vdropzone-error="verror" @vdropzone-removed-file="vremoved" @vdropzone-sending="vsending" @vdropzone-success-multiple="vsuccessMuliple" @vdropzone-sending-multiple="vsendingMuliple" @vdropzone-queue-complete="vqueueComplete" @vdropzone-total-upload-progress="vprogress" @vdropzone-mounted="vmounted" @vdropzone-drop="vddrop" @vdropzone-drag-start="vdstart" @vdropzone-drag-end="vdend" @vdropzone-drag-enter="vdenter" @vdropzone-drag-over="vdover" @vdropzone-drag-leave="vdleave" :options="dropzoneOptions">
     </vue-dropzone>
-    <h3>Snippet</h3>
-    <p v-html="marked(example)"></p>
+    
     <h3>Events</h3>
     <table>
       <thead>
@@ -23,7 +22,7 @@
             <i class="fa fa-circle" :class="{ 'active' : isMounted }"></i>
           </td>
         </tr>
-        <tr :class="{ 'event-active' : fileAdded }">
+        <tr class="" :class="{ 'event-active' : fileAdded }">
           <td>2</td>
           <td>vdropzone-file-added(
             <code>file</code>)</td>
@@ -414,6 +413,9 @@ td:nth-child(2) {
 }
 
 .event-active {
-  background-color: lavender;
+  font-weight: bold;
+  color: #78CB5B;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }
 </style>
