@@ -16,12 +16,12 @@
           </ul>
         </li>
         <li>
-          <button class="sideBtn github">
-            <a href="https://github.com/rowanwins/vue-dropzone">
-              <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-              <span>GITHUB</span>
-            </a>
-          </button>
+          <a href="https://github.com/rowanwins/vue-dropzone">
+            <button class="sideBtn github">
+                <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+                <span>GITHUB</span>
+            </button>
+          </a>
         </li>
         <li>
           <a href="https://www.worldvision.com.au/give/donate/make-a-general-donation">
@@ -41,7 +41,7 @@ export default {
         {
           title: 'Getting started',
           pages: [
-            { to: 'installation', title: 'Installation' }
+            { to: 'installation', title: 'Installation & Usage' }
           ]
         },
         {

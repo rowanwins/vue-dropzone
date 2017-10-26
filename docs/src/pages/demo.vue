@@ -4,7 +4,9 @@
     <p>Below you can see Vue2-Dropzone in action.</p>
     <vue-dropzone ref="myVueDropzone" id="dropzone" @vdropzone-file-added="vfileAdded" @vdropzone-success="vsuccess" @vdropzone-error="verror" @vdropzone-removed-file="vremoved" @vdropzone-sending="vsending" @vdropzone-success-multiple="vsuccessMuliple" @vdropzone-sending-multiple="vsendingMuliple" @vdropzone-queue-complete="vqueueComplete" @vdropzone-total-upload-progress="vprogress" @vdropzone-mounted="vmounted" @vdropzone-drop="vddrop" @vdropzone-drag-start="vdstart" @vdropzone-drag-end="vdend" @vdropzone-drag-enter="vdenter" @vdropzone-drag-over="vdover" @vdropzone-drag-leave="vdleave" :options="dropzoneOptions">
     </vue-dropzone>
-    <hr>
+    <h3>Snippet</h3>
+    <p v-html="marked(example)"></p>
+    <h3>Events</h3>
     <table>
       <thead>
         <tr>
@@ -156,13 +158,23 @@
 </template>
 
 <script>
-import { vueDropzone } from '../../../src/';
+import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
+var example = `
+<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions">
+....
+dropzoneOptions: () {
+    url: 'https://httpbin.org/post',
+    thumbnailWidth: 150,
+    maxFilesize: 0.5,
+    headers: { "My-Awesome-Header": "header value" }
+}`
 
 export default {
   data() {
     return {
       ok: true,
+      example: "````" + example + "````",
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,

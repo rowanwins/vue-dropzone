@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { vueDropzone } from '../../../src/';
+import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 
 var example = `

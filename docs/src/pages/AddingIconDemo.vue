@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { vueDropzone } from '../../../src/';
+import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 var example = `
     @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
