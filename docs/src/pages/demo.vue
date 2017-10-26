@@ -163,7 +163,7 @@ import editDoc from '../components/DocEditLink.vue';
 var example = `
 <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions">
 ....
-dropzoneOptions: () {
+dropzoneOptions: {
     url: 'https://httpbin.org/post',
     thumbnailWidth: 150,
     maxFilesize: 0.5,
