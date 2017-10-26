@@ -152,8 +152,6 @@
         </tr>
       </tbody>
     </table>
-    <h3>Snippet</h3>
-    <p v-html="marked(example)"></p>
     <edit-doc :link="'demo.vue'"></edit-doc>
   </div>
 </template>
