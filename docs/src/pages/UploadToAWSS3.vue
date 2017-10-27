@@ -27,8 +27,10 @@
   }</code></pre>
     <h3>Note</h3>
     <div v-html="marked(awsNote)"></div>
-    <h3>Snippet</h3>
-    <p v-html="marked(example)"></p>
+    <h3>HTML</h3>
+    <p v-html="marked(html)"></p>
+    <h3>Javascript</h3>
+    <p v-html="marked(js)"></p>
     <edit-doc :link="'UploadToAWSS3.vue'"></edit-doc>
   </div>
 </template>
@@ -37,30 +39,35 @@
 import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 
-var example = `
+var html = `
     <vue-dropzone 
       :awss3="awss3"
       v-on:vdropzone-s3-upload-error="s3UploadError"
       v-on:vdropzone-s3-upload-success="s3UploadSuccess"
       >
+    </vue-dropzone>
+    `
+var js = `
     ....
     data () {
-        return {
-            ....
-            awss3: {
-              signingURL : 'http://aws-direct-s3.dev/'
-            }
-        }
-    ....
+      return {
+        ....
+        awss3: {
+          signingURL : 'http://aws-direct-s3.dev/'
+        },
+        ....
+      }
+    }
     methods: {
       ....
       s3UploadError(errorMessage){
-        // your code...
+        ....
       },
-      s3UploadSuccess(location){
-        // your code...
+      s3UploadSuccess(s3ObjectLocation){
+        ....
       }
     }
+    ....
       `
 export default {
   data() {
@@ -68,7 +75,8 @@ export default {
       description: "Send file directly to AWS S3 from browser using AWS Pre-Signed URL.",
       awsNote: "> Firstly your file is uploaded to S3 then request is sent to your server with file as expected behaviour. But extra field to your request will be added as `s3ObjectLocation` containing location of your s3 object/file, which you may require to store in database.",
       urlsignnote: "> You may need external libraries to create below response. Here is example for [php aws url signer](https://github.com/vrajroham/aws-s3-url-signer-php)",
-      example: "````" + example + "````",
+      html: "````" + html + "````",
+      js: "````" + js + "````",
       signurl: '',
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
