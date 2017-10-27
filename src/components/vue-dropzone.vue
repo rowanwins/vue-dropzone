@@ -1,11 +1,21 @@
 <template>
-  <div v-bind:class="{ 'vue-dropzone dropzone': includeStyling }" :id="id" ref="dropzoneElement">
+  <div>
+    <!-- the preview component is invisible and only used as a hack to use Vue.js slot features -->
+    <preview></preview>
+
+    <div v-bind:class="{ 'vue-dropzone dropzone': includeStyling }" :id="id" ref="dropzoneElement">
+    </div>
   </div>
 </template>
 
 <script>
 import awsEndpoint from '../services/urlsigner'
+import previewTemplate from './preview-template.vue'
+
 export default {
+  components: {
+    preview: previewTemplate
+  }
   props: {
     id: {
       type: String,
@@ -186,7 +196,12 @@ export default {
     this.hasBeenMounted = true
     let Dropzone = require('dropzone') //eslint-disable-line
     Dropzone.autoDiscover = false
-    this.dropzone = new Dropzone(this.$refs.dropzoneElement, this.dropzoneSettings)
+    let localDropzoneSettings = this.dropZoneSettings
+    if (!('preview' in localDropzoneSettings)) {
+      localDropzoneSettings.previewTemplate = this.$children[0].template();
+    }
+
+    this.dropzone = new Dropzone(this.$refs.dropzoneElement, localDropzoneSettings)
     let vm = this
 
     this.dropzone.on('thumbnail', function(file, dataUrl) {
