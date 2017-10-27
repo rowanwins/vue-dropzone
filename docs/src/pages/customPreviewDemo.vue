@@ -31,6 +31,7 @@ var html = `
       :include-styling="false"
       v-on:vdropzone-thumbnail="thumbnail"
       id="customdropzone">
+      </vue-dropzone>
     `
 var javascript = `
     ....
