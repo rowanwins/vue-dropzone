@@ -1,5 +1,5 @@
 .DS_Store
-node_modules/
+docs/
 npm-debug.log
 yarn-error.log
 
