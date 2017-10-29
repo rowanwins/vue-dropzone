@@ -1,4 +1,5 @@
 # vue-dropzone
+*Master Branch*
 
 A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/docs/dist/index.html).
 
