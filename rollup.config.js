@@ -4,15 +4,12 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify';
-import pkg from './package.json';
-
-const LIB_NAME = pkg.name;
 
 export default {
-  moduleName: LIB_NAME,
+  moduleName: 'vue2Dropzone',
   entry: 'src/index.js',
-  dest: `dist/${LIB_NAME}.js`,
-  format: 'iife',
+  dest: 'dist/vue2Dropzone.js',
+  format: 'umd',
   sourceMap: true,
   plugins: [
     resolve({
@@ -23,7 +20,7 @@ export default {
     commonjs(),
     vue({
       compileTemplate: true,
-      css: `dist/${LIB_NAME}.css`
+      css: 'dist/vue2Dropzone.css'
     }),
     babel({
       exclude: 'node_modules/**'
