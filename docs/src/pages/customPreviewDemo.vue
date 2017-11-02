@@ -78,6 +78,7 @@ var style = `
 
   #customdropzone .dz-preview {
     width: 160px;
+    display: inline-block
   }
  #customdropzone .dz-preview .dz-image {
     width: 80px;
@@ -176,6 +177,7 @@ export default {
 
   #customdropzone .dz-preview {
     width: 160px;
+    display: inline-block
   }
  #customdropzone .dz-preview .dz-image {
     width: 80px;
