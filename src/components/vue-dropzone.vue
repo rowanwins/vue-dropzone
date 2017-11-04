@@ -59,7 +59,7 @@ export default {
     manuallyAddFile: function(file, fileUrl) {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
-      this.dropzone.emit("thumbnail", file, fileUrl);
+      fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
 
       var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
       for (var i = 0; i < thumbnails.length; i++) {
