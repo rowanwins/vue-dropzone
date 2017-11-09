@@ -25,9 +25,9 @@ export default {
       request.send();
     });
   },
-  sendFile(file, endpoint) {
+  sendFile(file, endpoint, headers) {
     var fd = new FormData();
-    return this.getSignedURL(file, endpoint)
+    return this.getSignedURL(file, endpoint, headers)
       .then((response) => {
         let signature = response.signature;
         Object.keys(signature).forEach(function (key) {
