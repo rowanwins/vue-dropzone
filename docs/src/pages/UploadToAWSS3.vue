@@ -85,7 +85,8 @@ export default {
         autoProcessQueue: false
       },
       awss3: {
-        signingURL: ''
+        signingURL: '',
+        headers: {}
       }
     }
   },

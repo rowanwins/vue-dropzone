@@ -1,5 +1,5 @@
 export default {
-  getSignedURL(file, endpoint) {
+  getSignedURL(file, endpoint, headers) {
     let payload = {
       filePath: file.name,
       contentType: file.type
@@ -19,6 +19,9 @@ export default {
         console.error("Network Error : Could not send request to AWS (Maybe CORS errors)");
         reject(err)
       };
+      Object.entries(headers).forEach(([name, value]) => {
+        request.setRequestHeader(name, value);
+      });
       request.send();
     });
   },
