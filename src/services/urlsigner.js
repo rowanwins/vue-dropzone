@@ -31,13 +31,7 @@ export default {
       .then((response) => {
         let signature = response.signature;
         Object.keys(signature).forEach(function (key) {
-          if (key == 'key') {
-            fd.append('key', file.name);
-          } else if (key == 'Content-Type') {
-            fd.append("Content-Type", file.type);
-          } else {
-            fd.append(key, signature[key]);
-          }
+          fd.append(key, signature[key]);
         });
         fd.append('file', file);
         return new Promise((resolve, reject) => {
