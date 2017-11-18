@@ -297,7 +297,7 @@ export default {
     })
 
     this.dropzone.on('queuecomplete', function() {
-      vm.$emit('vdropzone-queuecomplete')
+      vm.$emit('vdropzone-queue-complete')
     })
 
     this.dropzone.on('drop', function(event) {
