@@ -334,7 +334,7 @@ export default {
 </script>
 
 <style lang="less">
-  @import url('~dropzone/dist/dropzone.css');
+  @import (inline) '../../node_modules/dropzone/dist/dropzone.css';
 
   .vue-dropzone {
     border: 2px solid #E5E5E5;
