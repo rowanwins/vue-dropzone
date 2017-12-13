@@ -1,13 +1,14 @@
 export default {
-  getSignedURL(file, endpoint, headers) {
+  getSignedURL(file, config) {
     let payload = {
       filePath: file.name,
       contentType: file.type
     }
 
     return new Promise((resolve, reject) => {
+      var fd = new FormData();
       let request = new XMLHttpRequest();
-      request.open("POST", endpoint);
+      request.open("POST", config.signingURL);
       request.onload = function () {
         if (request.status == 200) {
           resolve(JSON.parse(request.response));
@@ -19,15 +20,19 @@ export default {
         console.error("Network Error : Could not send request to AWS (Maybe CORS errors)");
         reject(err)
       };
-      Object.entries(headers).forEach(([name, value]) => {
+      Object.entries(config.headers).forEach(([name, value]) => {
         request.setRequestHeader(name, value);
       });
-      request.send();
+      Object.entries(config.params).forEach(([name, value]) => {
+        fd.append(name, value);
+      });
+
+      request.send(fd);
     });
   },
-  sendFile(file, endpoint, headers) {
+  sendFile(file, config) {
     var fd = new FormData();
-    return this.getSignedURL(file, endpoint, headers)
+    return this.getSignedURL(file, config)
       .then((response) => {
         let signature = response.signature;
         Object.keys(signature).forEach(function (key) {

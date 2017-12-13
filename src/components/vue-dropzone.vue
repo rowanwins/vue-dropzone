@@ -155,7 +155,7 @@ export default {
       return this.dropzone.getActiveFiles()
     },
     getSignedAndUploadToS3(file) {
-      awsEndpoint.sendFile(file, this.awss3.signingURL, this.awss3.headers)
+      awsEndpoint.sendFile(file, this.awss3)
         .then((response) => {
           if (response.success) {
             file.s3ObjectLocation = response.message

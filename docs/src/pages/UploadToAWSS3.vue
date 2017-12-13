@@ -53,7 +53,9 @@ var js = `
       return {
         ....
         awss3: {
-          signingURL : 'http://aws-direct-s3.dev/'
+          signingURL: 'http://aws-direct-s3.dev/',
+          headers: {},
+          params : {}
         },
         ....
       }
@@ -86,7 +88,8 @@ export default {
       },
       awss3: {
         signingURL: '',
-        headers: {}
+        headers: {},
+        params : {}
       }
     }
   },
