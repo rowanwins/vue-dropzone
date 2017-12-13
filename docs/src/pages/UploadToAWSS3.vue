@@ -86,7 +86,8 @@ export default {
       },
       awss3: {
         signingURL: '',
-        headers: {}
+        headers: {},
+        params : {}
       }
     }
   },
