@@ -27,7 +27,7 @@ export default {
         ['vdropzone-error-multiple(files, message, xhr)', 'See `vdropzone-error` for description.'],
         ['vdropzone-removed-file(file, error, xhr)', 'A file was removed from the dropzone.'],
         ['vdropzone-sending(file, xhr, formData)', 'Modify the request and add addtional parameters to request before sending.'],
-        ['vdropzone-complete(file)', 'Called when the upload was either successful or erroneous.'],
+        ['vdropzone-complete-multiple(files)', 'Called when all files are uploaded.'],
         ['vdropzone-canceled(file)', 'Called when a file upload gets canceled.'],
         ['vdropzone-max-files-reached(file)', 'Called when the number of files accepted reaches the `maxFiles` limit. '],
         ['vdropzone-max-files-exceeded(file)', 'Called for each file that has been rejected because the number of files exceeds the `maxFiles` limit. '],
