@@ -31,6 +31,8 @@
     <p v-html="marked(html)"></p>
     <h3>Javascript</h3>
     <p v-html="marked(js)"></p>
+    <p v-html="marked(signerAsFunc)"></p>
+    <p v-html="marked(jsSignerAsFunc)"></p>
     <edit-doc :link="'UploadToAWSS3.vue'"></edit-doc>
   </div>
 </template>
@@ -71,14 +73,20 @@ var js = `
     }
     ....
       `
+var jsSignerAsFunc = `
+    signingURL: (f) => {return 'http://aws-direct-s3.dev/' + f.name }
+`
+
 export default {
   data() {
     return {
       description: "Send file directly to AWS S3 from browser using AWS Pre-Signed URL.",
-      awsNote: "> Firstly your file is uploaded to S3 then request is sent to your server with file as expected behaviour. But extra field to your request will be added as `s3ObjectLocation` containing location of your s3 object/file, which you may require to store in database.",
+      awsNote: "> Firstly, your file is uploaded to S3 then request is sent to your server with file as expected behaviour. But extra field to your request will be added as `s3ObjectLocation` containing location of your S3 object/file, which you may require to store in database.",
+      signerAsFunc: "You may also provide a function to generate the URL. This would allow your server to generate a signature based on properties of your file",
       urlsignnote: "> You may need external libraries to create below response. Here is example for [php aws url signer](https://github.com/vrajroham/aws-s3-url-signer-php)",
       html: "````" + html + "````",
       js: "````" + js + "````",
+      jsSignerAsFunc: "````" + jsSignerAsFunc + "````",
       signurl: '',
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
