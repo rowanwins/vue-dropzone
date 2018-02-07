@@ -20,10 +20,13 @@ export default {
         console.error("Network Error : Could not send request to AWS (Maybe CORS errors)");
         reject(err)
       };
-      Object.entries(config.headers).forEach(([name, value]) => {
+      Object.entries(config.headers || {}).forEach(([name, value]) => {
         request.setRequestHeader(name, value);
       });
-      Object.entries(config.params).forEach(([name, value]) => {
+      Object.entries(payload).forEach(([name, value]) => {
+        fd.append(name, value);
+      });
+      Object.entries(config.params || {}).forEach(([name, value]) => {
         fd.append(name, value);
       });
 
