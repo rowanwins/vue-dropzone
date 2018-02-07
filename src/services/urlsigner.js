@@ -23,10 +23,8 @@ export default {
       Object.entries(config.headers || {}).forEach(([name, value]) => {
         request.setRequestHeader(name, value);
       });
+      payload = Object.assign(payload, config.params || {});
       Object.entries(payload).forEach(([name, value]) => {
-        fd.append(name, value);
-      });
-      Object.entries(config.params || {}).forEach(([name, value]) => {
         fd.append(name, value);
       });
 
