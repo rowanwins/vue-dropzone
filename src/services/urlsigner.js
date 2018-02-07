@@ -7,8 +7,9 @@ export default {
 
     return new Promise((resolve, reject) => {
       var fd = new FormData();
-      let request = new XMLHttpRequest();
-      request.open("POST", config.signingURL);
+      let request = new XMLHttpRequest(),
+          signingURL = (typeof config.signingURL === "function") ?  config.signingURL(file) : config.signingURL;
+      request.open("POST", signingURL);
       request.onload = function () {
         if (request.status == 200) {
           resolve(JSON.parse(request.response));
