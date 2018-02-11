@@ -51,6 +51,10 @@ export default {
         this.isS3 = true;
         if (this.options.autoProcessQueue !== undefined)
           this.wasQueueAutoProcess = this.options.autoProcessQueue;
+
+        defaultValues['url'] = (files) => {
+          return files[0].s3Url;;
+        }
       }
       return defaultValues
     }
@@ -156,14 +160,13 @@ export default {
     },
     getSignedAndUploadToS3(file) {
       awsEndpoint.sendFile(file, this.awss3)
-        .then((response) => {
-          if (response.success) {
-            file.s3ObjectLocation = response.message
+        .then(() => {
+          if (true) {
             setTimeout(() => this.dropzone.processFile(file))
-            this.$emit('vdropzone-s3-upload-success', response.message);
+            this.$emit('vdropzone-s3-upload-success');
           } else {
             if ('undefined' !== typeof message) {
-              this.$emit('vdropzone-s3-upload-error', response.message);
+              this.$emit('vdropzone-s3-upload-error');
             } else {
               this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
             }
@@ -239,8 +242,13 @@ export default {
     })
 
     this.dropzone.on('sending', function(file, xhr, formData) {
-      if (vm.isS3)
-        formData.append('s3ObjectLocation', file.s3ObjectLocation);
+      if (vm.isS3) {
+        let signature = file.s3Signature;
+        // TODO: Make sure this is not empty
+        Object.keys(signature).forEach(function (key) {
+          formData.append(key, signature[key]);
+        });
+      }
       vm.$emit('vdropzone-sending', file, xhr, formData)
     })
 
