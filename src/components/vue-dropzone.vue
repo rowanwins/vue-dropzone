@@ -53,7 +53,7 @@ export default {
           this.wasQueueAutoProcess = this.options.autoProcessQueue;
 
         defaultValues['url'] = (files) => {
-          return files[0].s3Url;;
+          return files[0].s3Url;
         }
       }
       return defaultValues
@@ -239,7 +239,6 @@ export default {
     this.dropzone.on('sending', function(file, xhr, formData) {
       if (vm.isS3) {
         let signature = file.s3Signature;
-        // TODO: Make sure this is not empty
         Object.keys(signature).forEach(function (key) {
           formData.append(key, signature[key]);
         });
