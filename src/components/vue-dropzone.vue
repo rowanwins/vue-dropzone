@@ -161,16 +161,7 @@ export default {
     getSignedAndUploadToS3(file) {
       awsEndpoint.sendFile(file, this.awss3)
         .then(() => {
-          if (true) {
             setTimeout(() => this.dropzone.processFile(file))
-            this.$emit('vdropzone-s3-upload-success');
-          } else {
-            if ('undefined' !== typeof message) {
-              this.$emit('vdropzone-s3-upload-error');
-            } else {
-              this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
-            }
-          }
         })
         .catch((error) => {
           alert(error);
@@ -224,8 +215,10 @@ export default {
 
     this.dropzone.on('success', function(file, response) {
       vm.$emit('vdropzone-success', file, response)
-      if (vm.isS3 && vm.wasQueueAutoProcess) {
-        vm.setOption('autoProcessQueue', false);
+      if (vm.isS3) {
+          vm.$emit('vdropzone-s3-upload-success');
+          if (vm.wasQueueAutoProcess)
+            vm.setOption('autoProcessQueue', false);
       }
     })
 
@@ -235,6 +228,8 @@ export default {
 
     this.dropzone.on('error', function(file, message, xhr) {
       vm.$emit('vdropzone-error', file, message, xhr)
+      if (this.isS3)
+        vm.$emit('vdropzone-s3-upload-error');
     })
 
     this.dropzone.on('errormultiple', function(files, message, xhr) {
