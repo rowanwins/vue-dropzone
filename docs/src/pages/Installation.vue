@@ -40,7 +40,8 @@ export default {
           headers: { "My-Awesome-Header": "header value" }
       }
     }
-  }`
+  }
+}`
 export default {
   data() {
     return {
