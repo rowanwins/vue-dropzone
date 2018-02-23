@@ -1833,7 +1833,7 @@ dot-prop@^4.1.0:
   dependencies:
     is-obj "^1.0.0"
 
-dropzone@^5.2.0:
+dropzone@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.3.0.tgz#41c7a8a7cc6d237e3b28664e7a0719660d067edc"
 
