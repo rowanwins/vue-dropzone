@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.0.4",
+  "version": "3.0.5",
   "main": "./dist/vue2Dropzone.js",
   "peerDependencies": {
     "vue": "^2.4.2"
