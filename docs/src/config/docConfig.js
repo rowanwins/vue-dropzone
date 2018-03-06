@@ -1,5 +1,5 @@
 export default {
   'repository': 'https://github.com/rowanwins/vue-dropzone',
-  'branch': 'version3',
+  'branch': 'master',
   'docSource': 'docs/src/pages'
 }
