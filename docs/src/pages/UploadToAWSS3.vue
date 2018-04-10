@@ -57,7 +57,8 @@ var js = `
         awss3: {
           signingURL: 'http://aws-direct-s3.dev/',
           headers: {},
-          params : {}
+          params : {},
+          sendFileToServer : true
         },
         ....
       }
