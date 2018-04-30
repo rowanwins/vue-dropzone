@@ -93,7 +93,7 @@ export default {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 200,
         addRemoveLinks: true,
-        autoProcessQueue: false
+        autoProcessQueue: false,
       },
       awss3: {
         signingURL: '',
