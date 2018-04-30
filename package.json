@@ -8,9 +8,6 @@
   ],
   "version": "3.1.0",
   "main": "./dist/vue2Dropzone.js",
-  "peerDependencies": {
-    "vue": "^2.4.2"
-  },
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -34,11 +31,11 @@
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-plugin-vue": "^2.4.1",
     "serve": "^6.5.2",
-    "vue": "^2.5.13",
+    "vue": "^2.5.16",
     "vue-loader": "^13.7.1",
     "vue-router": "^2.7.0",
     "vue-style-loader": "^3.1.2",
-    "vue-template-compiler": "^2.5.13",
+    "vue-template-compiler": "^2.5.16",
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.2"
   },
