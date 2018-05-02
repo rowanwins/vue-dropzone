@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.1.0",
+  "version": "3.2.1",
   "main": "./dist/vue2Dropzone.js",
   "peerDependencies": {
     "vue": "^2.4.2"
@@ -34,6 +34,7 @@
     "rollup-plugin-uglify": "^2.0.1",
     "rollup-plugin-vue": "^2.4.1",
     "serve": "^6.5.2",
+    "uglifycss": "0.0.29",
     "vue": "^2.5.13",
     "vue-loader": "^13.7.1",
     "vue-router": "^2.7.0",
@@ -43,11 +44,12 @@
     "webpack-dev-server": "^2.11.2"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "dev": "rollup -c -w",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production rollup -c && npm run minify-css",
     "build-docs": "npm run clean-docs && cross-env NODE_ENV=production webpack --progress --hide-modules",
-    "clean-docs": "rimraf docs/dist"
+    "clean-docs": "rimraf docs/dist",
+    "dev": "rollup -c -w",
+    "minify-css": "uglifycss dist/vue2Dropzone.css --output dist/vue2Dropzone.min.css",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot"
   },
   "files": [
     "dist"
