@@ -173,7 +173,7 @@ export default {
               setTimeout(() => this.dropzone.processFile(file))
               this.$emit('vdropzone-s3-upload-success', response.message);
             } else {
-              if ('undefined' !== typeof message) {
+              if ('undefined' !== typeof response.message) {
                 this.$emit('vdropzone-s3-upload-error', response.message);
               } else {
                 this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
@@ -182,7 +182,7 @@ export default {
           });
         } else {
           promise.then(() => {
-          setTimeout(() => this.dropzone.processFile(file))
+            setTimeout(() => this.dropzone.processFile(file))
         });
       }
       promise.catch((error) => {
@@ -236,7 +236,11 @@ export default {
     this.dropzone.on('success', function(file, response) {
       vm.$emit('vdropzone-success', file, response)
       if (vm.isS3) {
-          vm.$emit('vdropzone-s3-upload-success');
+        if(vm.isS3OverridesServerPropagation){
+          var xmlResponse = (new window.DOMParser()).parseFromString(response, "text/xml");
+          var s3ObjectLocation = xmlResponse.firstChild.children[0].innerHTML;
+          vm.$emit('vdropzone-s3-upload-success', s3ObjectLocation);
+        }
           if (vm.wasQueueAutoProcess)
             vm.setOption('autoProcessQueue', false);
       }
@@ -263,9 +267,9 @@ export default {
           Object.keys(signature).forEach(function (key) {
             formData.append(key, signature[key]);
           });
+        } else {
+          formData.append('s3ObjectLocation', file.s3ObjectLocation);
         }
-      } else {
-        formData.append('s3ObjectLocation', file.s3ObjectLocation);
       }
       vm.$emit('vdropzone-sending', file, xhr, formData)
     })
