@@ -21,7 +21,7 @@
 <script>
 import editDoc from '../components/DocEditLink.vue';
 var example = `
-<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions">
+<vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
 ....
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
