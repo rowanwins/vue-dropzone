@@ -42,7 +42,8 @@ export default {
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 200,
-        addRemoveLinks: true
+        addRemoveLinks: true,
+        dictRemoveFile: '<i class="fa fa-trash"></i> Remove File'
       }
     }
   },
