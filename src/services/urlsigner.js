@@ -55,16 +55,24 @@ export default {
       let request = new XMLHttpRequest();
       request.open('POST', response.postEndpoint);
       request.onload = function () {
+        var parser = new DOMParser();
+        var s3Msg = null
+        try { 
+          s3Msg = parser.parseFromString(request.response, "application/xml");
+        } catch (err) { 
+          s3Msg = new ActiveXObject("Microsoft.XMLDOM"); 
+          s3Msg.async = "false"; 
+          s3Msg.loadXML(a) 
+        } 
+
         if (request.status == 201) {
-          var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-          var successMsg = s3Error.firstChild.children[0].innerHTML;
+          var successMsg = s3Msg.firstChild.children[0].innerHTML;
           resolve({
             'success': true,
             'message': successMsg
           })
         } else {
-          var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-          var errMsg = s3Error.firstChild.children[0].innerHTML;
+          var errMsg = s3Msg.firstChild.children[0].innerHTML;
           reject({
             'success': false,
             'message': errMsg + ". Request is marked as resolved when returns as status 201"
@@ -72,8 +80,17 @@ export default {
         }
       };
       request.onerror = function (err) {
-        var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-        var errMsg = s3Error.firstChild.children[1].innerHTML;
+        var parser = new DOMParser();
+        var s3Msg = null
+        try { 
+          s3Msg = parser.parseFromString(request.response, "application/xml");
+        } catch (err) { 
+          s3Msg = new ActiveXObject("Microsoft.XMLDOM"); 
+          s3Msg.async = "false"; 
+          s3Msg.loadXML(a) 
+        } 
+
+        var errMsg = s3Msg.firstChild.children[1].innerHTML;
         reject({
           'success': false,
           'message': errMsg
