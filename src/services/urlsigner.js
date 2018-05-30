@@ -62,7 +62,7 @@ export default {
         } catch (err) { 
           s3Msg = new ActiveXObject("Microsoft.XMLDOM"); 
           s3Msg.async = "false"; 
-          s3Msg.loadXML(a) 
+          s3Msg.loadXML(err) 
         } 
 
         if (request.status == 201) {
@@ -84,10 +84,10 @@ export default {
         var s3Msg = null
         try { 
           s3Msg = parser.parseFromString(request.response, "application/xml");
-        } catch (err) { 
+        } catch (err2) { 
           s3Msg = new ActiveXObject("Microsoft.XMLDOM"); 
           s3Msg.async = "false"; 
-          s3Msg.loadXML(a) 
+          s3Msg.loadXML(err2) 
         } 
 
         var errMsg = s3Msg.firstChild.children[1].innerHTML;
