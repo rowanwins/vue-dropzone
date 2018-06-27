@@ -1,6 +1,8 @@
 <template>
   <div v-bind:class="{ 'vue-dropzone dropzone': includeStyling }" :id="id" ref="dropzoneElement">
-    <slot></slot>
+    <div class="dz-message">
+      <slot>Drop files here to upload</slot>
+    </div>
   </div>
 </template>
 
