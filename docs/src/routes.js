@@ -8,6 +8,7 @@ import events from './pages/Events.vue'
 import methods from './pages/Methods.vue'
 import s3upload from './pages/UploadToAWSS3.vue'
 import customPreview from './pages/customPreviewDemo.vue'
+import customHtml from './pages/CustomHtml.vue'
 
 export default [
   { path: '/installation', component: Installation },
@@ -15,6 +16,7 @@ export default [
   { path: '/events', component: events },
   { path: '/methods', component: methods },
   { path: '/custom-preview', component: customPreview },
+  { path: '/custom-html', component: customHtml },
   { path: '/demo', component: demo },
   { path: '/iconDemo', component: icon },
   { path: '/manual', component: manual },
