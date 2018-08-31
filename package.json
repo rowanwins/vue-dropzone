@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.2.2",
+  "version": "3.3.0",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
