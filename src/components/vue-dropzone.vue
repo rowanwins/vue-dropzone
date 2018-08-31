@@ -69,13 +69,15 @@ export default {
     manuallyAddFile: function(file, fileUrl) {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
-      fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
+      if(this.dropzone.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.dropzone.options.maxThumbnailFilesize * 1024 * 1024){
+        fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
 
-      var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
-      for (var i = 0; i < thumbnails.length; i++) {
-        thumbnails[i].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
-        thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
-        thumbnails[i].style['object-fit'] = 'contain';
+        var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
+        for (var i = 0; i < thumbnails.length; i++) {
+          thumbnails[i].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
+          thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
+          thumbnails[i].style['object-fit'] = 'contain';
+        }
       }
       this.dropzone.emit("complete", file)
       if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--
