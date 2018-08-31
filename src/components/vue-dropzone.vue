@@ -14,7 +14,8 @@ export default {
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
+      default:'dropzone'
     },
     options: {
       type: Object,
@@ -34,7 +35,12 @@ export default {
       type: Boolean,
       default: true,
       required: false
-    }
+    },
+    duplicateCheck:{
+        type: Boolean,
+        default: false,
+        required:false
+    },
   },
   data() {
     return {
@@ -213,20 +219,27 @@ export default {
     })
 
     this.dropzone.on('addedfile', function(file) {
+      var isDuplicate = false;
       if (vm.duplicateCheck) {
         if (this.files.length) {
-          this.files.forEach(function(dzfile) {
-            if (dzfile.name === file.name) {
-              this.removeFile(file)
-              vm.$emit('duplicate-file', file)
+          var _i, _len;
+          for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
+            {
+                if(this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString())
+                {
+                    this.removeFile(file);
+                    isDuplicate = true;
+                    vm.$emit('duplicate-file', file)
+                }
             }
-          }, this)
         }
       }
-      vm.$emit('vdropzone-file-added', file)
-      if (vm.isS3 && vm.wasQueueAutoProcess) {
-        vm.getSignedAndUploadToS3(file);
-      }
+
+        vm.$emit('vdropzone-file-added', file)
+        if (vm.isS3 && vm.wasQueueAutoProcess) {
+          vm.getSignedAndUploadToS3(file);
+        }
+      
     })
 
     this.dropzone.on('addedfiles', function(files) {

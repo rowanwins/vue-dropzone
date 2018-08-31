@@ -2,7 +2,25 @@
   <div>
     <h1>Demo</h1>
     <p>Below you can see Vue2-Dropzone in action.</p>
-    <vue-dropzone ref="myVueDropzone" id="dropzone" @vdropzone-file-added="vfileAdded" @vdropzone-success="vsuccess" @vdropzone-error="verror" @vdropzone-removed-file="vremoved" @vdropzone-sending="vsending" @vdropzone-success-multiple="vsuccessMuliple" @vdropzone-sending-multiple="vsendingMuliple" @vdropzone-queue-complete="vqueueComplete" @vdropzone-total-upload-progress="vprogress" @vdropzone-mounted="vmounted" @vdropzone-drop="vddrop" @vdropzone-drag-start="vdstart" @vdropzone-drag-end="vdend" @vdropzone-drag-enter="vdenter" @vdropzone-drag-over="vdover" @vdropzone-drag-leave="vdleave" :options="dropzoneOptions">
+    <vue-dropzone ref="myVueDropzone" id="dropzone" 
+      @vdropzone-file-added="vfileAdded" 
+      @vdropzone-success="vsuccess" 
+      @vdropzone-error="verror" 
+      @vdropzone-removed-file="vremoved" 
+      @vdropzone-sending="vsending" 
+      @vdropzone-success-multiple="vsuccessMuliple" 
+      @vdropzone-sending-multiple="vsendingMuliple" 
+      @vdropzone-queue-complete="vqueueComplete" 
+      @vdropzone-total-upload-progress="vprogress" 
+      @vdropzone-mounted="vmounted" 
+      @vdropzone-drop="vddrop" 
+      @vdropzone-drag-start="vdstart" 
+      @vdropzone-drag-end="vdend" 
+      @vdropzone-drag-enter="vdenter" 
+      @vdropzone-drag-over="vdover" 
+      @vdropzone-drag-leave="vdleave" 
+      :options="dropzoneOptions"
+      :duplicateCheck="true">
     </vue-dropzone>
     
     <h3>Events</h3>
@@ -180,9 +198,8 @@ export default {
         maxFilesize: 0.5,
         headers: { "My-Awesome-Header": "header value" },
         addRemoveLinks: true,
-        autoProcessQueue: true,
+        autoProcessQueue: false,
         accept(file, done) {
-          console.log(file);
           done();
         },
       },
