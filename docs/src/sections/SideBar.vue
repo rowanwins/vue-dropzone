@@ -18,8 +18,8 @@
         <li>
           <a href="https://github.com/rowanwins/vue-dropzone">
             <button class="sideBtn github">
-                <i class="fa fa-github fa-2x" aria-hidden="true"></i>
-                <span>GITHUB</span>
+              <i class="fa fa-github fa-2x" aria-hidden="true"></i>
+              <span>GITHUB</span>
             </button>
           </a>
         </li>
@@ -40,9 +40,7 @@ export default {
       sections: [
         {
           title: 'Getting started',
-          pages: [
-            { to: 'installation', title: 'Installation & Usage' }
-          ]
+          pages: [{ to: 'installation', title: 'Installation & Usage' }]
         },
         {
           title: 'Documentation',
@@ -57,6 +55,7 @@ export default {
           pages: [
             { to: '/demo', title: 'Basic Demo' },
             { to: '/iconDemo', title: 'Adding Icons' },
+            { to: '/custom-html', title: 'Custom Html' },
             { to: '/manual', title: 'Manually Load Files' },
             { to: '/additionalParams', title: 'Sending Additional Params' },
             { to: '/custom-preview', title: 'Custom Styling' },
@@ -64,15 +63,15 @@ export default {
           ]
         }
       ]
-    }
+    };
   }
-}
+};
 </script>
 
 <style>
 .border {
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, .07);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .sidebar li {
