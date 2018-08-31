@@ -19,6 +19,7 @@
       @vdropzone-drag-enter="vdenter" 
       @vdropzone-drag-over="vdover" 
       @vdropzone-drag-leave="vdleave" 
+      @vdropzone-duplicate-file="vdduplicate"
       :options="dropzoneOptions"
       :duplicateCheck="true">
     </vue-dropzone>
@@ -168,6 +169,14 @@
             <i class="fa fa-circle" :class="{ 'active' : dLeave }"></i>
           </td>
         </tr>
+        <tr :class="{ 'event-active' : dDuplicate }">
+          <td>18</td>
+          <td>vdropzone-duplicate-file(
+            <code>event</code>)</td>
+          <td>
+            <i class="fa fa-circle" :class="{ 'active' : dDuplicate }"></i>
+          </td>
+        </tr>
       </tbody>
     </table>
     <edit-doc :link="'demo.vue'"></edit-doc>
@@ -221,7 +230,8 @@ export default {
       dEnded: false,
       dEntered: false,
       dOver: false,
-      dLeave: false
+      dLeave: false,
+      dDuplicate:false
     }
   },
   components: {
@@ -290,6 +300,9 @@ export default {
     },
     vdleave() {
       this.dLeave = true
+    },
+    vdduplicate() {
+      this.dDuplicate = true
     }
   },
   watch: {
@@ -393,6 +406,12 @@ export default {
       let that = this
       setTimeout(function() {
         that.dLeave = false
+      }, 2000)
+    },
+    dDuplicate() {
+      let that = this
+      setTimeout(function() {
+        that.dDuplicate = false
       }, 2000)
     }
   }

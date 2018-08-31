@@ -39,7 +39,7 @@ export default {
         ['vdropzone-upload-progress(file, progress, bytesSent)', 'Gets called periodically whenever the file upload progress changes.<br />Gets the `progress` parameter as second parameter which is a percentage (0-100) and the `bytesSent` parameter as third which is the number of the bytes that have been sent to the server.<br />When an upload finishes dropzone ensures that uploadprogress will be called with a percentage of `100` at least once.<br /><br />**Warning:** This function can potentially be called with the same progress multiple times.'],
         ['vdropzone-total-upload-progress(totaluploadprogress, totalBytes, totalBytesSent)', 'This event can be used to show the overall upload progress of all files. Note : `totaluploadprogress (0-100)`'],
         ['vdropzone-mounted()', 'Fired when dropzone component is mounted.'],
-        ['duplicate-file(file)', 'Fired when duplicateCheck is enabled.'],
+        ['vdropzone-duplicate-file(file)', 'Fired when `duplicateCheck` is enabled and duplicate file is found.'],
         ['vdropzone-drop(event)', 'The user dropped something onto the dropzone.'],
         ['vdropzone-drag-start(event)', 'The user started to drag anywhere.'],
         ['vdropzone-drag-end(event)', 'Dragging has ended.'],

@@ -229,7 +229,7 @@ export default {
                 {
                     this.removeFile(file);
                     isDuplicate = true;
-                    vm.$emit('duplicate-file', file)
+                    vm.$emit('vdropzone-duplicate-file', file)
                 }
             }
         }
