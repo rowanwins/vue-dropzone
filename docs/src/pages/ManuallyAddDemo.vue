@@ -56,8 +56,8 @@ export default {
       }
     },
     addFile() {
-      var file = { size: 123, name: "Icon" };
-      var url = "http://via.placeholder.com/200x200";
+      var file = { size: 123, name: "XYZ.pdf" };
+      var url = "xyz.pdf";
       this.$refs.myVueDropzone.manuallyAddFile(file, url);
     }
   },

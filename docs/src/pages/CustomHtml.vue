@@ -14,7 +14,7 @@
     <p v-html="marked(js)"></p>
     <h3>Style</h3>
     <p v-html="marked(css)"></p>
-    <edit-doc :link="'AddingIconDemo.vue'"></edit-doc>
+    <edit-doc :link="'CustomHtml.vue'"></edit-doc>
   </div>
 </template>
 
