@@ -62,6 +62,23 @@ var javascript = `
                 <div class="dz-error-mark"><i class="fa fa-close"></i></div>
             </div>
         \`;
+      },
+      thumbnail: function(file, dataUrl) {
+        var j, len, ref, thumbnailElement;
+        if (file.previewElement) {
+            file.previewElement.classList.remove("dz-file-preview");
+            ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
+            for (j = 0, len = ref.length; j < len; j++) {
+                thumbnailElement = ref[j];
+                thumbnailElement.alt = file.name;
+                thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
+            }
+            return setTimeout(((function(_this) {
+                return function() {
+                    return file.previewElement.classList.add("dz-image-preview");
+                };
+            })(this)), 1);
+        }
       }
   `
 var style = `
