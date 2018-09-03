@@ -58,7 +58,8 @@ var js = `
           signingURL: 'http://aws-direct-s3.dev/',
           headers: {},
           params : {},
-          sendFileToServer : true
+          sendFileToServer : true,
+          withCredentials: false
         },
         ....
       }

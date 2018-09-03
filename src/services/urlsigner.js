@@ -21,6 +21,9 @@ export default {
         console.error("Network Error : Could not send request to AWS (Maybe CORS errors)");
         reject(err)
       };
+      if (config.withCredentials === true) {
+        request.withCredentials = true;
+      }
       Object.entries(config.headers || {}).forEach(([name, value]) => {
         request.setRequestHeader(name, value);
       });
