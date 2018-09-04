@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>Adding custom html to the dropzone</h1>
+    <h1>Adding Custom HTML to the dropzone using slots</h1>
     <p v-html="marked(description)"></p>
-    <vue-dropzone ref="myVueDropzone" id="dropzone" class="dropzone" :options="dropzoneOptions">
+    <vue-dropzone ref="myVueDropzone" id="dropzone" class="dropzone" :useCustomSlot=true :options="dropzoneOptions">
       <div class="dropzone-custom-content">
         <h3 class="dropzone-custom-title">Drag and drop to upload content!</h3>
         <div class="subtitle">...or click to select a file from your computer</div>
@@ -22,7 +22,7 @@
 import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 var html = `    
-    <vue-dropzone :options="dropzoneOptions">
+    <vue-dropzone :options="dropzoneOptions" :useCustomSlot=true>
       <div class="dropzone-custom-content">
         <h3 class="dropzone-custom-title">Drag and drop to upload content!</h3>
         <div class="subtitle">...or click to select a file from your computer</div>
@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       description:
-        'You can insert any html you can to replace the default message for the dropzone. The content will automatically we wrapped inside the `.dz-message` class.',
+        'With the `useCustomSlot` property set to `true` uou can insert any html you can to replace the default message for the dropzone. The content will automatically we wrapped inside the `.dz-message` class.',
       html: '````' + html + '````',
       css: '````' + css + '````',
       js: '````' + js + '````',

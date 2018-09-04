@@ -1,15 +1,24 @@
 <template>
-  <div v-bind:class="{ 'vue-dropzone dropzone': includeStyling }" :id="id" ref="dropzoneElement">
-    <div class="dz-message">
+  <div 
+    :id="id" 
+    ref="dropzoneElement"
+    :class="{ 'vue-dropzone dropzone': includeStyling }"
+  >
+    <div 
+      v-if="useCustomSlot"
+      class="dz-message" 
+    >
       <slot>Drop files here to upload</slot>
     </div>
   </div>
 </template>
 
 <script>
-import awsEndpoint from '../services/urlsigner'
 import Dropzone from 'dropzone' //eslint-disable-line
+import awsEndpoint from '../services/urlsigner'
+
 Dropzone.autoDiscover = false
+
 export default {
   props: {
     id: {
@@ -36,11 +45,16 @@ export default {
       default: true,
       required: false
     },
-    duplicateCheck:{
-        type: Boolean,
-        default: false,
-        required:false
+    duplicateCheck: {
+      type: Boolean,
+      default: false,
+      required: false
     },
+    useCustomSlot: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
   },
   data() {
     return {
@@ -59,11 +73,11 @@ export default {
         defaultValues[key] = this.options[key]
       }, this)
       if (this.awss3 !== null) {
-        defaultValues['autoProcessQueue'] = false;
-        this.isS3 = true;
-        this.isS3OverridesServerPropagation = (this.awss3.sendFileToServer === false);
+        defaultValues['autoProcessQueue'] = false
+        this.isS3 = true //eslint-disable-line
+        this.isS3OverridesServerPropagation = (this.awss3.sendFileToServer === false)  //eslint-disable-line
         if (this.options.autoProcessQueue !== undefined)
-          this.wasQueueAutoProcess = this.options.autoProcessQueue;
+          this.wasQueueAutoProcess = this.options.autoProcessQueue //eslint-disable-line
 
         if (this.isS3OverridesServerPropagation) {
           defaultValues['url'] = (files) => {
@@ -74,143 +88,12 @@ export default {
       return defaultValues
     }
   },
-  methods: {
-    manuallyAddFile: function(file, fileUrl) {
-      file.manuallyAdded = true;
-      this.dropzone.emit("addedfile", file);
-      if(this.dropzone.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.dropzone.options.maxThumbnailFilesize * 1024 * 1024){
-        fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
-
-        var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
-        for (var i = 0; i < thumbnails.length; i++) {
-          thumbnails[i].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
-          thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
-          thumbnails[i].style['object-fit'] = 'contain';
-        }
-      }
-      this.dropzone.emit("complete", file)
-      if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--
-      this.dropzone.files.push(file)
-      this.$emit('vdropzone-file-added-manually', file)
-    },
-    setOption: function(option, value) {
-      this.dropzone.options[option] = value
-    },
-    removeAllFiles: function(bool) {
-      this.dropzone.removeAllFiles(bool)
-    },
-    processQueue: function() {
-      let dropzoneEle = this.dropzone;
-      if (this.isS3 && !this.wasQueueAutoProcess) {
-        this.getQueuedFiles().forEach((file) => {
-          this.getSignedAndUploadToS3(file);
-        });
-      } else {
-        this.dropzone.processQueue();
-      }
-      this.dropzone.on("success", function() {
-        dropzoneEle.options.autoProcessQueue = true
-      });
-      this.dropzone.on('queuecomplete', function() {
-        dropzoneEle.options.autoProcessQueue = false
-      })
-    },
-    init: function() {
-      return this.dropzone.init();
-    },
-    destroy: function() {
-      return this.dropzone.destroy();
-    },
-    updateTotalUploadProgress: function() {
-      return this.dropzone.updateTotalUploadProgress();
-    },
-    getFallbackForm: function() {
-      return this.dropzone.getFallbackForm();
-    },
-    getExistingFallback: function() {
-      return this.dropzone.getExistingFallback();
-    },
-    setupEventListeners: function() {
-      return this.dropzone.setupEventListeners();
-    },
-    removeEventListeners: function() {
-      return this.dropzone.removeEventListeners();
-    },
-    disable: function() {
-      return this.dropzone.disable();
-    },
-    enable: function() {
-      return this.dropzone.enable();
-    },
-    filesize: function(size) {
-      return this.dropzone.filesize(size);
-    },
-    accept: function(file, done) {
-      return this.dropzone.accept(file, done);
-    },
-    addFile: function(file) {
-      return this.dropzone.addFile(file);
-    },
-    removeFile: function(file) {
-      this.dropzone.removeFile(file)
-    },
-    getAcceptedFiles: function() {
-      return this.dropzone.getAcceptedFiles()
-    },
-    getRejectedFiles: function() {
-      return this.dropzone.getRejectedFiles()
-    },
-    getFilesWithStatus: function() {
-      return this.dropzone.getFilesWithStatus()
-    },
-    getQueuedFiles: function() {
-      return this.dropzone.getQueuedFiles()
-    },
-    getUploadingFiles: function() {
-      return this.dropzone.getUploadingFiles()
-    },
-    getAddedFiles: function() {
-      return this.dropzone.getAddedFiles()
-    },
-    getActiveFiles: function() {
-      return this.dropzone.getActiveFiles()
-    },
-    getSignedAndUploadToS3(file) {
-      var promise = awsEndpoint.sendFile(file, this.awss3, this.isS3OverridesServerPropagation);
-        if (!this.isS3OverridesServerPropagation) {
-          promise.then((response) => {
-            if (response.success) {
-              file.s3ObjectLocation = response.message
-              setTimeout(() => this.dropzone.processFile(file))
-              this.$emit('vdropzone-s3-upload-success', response.message);
-            } else {
-              if ('undefined' !== typeof response.message) {
-                this.$emit('vdropzone-s3-upload-error', response.message);
-              } else {
-                this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
-              }
-            }
-          });
-        } else {
-          promise.then(() => {
-            setTimeout(() => this.dropzone.processFile(file))
-        });
-      }
-      promise.catch((error) => {
-        alert(error);
-      });
-    },
-    setAWSSigningURL(location) {
-      if (this.isS3) {
-        this.awss3.signingURL = location;
-      }
-    }
-  },
-  mounted() {
+  mounted () {
     if (this.$isServer && this.hasBeenMounted) {
       return
     }
     this.hasBeenMounted = true
+
     this.dropzone = new Dropzone(this.$refs.dropzoneElement, this.dropzoneSettings)
     let vm = this
 
@@ -376,6 +259,140 @@ export default {
   },
   beforeDestroy() {
     if (this.destroyDropzone) this.dropzone.destroy()
+  },
+  methods: {
+    manuallyAddFile: function(file, fileUrl) {
+      file.manuallyAdded = true
+      this.dropzone.emit("addedfile", file)
+      let containsImageFileType = false 
+      if (fileUrl.indexOf('.png') > -1 || fileUrl.indexOf('.jpg') > -1 || fileUrl.indexOf('.jpeg') > -1) containsImageFileType = true
+      if (this.dropzone.options.createImageThumbnails && containsImageFileType && file.size <= this.dropzone.options.maxThumbnailFilesize * 1024 * 1024) {
+        fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
+
+        var thumbnails = file.previewElement.querySelectorAll('[data-dz-thumbnail]');
+        for (var i = 0; i < thumbnails.length; i++) {
+          thumbnails[i].style.width = this.dropzoneSettings.thumbnailWidth + 'px';
+          thumbnails[i].style.height = this.dropzoneSettings.thumbnailHeight + 'px';
+          thumbnails[i].style['object-fit'] = 'contain';
+        }
+      }
+      this.dropzone.emit("complete", file)
+      if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--
+      this.dropzone.files.push(file)
+      this.$emit('vdropzone-file-added-manually', file)
+    },
+    setOption: function(option, value) {
+      this.dropzone.options[option] = value
+    },
+    removeAllFiles: function(bool) {
+      this.dropzone.removeAllFiles(bool)
+    },
+    processQueue: function() {
+      let dropzoneEle = this.dropzone;
+      if (this.isS3 && !this.wasQueueAutoProcess) {
+        this.getQueuedFiles().forEach((file) => {
+          this.getSignedAndUploadToS3(file);
+        });
+      } else {
+        this.dropzone.processQueue();
+      }
+      this.dropzone.on("success", function() {
+        dropzoneEle.options.autoProcessQueue = true
+      });
+      this.dropzone.on('queuecomplete', function() {
+        dropzoneEle.options.autoProcessQueue = false
+      })
+    },
+    init: function() {
+      return this.dropzone.init();
+    },
+    destroy: function() {
+      return this.dropzone.destroy();
+    },
+    updateTotalUploadProgress: function() {
+      return this.dropzone.updateTotalUploadProgress();
+    },
+    getFallbackForm: function() {
+      return this.dropzone.getFallbackForm();
+    },
+    getExistingFallback: function() {
+      return this.dropzone.getExistingFallback();
+    },
+    setupEventListeners: function() {
+      return this.dropzone.setupEventListeners();
+    },
+    removeEventListeners: function() {
+      return this.dropzone.removeEventListeners();
+    },
+    disable: function() {
+      return this.dropzone.disable();
+    },
+    enable: function() {
+      return this.dropzone.enable();
+    },
+    filesize: function(size) {
+      return this.dropzone.filesize(size);
+    },
+    accept: function(file, done) {
+      return this.dropzone.accept(file, done);
+    },
+    addFile: function(file) {
+      return this.dropzone.addFile(file);
+    },
+    removeFile: function(file) {
+      this.dropzone.removeFile(file)
+    },
+    getAcceptedFiles: function() {
+      return this.dropzone.getAcceptedFiles()
+    },
+    getRejectedFiles: function() {
+      return this.dropzone.getRejectedFiles()
+    },
+    getFilesWithStatus: function() {
+      return this.dropzone.getFilesWithStatus()
+    },
+    getQueuedFiles: function() {
+      return this.dropzone.getQueuedFiles()
+    },
+    getUploadingFiles: function() {
+      return this.dropzone.getUploadingFiles()
+    },
+    getAddedFiles: function() {
+      return this.dropzone.getAddedFiles()
+    },
+    getActiveFiles: function() {
+      return this.dropzone.getActiveFiles()
+    },
+    getSignedAndUploadToS3(file) {
+      var promise = awsEndpoint.sendFile(file, this.awss3, this.isS3OverridesServerPropagation);
+        if (!this.isS3OverridesServerPropagation) {
+          promise.then((response) => {
+            if (response.success) {
+              file.s3ObjectLocation = response.message
+              setTimeout(() => this.dropzone.processFile(file))
+              this.$emit('vdropzone-s3-upload-success', response.message);
+            } else {
+              if ('undefined' !== typeof response.message) {
+                this.$emit('vdropzone-s3-upload-error', response.message);
+              } else {
+                this.$emit('vdropzone-s3-upload-error', "Network Error : Could not send request to AWS. (Maybe CORS error)");
+              }
+            }
+          });
+        } else {
+          promise.then(() => {
+            setTimeout(() => this.dropzone.processFile(file))
+        });
+      }
+      promise.catch((error) => {
+        alert(error)
+      });
+    },
+    setAWSSigningURL(location) {
+      if (this.isS3) {
+        this.awss3.signingURL = location;
+      }
+    }
   }
 }
 

@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.5.1",
+  "version": "3.5.2",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
@@ -46,12 +46,13 @@
     "clean-docs": "rimraf docs/dist",
     "dev": "rollup -c -w",
     "minify-css": "uglifycss dist/vue2Dropzone.css --output dist/vue2Dropzone.min.css",
+    "prepublishOnly": "npm run build",
     "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "dropzone": "^5.5.0"
+    "dropzone": "^5.5.1"
   }
 }
