@@ -1,12 +1,12 @@
 <template>
-  <div 
-    :id="id" 
+  <div
+    :id="id"
     ref="dropzoneElement"
     :class="{ 'vue-dropzone dropzone': includeStyling }"
   >
-    <div 
+    <div
       v-if="useCustomSlot"
-      class="dz-message" 
+      class="dz-message"
     >
       <slot>Drop files here to upload</slot>
     </div>
@@ -122,7 +122,7 @@ export default {
         if (vm.isS3 && vm.wasQueueAutoProcess) {
           vm.getSignedAndUploadToS3(file);
         }
-      
+
     })
 
     this.dropzone.on('addedfiles', function(files) {
@@ -207,10 +207,6 @@ export default {
       vm.$emit('vdropzone-processing', file)
     })
 
-    this.dropzone.on('processing', function(file) {
-      vm.$emit('vdropzone-processing', file)
-    })
-
     this.dropzone.on('processingmultiple', function(files) {
       vm.$emit('vdropzone-processing-multiple', files)
     })
@@ -264,7 +260,7 @@ export default {
     manuallyAddFile: function(file, fileUrl) {
       file.manuallyAdded = true
       this.dropzone.emit("addedfile", file)
-      let containsImageFileType = false 
+      let containsImageFileType = false
       if (fileUrl.indexOf('.png') > -1 || fileUrl.indexOf('.jpg') > -1 || fileUrl.indexOf('.jpeg') > -1) containsImageFileType = true
       if (this.dropzone.options.createImageThumbnails && containsImageFileType && file.size <= this.dropzone.options.maxThumbnailFilesize * 1024 * 1024) {
         fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
