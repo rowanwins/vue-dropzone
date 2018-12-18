@@ -1,10 +1,6 @@
 {
   "presets": [
-    [
-      "es2015",
-      {
-        "modules": false
-      }
-    ]
-  ]
+    ["@babel/env", { "modules": false }]
+  ],
+  "comments": false
 }

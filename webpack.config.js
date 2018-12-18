@@ -1,9 +1,11 @@
-var path = require('path');
-var webpack = require('webpack');
+const webpack = require('webpack');
+const path = require('path');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Update this for additional vendor libraries
-const VENDOR_LIBS = ['vue']; 
+const VENDOR_LIBS = ['vue'];
 
 module.exports = {
   entry: {
@@ -14,10 +16,43 @@ module.exports = {
     path: path.resolve(__dirname, './docs/dist'),
     filename: '[name].[hash].js'
   },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        sourceMap: true,
+        parallel: 4,
+        uglifyOptions: {
+          warnings: false,
+          compress: {
+            warnings: false
+          },
+        },
+      })
+    ],
+    splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        }
+      }
+    }
+  },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
-    }),
+    new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: 'docs/src/index.html'
     })
@@ -33,6 +68,20 @@ module.exports = {
           }
           // other vue-loader options go here
         }
+      },
+      {
+        test: /\.css$/,
+        loader: 'vue-style-loader!css-loader'
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+          }
+        ]
       },
       {
         test: /\.js$/,
@@ -71,12 +120,6 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
       }
     }),
     new webpack.LoaderOptionsPlugin({
