@@ -42,7 +42,7 @@ import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 
 var html = `
-    <vue-dropzone 
+    <vue-dropzone
       :awss3="awss3"
       v-on:vdropzone-s3-upload-error="s3UploadError"
       v-on:vdropzone-s3-upload-success="s3UploadSuccess"
