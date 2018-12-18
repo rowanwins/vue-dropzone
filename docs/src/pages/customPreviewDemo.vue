@@ -26,7 +26,7 @@ import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
 
 var html = `
-    <vue-dropzone 
+    <vue-dropzone
       :options="dropzoneOptions"
       :include-styling="false"
       v-on:vdropzone-thumbnail="thumbnail"
