@@ -29,7 +29,7 @@ export default {
       methods: [
         ['.removeAllFiles()', 'Removes all files. Files that are in the process of being uploaded won’t be removed. If you want files that are currently uploading to be canceled, call `.removeAllFiles(true)` which will cancel the uploads.'],
         ['.setOption(optionName, value)', 'Sets the value of one of the dropzone options after initialisation. Handy if you need to pass through a token after the component has initialised.'],
-        ['.manuallyAddFile(file, fileUrl, callback)', 'Manually adds a file to the dropzone area. See the dropzone docs for more information.'],
+        ['.manuallyAddFile(file, fileUrl)', 'Manually adds a file to the dropzone area. See the dropzone docs for more information.'],
         ['.removeFile(file)', 'Removes a file from the dropzone area.'],
         ['.processQueue()', 'If you have `autoProcessQueue` disabled, you’ll need to call .processQueue() yourself.'],
         ['.getAcceptedFiles()', 'Gets all accepted files'],
