@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.5.2",
+  "version": "3.5.3",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
@@ -24,12 +24,13 @@
     "rimraf": "^2.6.2",
     "rollup": "^0.68.0",
     "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-butternut": "^0.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-css-only": "^1.0.0",
     "rollup-plugin-less": "^0.1.5",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
-    "rollup-plugin-uglify": "^6.0.0",
-    "rollup-plugin-vue": "^4.3.2",
+    "rollup-plugin-vue": "^4.7.2",
     "serve": "^10.1.1",
     "uglifycss": "0.0.29",
     "uglifyjs-webpack-plugin": "^2.0.1",
@@ -43,11 +44,10 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rollup -c && npm run minify-css",
+    "build": "cross-env NODE_ENV=production rollup -c",
     "build-docs": "npm run clean-docs && cross-env NODE_ENV=production webpack --mode production --progress --hide-modules",
     "clean-docs": "rimraf docs/dist",
     "dev": "rollup -c -w",
-    "minify-css": "uglifycss dist/vue2Dropzone.css --output dist/vue2Dropzone.min.css",
     "prepublishOnly": "npm run build",
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --hot"
   },

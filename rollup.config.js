@@ -3,7 +3,8 @@ import babel from 'rollup-plugin-buble';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
-import uglify from 'rollup-plugin-uglify';
+import butternut from 'rollup-plugin-butternut';
+import css from 'rollup-plugin-css-only';
 
 export default {
   input: 'src/index.js',
@@ -20,9 +21,11 @@ export default {
       browser: true,
     }),
     commonjs(),
+    css({
+      output: 'dist/vue2Dropzone.min.css'
+    }),
     vue({
-      compileTemplate: true,
-      css: 'dist/vue2Dropzone.css'
+      css: false
     }),
     babel({
       exclude: 'node_modules/**',
@@ -31,6 +34,6 @@ export default {
     replace({
       ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
-    (process.env.NODE_ENV === 'production' && uglify()),
+    (process.env.NODE_ENV === 'production' && butternut()),
   ],
 };
