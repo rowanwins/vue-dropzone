@@ -6,11 +6,13 @@ import replace from 'rollup-plugin-replace';
 import uglify from 'rollup-plugin-uglify';
 
 export default {
-  moduleName: 'vue2Dropzone',
-  entry: 'src/index.js',
-  dest: 'dist/vue2Dropzone.js',
-  format: 'umd',
-  sourceMap: true,
+  input: 'src/index.js',
+  output: {
+    file: 'dist/vue2Dropzone.js',
+    name: 'vue2Dropzone',
+    sourceMap: true,
+    format: 'umd',
+  },
   plugins: [
     resolve({
       jsnext: true,

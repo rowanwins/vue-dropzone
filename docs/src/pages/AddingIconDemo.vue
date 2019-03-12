@@ -17,7 +17,7 @@
 <script>
 import vueDropzone from '../../../src/';
 import editDoc from '../components/DocEditLink.vue';
-var html = `    
+var html = `
     <vue-dropzone :options="dropzoneOptions">
     </vue-dropzone>
     `;

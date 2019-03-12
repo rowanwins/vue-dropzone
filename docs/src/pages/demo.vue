@@ -2,28 +2,28 @@
   <div>
     <h1>Demo</h1>
     <p>Below you can see Vue2-Dropzone in action.</p>
-    <vue-dropzone ref="myVueDropzone" id="dropzone" 
-      @vdropzone-file-added="vfileAdded" 
-      @vdropzone-success="vsuccess" 
-      @vdropzone-error="verror" 
-      @vdropzone-removed-file="vremoved" 
-      @vdropzone-sending="vsending" 
-      @vdropzone-success-multiple="vsuccessMuliple" 
-      @vdropzone-sending-multiple="vsendingMuliple" 
-      @vdropzone-queue-complete="vqueueComplete" 
-      @vdropzone-total-upload-progress="vprogress" 
-      @vdropzone-mounted="vmounted" 
-      @vdropzone-drop="vddrop" 
-      @vdropzone-drag-start="vdstart" 
-      @vdropzone-drag-end="vdend" 
-      @vdropzone-drag-enter="vdenter" 
-      @vdropzone-drag-over="vdover" 
-      @vdropzone-drag-leave="vdleave" 
+    <vue-dropzone ref="myVueDropzone" id="dropzone"
+      @vdropzone-file-added="vfileAdded"
+      @vdropzone-success="vsuccess"
+      @vdropzone-error="verror"
+      @vdropzone-removed-file="vremoved"
+      @vdropzone-sending="vsending"
+      @vdropzone-success-multiple="vsuccessMuliple"
+      @vdropzone-sending-multiple="vsendingMuliple"
+      @vdropzone-queue-complete="vqueueComplete"
+      @vdropzone-total-upload-progress="vprogress"
+      @vdropzone-mounted="vmounted"
+      @vdropzone-drop="vddrop"
+      @vdropzone-drag-start="vdstart"
+      @vdropzone-drag-end="vdend"
+      @vdropzone-drag-enter="vdenter"
+      @vdropzone-drag-over="vdover"
+      @vdropzone-drag-leave="vdleave"
       @vdropzone-duplicate-file="vdduplicate"
       :options="dropzoneOptions"
       :duplicateCheck="true">
     </vue-dropzone>
-    
+
     <h3>Events</h3>
     <table>
       <thead>
