@@ -20,12 +20,10 @@
 </template>
 <script>
 import editDoc from '../components/DocEditLink.vue';
-var example = `
+var e = `
 <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions"></vue-dropzone>
-....
 import vue2Dropzone from 'vue2-dropzone'
 import 'vue2-dropzone/dist/vue2Dropzone.min.css'
-
 export default {
   name: 'app',
   components: {
@@ -46,7 +44,7 @@ export default {
   data() {
     return {
       ok: true,
-      example: "````" + example + "````",
+      example: "````" + e + "````",
     }
   },
   components: {

@@ -394,118 +394,115 @@ export default {
 
 </script>
 
-<style lang="less">
-  @import (inline) '../../node_modules/dropzone/dist/dropzone.css';
+<style>
+  @import '../../node_modules/dropzone/dist/dropzone.css';
 
   .vue-dropzone {
     border: 2px solid #E5E5E5;
     font-family: 'Arial', sans-serif;
     letter-spacing: 0.2px;
     color: #777;
-    transition: background-color .2s linear;
+    transition: .2s linear;
+   }
 
-    &:hover {
-      background-color: #F6F6F6;
-    }
-
-    i {
-      color: #CCC;
-    }
-
-    .dz-preview {
-
-      .dz-image {
-        border-radius: 0;
-        width: 100%;
-        height: 100%;
-        img:not([src]) {
-          width: 200px;
-          height: 200px;
-        }
-        &:hover {
-          img {
-            transform: none;
-            -webkit-filter: none;
-          }
-        }
-      }
-
-      .dz-details {
-        bottom: 0;
-        top: 0;
-        color: white;
-        background-color: rgba(33, 150, 243, 0.8);
-        transition: opacity .2s linear;
-        text-align: left;
-        .dz-filename {
-          overflow: hidden;
-        }
-        .dz-filename span,
-        .dz-size span {
-          background-color: transparent;
-        }
-        .dz-filename:not(:hover) span {
-          border: none;
-        }
-        .dz-filename:hover span {
-          background-color: transparent;
-          border: none;
-        }
-      }
-
-      .dz-progress .dz-upload {
-        background: #cccccc;
-      }
-
-      .dz-remove {
-        position: absolute;
-        z-index: 30;
-        color: white;
-        margin-left: 15px;
-        padding: 10px;
-        top: inherit;
-        bottom: 15px;
-        border: 2px white solid;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        font-weight: 800;
-        letter-spacing: 1.1px;
-        opacity: 0;
-      }
-
-      &:hover {
-        .dz-remove {
-          opacity: 1;
-        }
-      }
-
-      .dz-success-mark,
-      .dz-error-mark {
-        margin-left: auto;
-        margin-top: auto;
-        width: 100%;
-        top: 35%;
-        left: 0;
-        svg {
-          margin-left: auto;
-          margin-right: auto;
-        }
-      }
-
-      .dz-error-message {
-        top: calc(15%);
-        margin-left: auto;
-        margin-right: auto;
-        left: 0;
-        width: 100%;
-        &:after {
-          bottom: -6px;
-          top: initial;
-          border-top: 6px solid #a92222;
-          border-bottom: none;
-        }
-      }
-    }
+  .vue-dropzone:hover {
+    background-color: #F6F6F6;
   }
+
+  .vue-dropzone > i {
+    color: #CCC;
+  }
+
+  .vue-dropzone > .dz-preview .dz-image {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .vue-dropzone > .dz-preview .dz-image img:not([src]) {
+    width: 200px;
+    height: 200px;
+  }
+
+  .vue-dropzone > .dz-preview .dz-image:hover img {
+    transform: none;
+    -webkit-filter: none;
+  }
+
+  .vue-dropzone > .dz-preview .dz-details {
+    bottom: 0;
+    top: 0;
+    color: white;
+    background-color: rgba(33, 150, 243, 0.8);
+    transition: opacity .2s linear;
+    text-align: left;
+  }
+
+  .vue-dropzone > .dz-preview .dz-details .dz-filename {
+    overflow: hidden;
+  }
+
+  .vue-dropzone > .dz-preview .dz-details .dz-filename span, .vue-dropzone > .dz-preview .dz-details .dz-size span {
+    background-color: transparent;
+  }
+
+  .vue-dropzone > .dz-preview .dz-details .dz-filename:not(:hover) span {
+    border: none;
+  }
+
+  .vue-dropzone > .dz-preview .dz-details .dz-filename:hover span {
+    background-color: transparent;
+    border: none;
+  }
+
+  .vue-dropzone > .dz-preview .dz-progress .dz-upload {
+    background: #cccccc;
+  }
+
+  .vue-dropzone > .dz-preview .dz-remove  {
+    position: absolute;
+    z-index: 30;
+    color: white;
+    margin-left: 15px;
+    padding: 10px;
+    top: inherit;
+    bottom: 15px;
+    border: 2px white solid;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+    opacity: 0;
+  }
+
+  .vue-dropzone > .dz-preview:hover .dz-remove {
+    opacity: 1;
+  }
+
+  .vue-dropzone > .dz-preview .dz-success-mark, .vue-dropzone > .dz-preview .dz-error-mark {
+    margin-left: auto;
+    margin-top: auto;
+    width: 100%;
+    top: 35%;
+    left: 0;
+  }
+
+  .vue-dropzone > .dz-preview .dz-success-mark svg, .vue-dropzone > .dz-preview .dz-error-mark svg {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vue-dropzone > .dz-preview .dz-error-message {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .vue-dropzone > .dz-preview .dz-error-message:after {
+    display: none;
+  }
+
 </style>
