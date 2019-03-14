@@ -395,8 +395,6 @@ export default {
 </script>
 
 <style>
-  @import '../../node_modules/dropzone/dist/dropzone.css';
-
   .vue-dropzone {
     border: 2px solid #E5E5E5;
     font-family: 'Arial', sans-serif;

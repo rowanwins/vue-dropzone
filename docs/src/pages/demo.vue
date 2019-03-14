@@ -184,9 +184,9 @@
 </template>
 
 <script>
-import vueDropzone from '../../../src/';
-// import vueDropzone from '../../../dist/vue2Dropzone.js';
-// import '../../../dist/vue2Dropzone.min.css'
+// import vueDropzone from '../../../src/';
+import vueDropzone from '../../../dist/vue2Dropzone.js';
+require('../../../dist/vue2Dropzone.min.css')
 
 import editDoc from '../components/DocEditLink.vue';
 var example = `
