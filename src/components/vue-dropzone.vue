@@ -131,7 +131,7 @@ export default {
 
     this.dropzone.on('removedfile', function(file) {
       vm.$emit('vdropzone-removed-file', file)
-      if (file.manuallyAdded) vm.dropzone.options.maxFiles++
+      if (file.manuallyAdded && vm.dropzone.options.maxFiles !== null) vm.dropzone.options.maxFiles++
     })
 
     this.dropzone.on('success', function(file, response) {
