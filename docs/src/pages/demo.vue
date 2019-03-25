@@ -184,9 +184,9 @@
 </template>
 
 <script>
-// import vueDropzone from '../../../src/';
-import vueDropzone from '../../../dist/vue2Dropzone.js';
-require('../../../dist/vue2Dropzone.min.css')
+import vueDropzone from '../../../src/';
+// import vueDropzone from '../../../dist/vue2Dropzone.js';
+// require('../../../dist/vue2Dropzone.min.css')
 
 import editDoc from '../components/DocEditLink.vue';
 var example = `
@@ -207,7 +207,7 @@ export default {
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
-        // maxFilesize: 0.5,
+        maxFilesize: 0.5,
         headers: { "My-Awesome-Header": "header value" },
         addRemoveLinks: true
       },
