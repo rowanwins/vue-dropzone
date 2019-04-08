@@ -12,10 +12,17 @@ A **Nuxt SSR-compatible** component can be found at [npm](https://www.npmjs.com/
 ## Development
 
 ``` bash
-# install dependencies
+# install your dependencies
 npm install
 
-# run dev 
+# install vue-dropzone
+npm install vue2-dropzone
+
+(or with yarn)
+
+yarn add vue2-dropzone
+
+# Execute dependencies script 
 npm run dev
 
 # serve example and docs at localhost:8080
