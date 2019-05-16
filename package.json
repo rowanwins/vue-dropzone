@@ -7,6 +7,7 @@
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
   "version": "3.5.8",
+  "license": "MIT",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
