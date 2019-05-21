@@ -65,7 +65,7 @@ export default {
   data() {
     return {
       description:
-        'With the `useCustomSlot` property set to `true` uou can insert any html you can to replace the default message for the dropzone. The content will automatically we wrapped inside the `.dz-message` class.',
+        'With the `useCustomSlot` property set to `true` you can insert any html you can to replace the default message for the dropzone. The content will automatically we wrapped inside the `.dz-message` class.',
       html: '````' + html + '````',
       css: '````' + css + '````',
       js: '````' + js + '````',
