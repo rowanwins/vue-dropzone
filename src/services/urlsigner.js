@@ -58,7 +58,26 @@ export default {
       let request = new XMLHttpRequest();
       request.open('POST', response.postEndpoint);
       request.onload = function () {
-        if (request.status == 201) {
+        // Signer should response with
+        if (response.signature.hasOwnProperty("success_action_status") && request.status == parseInt(response.signature.success_action_status, 10)) {
+          // Recieved correct response based on the signer. Attempt any messages if needed
+          if (request.status == 204) {
+            // This is a no content status. We will resolve as such
+            resolve({
+              'success': true,
+              'message': {'presign': response, 'request': request}
+            })
+          } else {
+            // Purposefully leaving this in as it's part of the original code and I figure I can come back and adjust this later
+            var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
+            var successMsg = s3BodyResponse.firstChild.children[0].innerHTML;
+              resolve({
+              'success': true,
+              'message': successMsg
+            })
+          }
+        }
+        else if (request.status == 201) {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
           var successMsg = s3Error.firstChild.children[0].innerHTML;
           resolve({
