@@ -61,11 +61,20 @@ export default {
         // Signer should response with
         if (response.signature.hasOwnProperty("success_action_status") && request.status == parseInt(response.signature.success_action_status, 10)) {
           // Recieved correct response based on the signer. Attempt any messages if needed
-          var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
-          console.log(s3BodyResponse)
-          if (s3BodyResponse) {
-            console.log("We have a body response")
+          if (response.status == 204) {
+            // This is a no content status. We will resolve as such
+            return resolve({
+              'success': true,
+              'message': null
+            })
           }
+          // Purposefully leaving this in as it's part of the original code and I figure I can come back and adjust this later
+          var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
+          var successMsg = s3Error.firstChild.children[0].innerHTML;
+          return resolve({
+            'success': true,
+            'message': successMsg
+          })
         }
         else if (request.status == 201) {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
