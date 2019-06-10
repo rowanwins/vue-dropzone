@@ -61,11 +61,11 @@ export default {
         // Signer should response with
         if (response.signature.hasOwnProperty("success_action_status") && request.status == parseInt(response.signature.success_action_status, 10)) {
           // Recieved correct response based on the signer. Attempt any messages if needed
-          if (response.status == 204) {
+          if (request.status == 204) {
             // This is a no content status. We will resolve as such
             resolve({
               'success': true,
-              'message': null
+              'message': {'presign': response, 'request': request}
             })
           } else {
             // Purposefully leaving this in as it's part of the original code and I figure I can come back and adjust this later
