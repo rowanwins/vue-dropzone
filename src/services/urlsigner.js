@@ -63,18 +63,19 @@ export default {
           // Recieved correct response based on the signer. Attempt any messages if needed
           if (response.status == 204) {
             // This is a no content status. We will resolve as such
-            return resolve({
+            resolve({
               'success': true,
               'message': null
             })
+          } else {
+            // Purposefully leaving this in as it's part of the original code and I figure I can come back and adjust this later
+            var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
+            var successMsg = s3BodyResponse.firstChild.children[0].innerHTML;
+              resolve({
+              'success': true,
+              'message': successMsg
+            })
           }
-          // Purposefully leaving this in as it's part of the original code and I figure I can come back and adjust this later
-          var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
-          var successMsg = s3Error.firstChild.children[0].innerHTML;
-          return resolve({
-            'success': true,
-            'message': successMsg
-          })
         }
         else if (request.status == 201) {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
