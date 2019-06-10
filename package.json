@@ -4,9 +4,10 @@
   "author": "rowanwins <@rowanwins>",
   "contributors": [
     "Vaibhavraj Roham <@vrajroham>",
-    "Alexander Wennerstrøm <@AlexanderYW>"
+    "Alexander Wennerstrøm <@AlexanderYW>",
+    "Kar Kloppenborg <@inventionlabsSydney>"
   ],
-  "version": "3.5.8",
+  "version": "3.5.9",
   "license": "MIT",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",

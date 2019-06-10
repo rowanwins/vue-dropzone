@@ -58,7 +58,16 @@ export default {
       let request = new XMLHttpRequest();
       request.open('POST', response.postEndpoint);
       request.onload = function () {
-        if (request.status == 201) {
+        // Signer should response with
+        if (response.signature.hasOwnProperty("success_action_status") && request.status == parseInt(response.signature.success_action_status, 10)) {
+          // Recieved correct response based on the signer. Attempt any messages if needed
+          var s3BodyResponse = (new window.DOMParser()).parseFromString(request.response, "text/xml")
+          console.log(s3BodyResponse)
+          if (s3BodyResponse) {
+            console.log("We have a body response")
+          }
+        }
+        else if (request.status == 201) {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
           var successMsg = s3Error.firstChild.children[0].innerHTML;
           resolve({
