@@ -59,8 +59,8 @@ export default {
       request.open('POST', response.postEndpoint);
       request.onload = function () {
         if (request.status == 201) {
-          var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-          var successMsg = s3Error.firstChild.children[0].innerHTML;
+          var s3Success = (new window.DOMParser()).parseFromString(request.response, "text/xml");
+          var successMsg = s3Success.getElementsByTagName('PostResponse')[0].getElementsByTagName('Location')[0].innerHTML;
           resolve({
             'success': true,
             'message': successMsg
@@ -76,7 +76,7 @@ export default {
       };
       request.onerror = function (err) {
         var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-        var errMsg = s3Error.firstChild.children[1].innerHTML;
+        var errMsg = s3Error.getElementsByTagName('Error')[0].getElementsByTagName('Message')[0].innerHTML;
         reject({
           'success': false,
           'message': errMsg
