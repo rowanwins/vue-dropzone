@@ -261,7 +261,7 @@ export default {
       file.manuallyAdded = true
       this.dropzone.emit("addedfile", file)
       let containsImageFileType = false
-      if (fileUrl.indexOf('.svg') > -1 || fileUrl.indexOf('.png') > -1 || fileUrl.indexOf('.jpg') > -1 || fileUrl.indexOf('.jpeg') > -1) containsImageFileType = true
+      if (fileUrl.indexOf('.svg') > -1 || fileUrl.indexOf('.png') > -1 || fileUrl.indexOf('.jpg') > -1 || fileUrl.indexOf('.jpeg') > -1 || fileUrl.indexOf('.gif') > -1) containsImageFileType = true
       if (this.dropzone.options.createImageThumbnails && containsImageFileType && file.size <= this.dropzone.options.maxThumbnailFilesize * 1024 * 1024) {
         fileUrl && this.dropzone.emit("thumbnail", file, fileUrl);
 
