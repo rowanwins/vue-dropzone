@@ -118,11 +118,10 @@ export default {
         }
       }
 
-        vm.$emit('vdropzone-file-added', file)
-        if (vm.isS3 && vm.wasQueueAutoProcess) {
-          vm.getSignedAndUploadToS3(file);
-        }
-
+      vm.$emit('vdropzone-file-added', file)
+      if (vm.isS3 && vm.wasQueueAutoProcess && ! file.manuallyAdded) {
+        vm.getSignedAndUploadToS3(file);
+      }
     })
 
     this.dropzone.on('addedfiles', function(files) {
