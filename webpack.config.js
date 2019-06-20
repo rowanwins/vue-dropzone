@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Update this for additional vendor libraries
@@ -18,10 +18,9 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        sourceMap: true,
+      new TerserPlugin({
         parallel: 4,
-        uglifyOptions: {
+        terserOptions: {
           warnings: false,
           compress: {
             warnings: false
