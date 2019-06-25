@@ -1,5 +1,7 @@
 # vue-dropzone
-*Master Branch*
+
+**CO-MAINTAINERS WANTED**
+This component has far outgrown my initial expectations and I'm not able to provide the amount of support that users require. If you'd like to help out with it's maintenance drop a [note on this issue](https://github.com/rowanwins/vue-dropzone/issues/473)
 
 A Vue component for file uploads, powered by [Dropzone.js](http://www.dropzonejs.com/). [Check out the demo](https://rowanwins.github.io/vue-dropzone/docs/dist/index.html).
 
