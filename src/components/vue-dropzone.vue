@@ -49,7 +49,7 @@ export default {
       required: false
     }
   },
-  data() {
+  data: function() {
     return {
       isS3: false,
       isS3OverridesServerPropagation: false,
@@ -57,7 +57,7 @@ export default {
     };
   },
   computed: {
-    dropzoneSettings() {
+    dropzoneSettings: function() {
       let defaultValues = {
         thumbnailWidth: 200,
         thumbnailHeight: 200
@@ -74,7 +74,7 @@ export default {
           this.wasQueueAutoProcess = this.options.autoProcessQueue; //eslint-disable-line
 
         if (this.isS3OverridesServerPropagation) {
-          defaultValues["url"] = files => {
+          defaultValues["url"] = function(files) {
             return files[0].s3Url;
           };
         }
@@ -82,7 +82,7 @@ export default {
       return defaultValues;
     }
   },
-  mounted() {
+  mounted: function() {
     if (this.$isServer && this.hasBeenMounted) {
       return;
     }
@@ -267,7 +267,7 @@ export default {
 
     vm.$emit("vdropzone-mounted");
   },
-  beforeDestroy() {
+  beforeDestroy: function () {
     if (this.destroyDropzone) this.dropzone.destroy();
   },
   methods: {
@@ -316,7 +316,7 @@ export default {
     processQueue: function() {
       let dropzoneEle = this.dropzone;
       if (this.isS3 && !this.wasQueueAutoProcess) {
-        this.getQueuedFiles().forEach(file => {
+        this.getQueuedFiles().forEach(function (file) {
           this.getSignedAndUploadToS3(file);
         });
       } else {
@@ -389,17 +389,19 @@ export default {
     getActiveFiles: function() {
       return this.dropzone.getActiveFiles();
     },
-    getSignedAndUploadToS3(file) {
+    getSignedAndUploadToS3: function(file) {
       var promise = awsEndpoint.sendFile(
         file,
         this.awss3,
         this.isS3OverridesServerPropagation
       );
       if (!this.isS3OverridesServerPropagation) {
-        promise.then(response => {
+        promise.then(function (response) {
           if (response.success) {
             file.s3ObjectLocation = response.message;
-            setTimeout(() => this.dropzone.processFile(file));
+            setTimeout(function () { 
+              this.dropzone.processFile(file) 
+            });
             this.$emit("vdropzone-s3-upload-success", response.message);
           } else {
             if ("undefined" !== typeof response.message) {
@@ -413,15 +415,17 @@ export default {
           }
         });
       } else {
-        promise.then(() => {
-          setTimeout(() => this.dropzone.processFile(file));
+        promise.then(function () {
+          setTimeout(function () { 
+            this.dropzone.processFile(file)
+          });
         });
       }
-      promise.catch(error => {
+      promise.catch(function (error) {
         alert(error);
       });
     },
-    setAWSSigningURL(location) {
+    setAWSSigningURL: function(location) {
       if (this.isS3) {
         this.awss3.signingURL = location;
       }
