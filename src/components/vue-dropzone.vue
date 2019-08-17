@@ -146,7 +146,7 @@ export default {
             response,
             "text/xml"
           );
-          var s3ObjectLocation = xmlResponse.firstChild.children[0].innerHTML;
+          var s3ObjectLocation = xmlResponse.firstChild.firstChild.firstChild.textContent;
           vm.$emit("vdropzone-s3-upload-success", s3ObjectLocation);
         }
         if (vm.wasQueueAutoProcess) vm.setOption("autoProcessQueue", false);
