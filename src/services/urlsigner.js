@@ -60,14 +60,14 @@ export default {
       request.onload = function () {
         if (request.status == 201) {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-          var successMsg = s3Error.firstChild.children[0].innerHTML;
+          var successMsg = s3Error.firstChild.firstChild.firstChild.textContent;
           resolve({
             'success': true,
             'message': successMsg
           })
         } else {
           var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-          var errMsg = s3Error.firstChild.children[0].innerHTML;
+          var errMsg = s3Error.firstChild.firstChild.firstChild.textContent;
           reject({
             'success': false,
             'message': errMsg + ". Request is marked as resolved when returns as status 201"
@@ -76,7 +76,7 @@ export default {
       };
       request.onerror = function (err) {
         var s3Error = (new window.DOMParser()).parseFromString(request.response, "text/xml");
-        var errMsg = s3Error.firstChild.children[1].innerHTML;
+        var errMsg = s3Error.firstChild.firstChild.firstChild.textContent;
         reject({
           'success': false,
           'message': errMsg
