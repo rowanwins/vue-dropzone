@@ -133,7 +133,7 @@ export default {
     });
 
     this.dropzone.on("removedfile", function(file) {
-      vm.$emit("vdropzone-removed-file", file);
+      vm.$emit("vdropzone-file-removed", file);
       if (file.manuallyAdded && vm.dropzone.options.maxFiles !== null)
         vm.dropzone.options.maxFiles++;
     });
