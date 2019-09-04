@@ -9,6 +9,7 @@
   "version": "3.6.0",
   "license": "MIT",
   "main": "./dist/vue2Dropzone.js",
+  "module": "./dist/vue2Dropzone.esm.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -46,7 +47,9 @@
     "webpack-dev-server": "^3.2.1"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production rollup -c",
+    "build": "npm run build-umd; npm run build-esm",
+    "build-umd": "cross-env NODE_ENV=production output=umd rollup -c",
+    "build-esm": "cross-env NODE_ENV=production output=esm rollup -c",
     "build-docs": "npm run clean-docs && cross-env NODE_ENV=production webpack --mode production --progress --hide-modules",
     "clean-docs": "rimraf docs/dist",
     "dev": "rollup -c -w",
