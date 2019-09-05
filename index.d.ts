@@ -19,7 +19,7 @@ export interface DropZoneOptions {
     parallelChunkUploads?: boolean;
     retryChunks?: boolean;
     retryChunksLimit?: number;
-    maxFilesize?: number;
+    maxFilesize?: number | null;
     paramName?: string;
     createImageThumbnails?: boolean;
     maxThumbnailFilesize?: number;
