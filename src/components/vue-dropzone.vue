@@ -14,6 +14,11 @@ Dropzone.autoDiscover = false;
 
 export default {
   props: {
+    value: {
+      type: Object,
+      required: false,
+      default: () => ({})
+    },
     id: {
       type: String,
       required: true,
@@ -53,7 +58,13 @@ export default {
     return {
       isS3: false,
       isS3OverridesServerPropagation: false,
-      wasQueueAutoProcess: true
+      wasQueueAutoProcess: true,
+      files: {
+        acceptedFiles: [],
+        rejectedFiles: [],
+        queuedFiles: [],
+        uploadingFiles: []
+      }
     };
   },
   computed: {
@@ -126,16 +137,19 @@ export default {
       if (vm.isS3 && vm.wasQueueAutoProcess && !file.manuallyAdded) {
         vm.getSignedAndUploadToS3(file);
       }
+      vm.updateFiles();
     });
 
     this.dropzone.on("addedfiles", function(files) {
       vm.$emit("vdropzone-files-added", files);
+      vm.updateFiles();
     });
 
     this.dropzone.on("removedfile", function(file) {
       vm.$emit("vdropzone-removed-file", file);
       if (file.manuallyAdded && vm.dropzone.options.maxFiles !== null)
         vm.dropzone.options.maxFiles++;
+      vm.updateFiles();
     });
 
     this.dropzone.on("success", function(file, response) {
@@ -151,19 +165,23 @@ export default {
         }
         if (vm.wasQueueAutoProcess) vm.setOption("autoProcessQueue", false);
       }
+      vm.updateFiles();
     });
 
     this.dropzone.on("successmultiple", function(file, response) {
       vm.$emit("vdropzone-success-multiple", file, response);
+      vm.updateFiles();
     });
 
     this.dropzone.on("error", function(file, message, xhr) {
       vm.$emit("vdropzone-error", file, message, xhr);
       if (this.isS3) vm.$emit("vdropzone-s3-upload-error");
+      vm.updateFiles();
     });
 
     this.dropzone.on("errormultiple", function(files, message, xhr) {
       vm.$emit("vdropzone-error-multiple", files, message, xhr);
+      vm.updateFiles();
     });
 
     this.dropzone.on("sending", function(file, xhr, formData) {
@@ -178,46 +196,57 @@ export default {
         }
       }
       vm.$emit("vdropzone-sending", file, xhr, formData);
+      vm.updateFiles();
     });
 
     this.dropzone.on("sendingmultiple", function(file, xhr, formData) {
       vm.$emit("vdropzone-sending-multiple", file, xhr, formData);
+      vm.updateFiles();
     });
 
     this.dropzone.on("complete", function(file) {
       vm.$emit("vdropzone-complete", file);
+      vm.updateFiles();
     });
 
     this.dropzone.on("completemultiple", function(files) {
       vm.$emit("vdropzone-complete-multiple", files);
+      vm.updateFiles();
     });
 
     this.dropzone.on("canceled", function(file) {
       vm.$emit("vdropzone-canceled", file);
+      vm.updateFiles();
     });
 
     this.dropzone.on("canceledmultiple", function(files) {
       vm.$emit("vdropzone-canceled-multiple", files);
+      vm.updateFiles();
     });
 
     this.dropzone.on("maxfilesreached", function(files) {
       vm.$emit("vdropzone-max-files-reached", files);
+      vm.updateFiles();
     });
 
     this.dropzone.on("maxfilesexceeded", function(file) {
       vm.$emit("vdropzone-max-files-exceeded", file);
+      vm.updateFiles();
     });
 
     this.dropzone.on("processing", function(file) {
       vm.$emit("vdropzone-processing", file);
+      vm.updateFiles();
     });
 
     this.dropzone.on("processingmultiple", function(files) {
       vm.$emit("vdropzone-processing-multiple", files);
+      vm.updateFiles();
     });
 
     this.dropzone.on("uploadprogress", function(file, progress, bytesSent) {
       vm.$emit("vdropzone-upload-progress", file, progress, bytesSent);
+      vm.updateFiles();
     });
 
     this.dropzone.on("totaluploadprogress", function(
@@ -231,38 +260,47 @@ export default {
         totalBytes,
         totalBytesSent
       );
+      vm.updateFiles();
     });
 
     this.dropzone.on("reset", function() {
       vm.$emit("vdropzone-reset");
+      vm.updateFiles();
     });
 
     this.dropzone.on("queuecomplete", function() {
       vm.$emit("vdropzone-queue-complete");
+      vm.updateFiles();
     });
 
     this.dropzone.on("drop", function(event) {
       vm.$emit("vdropzone-drop", event);
+      vm.updateFiles();
     });
 
     this.dropzone.on("dragstart", function(event) {
       vm.$emit("vdropzone-drag-start", event);
+      vm.updateFiles();
     });
 
     this.dropzone.on("dragend", function(event) {
       vm.$emit("vdropzone-drag-end", event);
+      vm.updateFiles();
     });
 
     this.dropzone.on("dragenter", function(event) {
       vm.$emit("vdropzone-drag-enter", event);
+      vm.updateFiles();
     });
 
     this.dropzone.on("dragover", function(event) {
       vm.$emit("vdropzone-drag-over", event);
+      vm.updateFiles();
     });
 
     this.dropzone.on("dragleave", function(event) {
       vm.$emit("vdropzone-drag-leave", event);
+      vm.updateFiles();
     });
 
     vm.$emit("vdropzone-mounted");
@@ -271,6 +309,15 @@ export default {
     if (this.destroyDropzone) this.dropzone.destroy();
   },
   methods: {
+    updateFiles: function() {
+      this.files = {
+        acceptedFiles: this.getAcceptedFiles(),
+        rejectedFiles: this.getRejectedFiles(),
+        queuedFiles: this.getQueuedFiles(),
+        uploadingFiles: this.getUploadingFiles()
+      }
+      this.$emit('input', this.files)
+    },
     manuallyAddFile: function(file, fileUrl) {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
