@@ -170,6 +170,11 @@ export default {
           promise.then((response) => {
             if (response.success) {
               file.s3ObjectLocation = response.message
+              if (response.message.url) {
+                // If the get_presigned_url response provides a url then Dropzone should use that to upload because those URLs may be region specific.
+                // Reference region-specific endpoints --> https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html
+                this.dropzone.options.url = response.message.url
+              }
               setTimeout(() => this.dropzone.processFile(file))
               this.$emit('vdropzone-s3-upload-success', response.message);
             } else {
