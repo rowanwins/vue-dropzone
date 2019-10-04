@@ -111,8 +111,7 @@ export default {
             if (
               this.files[_i].name === file.name &&
               this.files[_i].size === file.size &&
-              this.files[_i].lastModifiedDate.toString() ===
-                file.lastModifiedDate.toString()
+              this.files[_i].lastModified === file.lastModified
             ) {
               this.removeFile(file);
               isDuplicate = true;
