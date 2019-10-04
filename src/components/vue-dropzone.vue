@@ -447,6 +447,15 @@ export default {
   color: #ccc;
 }
 
+.vue-dropzone > .dz-preview {
+  min-height: 150px;
+  min-width: 150px;
+}
+
+.dropzone > .dz-preview.dz-image-preview {
+  background-color: #efefef;
+}
+
 .vue-dropzone > .dz-preview .dz-image {
   border-radius: 0;
   width: 100%;
@@ -456,6 +465,9 @@ export default {
 .vue-dropzone > .dz-preview .dz-image img:not([src]) {
   width: 200px;
   height: 200px;
+}
+.vue-dropzone > .dz-preview .dz-image img {
+  margin: 0 auto;
 }
 
 .vue-dropzone > .dz-preview .dz-image:hover img {
