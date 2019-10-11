@@ -281,7 +281,12 @@ export default {
         fileUrl.indexOf(".jpg") > -1 ||
         fileUrl.indexOf(".jpeg") > -1 ||
         fileUrl.indexOf(".gif") > -1 ||
-        fileUrl.indexOf(".webp") > -1
+        fileUrl.indexOf(".webp") > -1 ||
+        fileUrl.indexOf("image/jpeg") > -1 ||
+        fileUrl.indexOf("image/svg+xml") > -1 ||
+        fileUrl.indexOf("image/gif") > -1 ||
+        fileUrl.indexOf("image/png") > -1 ||
+        fileUrl.indexOf("image/webp")
       )
         containsImageFileType = true;
       if (
