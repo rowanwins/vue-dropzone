@@ -60,7 +60,10 @@ export default {
     dropzoneSettings() {
       let defaultValues = {
         thumbnailWidth: 200,
-        thumbnailHeight: 200
+        thumbnailHeight: 200,
+        params: {
+          'sender-id': this.id,
+        },
       };
       Object.keys(this.options).forEach(function(key) {
         defaultValues[key] = this.options[key];
