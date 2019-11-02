@@ -53,7 +53,8 @@ export default {
     return {
       isS3: false,
       isS3OverridesServerPropagation: false,
-      wasQueueAutoProcess: true
+      wasQueueAutoProcess: true,
+      senderId: null
     };
   },
   computed: {
@@ -87,6 +88,7 @@ export default {
       return;
     }
     this.hasBeenMounted = true;
+    this.senderId = this.id;
 
     this.dropzone = new Dropzone(
       this.$refs.dropzoneElement,
@@ -122,14 +124,14 @@ export default {
         }
       }
 
-      vm.$emit("vdropzone-file-added", file);
+      vm.$emit("vdropzone-file-added", file, vm.senderId);
       if (vm.isS3 && vm.wasQueueAutoProcess && !file.manuallyAdded) {
-        vm.getSignedAndUploadToS3(file);
+        vm.getSignedAndUploadToS3(file, vm.senderId);
       }
     });
 
     this.dropzone.on("addedfiles", function(files) {
-      vm.$emit("vdropzone-files-added", files);
+      vm.$emit("vdropzone-files-added", files, vm.senderId);
     });
 
     this.dropzone.on("removedfile", function(file) {
@@ -139,7 +141,7 @@ export default {
     });
 
     this.dropzone.on("success", function(file, response) {
-      vm.$emit("vdropzone-success", file, response);
+      vm.$emit("vdropzone-success", file, response, vm.senderId);
       if (vm.isS3) {
         if (vm.isS3OverridesServerPropagation) {
           var xmlResponse = new window.DOMParser().parseFromString(
@@ -147,23 +149,23 @@ export default {
             "text/xml"
           );
           var s3ObjectLocation = xmlResponse.firstChild.children[0].innerHTML;
-          vm.$emit("vdropzone-s3-upload-success", s3ObjectLocation);
+          vm.$emit("vdropzone-s3-upload-success", s3ObjectLocation, vm.senderId);
         }
         if (vm.wasQueueAutoProcess) vm.setOption("autoProcessQueue", false);
       }
     });
 
     this.dropzone.on("successmultiple", function(file, response) {
-      vm.$emit("vdropzone-success-multiple", file, response);
+      vm.$emit("vdropzone-success-multiple", file, response, vm.senderId);
     });
 
     this.dropzone.on("error", function(file, message, xhr) {
-      vm.$emit("vdropzone-error", file, message, xhr);
+      vm.$emit("vdropzone-error", file, message, xhr, vm.senderId);
       if (this.isS3) vm.$emit("vdropzone-s3-upload-error");
     });
 
     this.dropzone.on("errormultiple", function(files, message, xhr) {
-      vm.$emit("vdropzone-error-multiple", files, message, xhr);
+      vm.$emit("vdropzone-error-multiple", files, message, xhr, vm.senderId);
     });
 
     this.dropzone.on("sending", function(file, xhr, formData) {
@@ -177,11 +179,11 @@ export default {
           formData.append("s3ObjectLocation", file.s3ObjectLocation);
         }
       }
-      vm.$emit("vdropzone-sending", file, xhr, formData);
+      vm.$emit("vdropzone-sending", file, xhr, formData, vm.senderId);
     });
 
     this.dropzone.on("sendingmultiple", function(file, xhr, formData) {
-      vm.$emit("vdropzone-sending-multiple", file, xhr, formData);
+      vm.$emit("vdropzone-sending-multiple", file, xhr, formData, vm.senderId);
     });
 
     this.dropzone.on("complete", function(file) {
@@ -317,7 +319,7 @@ export default {
       let dropzoneEle = this.dropzone;
       if (this.isS3 && !this.wasQueueAutoProcess) {
         this.getQueuedFiles().forEach(file => {
-          this.getSignedAndUploadToS3(file);
+          this.getSignedAndUploadToS3(file, this.senderId);
         });
       } else {
         this.dropzone.processQueue();
@@ -389,7 +391,7 @@ export default {
     getActiveFiles: function() {
       return this.dropzone.getActiveFiles();
     },
-    getSignedAndUploadToS3(file) {
+    getSignedAndUploadToS3(file, componentid) {
       var promise = awsEndpoint.sendFile(
         file,
         this.awss3,
@@ -400,14 +402,15 @@ export default {
           if (response.success) {
             file.s3ObjectLocation = response.message;
             setTimeout(() => this.dropzone.processFile(file));
-            this.$emit("vdropzone-s3-upload-success", response.message);
+            this.$emit("vdropzone-s3-upload-success", response.message, componentid);
           } else {
             if ("undefined" !== typeof response.message) {
-              this.$emit("vdropzone-s3-upload-error", response.message);
+              this.$emit("vdropzone-s3-upload-error", response.message, componentid);
             } else {
               this.$emit(
                 "vdropzone-s3-upload-error",
-                "Network Error : Could not send request to AWS. (Maybe CORS error)"
+                "Network Error : Could not send request to AWS. (Maybe CORS error)",
+                componentid
               );
             }
           }
