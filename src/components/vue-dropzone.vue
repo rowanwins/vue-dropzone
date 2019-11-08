@@ -135,7 +135,7 @@ export default {
     });
 
     this.dropzone.on("removedfile", function(file) {
-      vm.$emit("vdropzone-removed-file", file);
+      vm.$emit("vdropzone-removed-file", file, vm.senderId);
       if (file.manuallyAdded && vm.dropzone.options.maxFiles !== null)
         vm.dropzone.options.maxFiles++;
     });
@@ -149,7 +149,7 @@ export default {
             "text/xml"
           );
           var s3ObjectLocation = xmlResponse.firstChild.children[0].innerHTML;
-          vm.$emit("vdropzone-s3-upload-success", s3ObjectLocation, vm.senderId);
+          vm.$emit("vdropzone-s3-upload-success", s3ObjectLocation, vm.senderId, file);
         }
         if (vm.wasQueueAutoProcess) vm.setOption("autoProcessQueue", false);
       }
@@ -402,7 +402,7 @@ export default {
           if (response.success) {
             file.s3ObjectLocation = response.message;
             setTimeout(() => this.dropzone.processFile(file));
-            this.$emit("vdropzone-s3-upload-success", response.message, componentid);
+            this.$emit("vdropzone-s3-upload-success", response.message, componentid, file);
           } else {
             if ("undefined" !== typeof response.message) {
               this.$emit("vdropzone-s3-upload-error", response.message, componentid);
