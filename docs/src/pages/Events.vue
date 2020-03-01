@@ -4,6 +4,9 @@
     <p>The Vue2-Dropzone component will emit the following
       <a href="https://vuejs.org/v2/guide/components.html#Using-v-on-with-Custom-Events">events</a>.</p>
     <simple-table :headers="['Event Name', 'Description']" :rows="events" />
+    <p>
+    :destroy-dropzone="false" - Prevent event fire vdropzone-removed-file when component dropzone is destroy.
+    </p>
     <edit-doc :link="'Events.vue'"></edit-doc>
   </div>
 </template>
