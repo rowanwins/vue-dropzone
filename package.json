@@ -54,7 +54,8 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --hot"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "dependencies": {
     "dropzone": "^5.5.1"
