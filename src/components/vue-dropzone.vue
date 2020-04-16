@@ -275,13 +275,14 @@ export default {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
       let containsImageFileType = false;
+      let fileUrlLowerCase = fileUrl.toLowerCase();
       if (
-        fileUrl.indexOf(".svg") > -1 ||
-        fileUrl.indexOf(".png") > -1 ||
-        fileUrl.indexOf(".jpg") > -1 ||
-        fileUrl.indexOf(".jpeg") > -1 ||
-        fileUrl.indexOf(".gif") > -1 ||
-        fileUrl.indexOf(".webp") > -1
+        fileUrlLowerCase.indexOf(".svg") > -1 ||
+        fileUrlLowerCase.indexOf(".png") > -1 ||
+        fileUrlLowerCase.indexOf(".jpg") > -1 ||
+        fileUrlLowerCase.indexOf(".jpeg") > -1 ||
+        fileUrlLowerCase.indexOf(".gif") > -1 ||
+        fileUrlLowerCase.indexOf(".webp") > -1
       )
         containsImageFileType = true;
       if (
