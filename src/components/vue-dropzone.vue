@@ -275,15 +275,10 @@ export default {
       file.manuallyAdded = true;
       this.dropzone.emit("addedfile", file);
       let containsImageFileType = false;
-      if (
-        fileUrl.indexOf(".svg") > -1 ||
-        fileUrl.indexOf(".png") > -1 ||
-        fileUrl.indexOf(".jpg") > -1 ||
-        fileUrl.indexOf(".jpeg") > -1 ||
-        fileUrl.indexOf(".gif") > -1 ||
-        fileUrl.indexOf(".webp") > -1
-      )
+      const supportedThumbnailTypes = [".svg", ".png", ".jpg", "jpeg", ".gif", ".webp", "image/"]
+      if ( supportedThumbnailTypes.filter(s => fileUrl.indexOf(s) > -1).length > 0) {
         containsImageFileType = true;
+      }
       if (
         this.dropzone.options.createImageThumbnails &&
         containsImageFileType &&
