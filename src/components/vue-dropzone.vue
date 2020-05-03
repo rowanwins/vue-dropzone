@@ -299,6 +299,7 @@ export default {
       }
       this.dropzone.emit("complete", file);
       if (this.dropzone.options.maxFiles) this.dropzone.options.maxFiles--;
+      file.accepted = true;
       this.dropzone.files.push(file);
       this.$emit("vdropzone-file-added-manually", file);
     },
