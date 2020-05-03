@@ -276,7 +276,7 @@ export default {
       this.dropzone.emit("addedfile", file);
       let containsImageFileType = false;
       const supportedThumbnailTypes = [".svg", ".png", ".jpg", "jpeg", ".gif", ".webp", "image/"]
-      if ( supportedThumbnailTypes.filter(s => fileUrl.indexOf(s) > -1).length > 0) {
+      if ( supportedThumbnailTypes.filter(s => fileUrl.toLowerCase().indexOf(s) > -1).length > 0) {
         containsImageFileType = true;
       }
       if (
