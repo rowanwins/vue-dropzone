@@ -47,6 +47,11 @@ export default {
       type: Boolean,
       default: false,
       required: false
+    },
+    confirm: {
+      type: Function,
+      default: null,
+      required: false
     }
   },
   computed: {
@@ -111,8 +116,8 @@ export default {
 
     this.hasBeenMounted = true;
 
-    if (this.dropzoneSettings.confirm) {
-      Dropzone.confirm = this.dropzoneSettings.confirm
+    if (this.confirm) {
+      Dropzone.confirm = this.confirm
     }
 
     this.dropzone = new Dropzone(
