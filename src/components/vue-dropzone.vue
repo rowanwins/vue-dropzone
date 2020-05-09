@@ -111,6 +111,10 @@ export default {
 
     this.hasBeenMounted = true;
 
+    if (this.dropzoneSettings.confirm) {
+      Dropzone.confirm = this.dropzoneSettings.confirm
+    }
+
     this.dropzone = new Dropzone(
       this.$refs.dropzoneElement,
       this.isS3 ? this.s3DropZoneSettings : this.dropzoneSettings
