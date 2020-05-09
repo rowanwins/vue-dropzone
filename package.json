@@ -12,9 +12,10 @@
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
-    "babel-plugin-external-helpers": "^6.22.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
@@ -57,6 +58,6 @@
     "dist"
   ],
   "dependencies": {
-    "dropzone": "^5.5.1"
+    "dropzone": "5.7.0"
   }
 }
