@@ -1,5 +1,5 @@
-export async function generateSignedUrl (file) {
-    let result = await makeRequest("GET", `http://localhost:3000/getSignedUrl?name=${file.name}&type=${file.type}`);
+export async function generateSignedUrl (signingURL, file) {
+    let result = await makeRequest("GET", `${signingURL}?name=${file.name}&type=${file.type}`);
     return result
 }
 

@@ -69,7 +69,7 @@ export default {
         },
         accept: async function(file, done) {
           if (vm.isS3) {
-            const signed = await generateSignedUrl(file);
+            const signed = await generateSignedUrl(this.awss3.signingURL, file);
             vm.setOption('headers', {
               'Content-Type': file.type,
               'x-amz-acl': 'public-read'
