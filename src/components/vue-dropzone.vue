@@ -54,7 +54,7 @@ export default {
     // so things like acceptedFiles should just work
     s3DropZoneSettings() {
       const normalSettings = this.dropzoneSettings
-
+      const that = this
       const s3Settings = {
         method: 'PUT',
         parallelUploads: 1,
@@ -69,7 +69,7 @@ export default {
         },
         accept: async function(file, done) {
           if (vm.isS3) {
-            const signed = await generateSignedUrl(this.awss3.signingURL, file);
+            const signed = await generateSignedUrl(that.awss3.signingURL, file);
             vm.setOption('headers', {
               'Content-Type': file.type,
               'x-amz-acl': 'public-read'
@@ -288,7 +288,7 @@ export default {
             this.dropzoneSettings.thumbnailWidth + "px";
           thumbnails[i].style.height =
             this.dropzoneSettings.thumbnailHeight + "px";
-          thumbnails[i].style["object-fit"] = "contain";
+          thumbnails[i].classList.add("vdManualThumbnail")
         }
       }
       this.dropzone.emit("complete", file);
@@ -487,5 +487,8 @@ export default {
 
 .vue-dropzone > .dz-preview .dz-error-message:after {
   display: none;
+}
+.vue-dropzone > .dz-preview .vdManualThumbnail {
+  object-fit: cover;
 }
 </style>
