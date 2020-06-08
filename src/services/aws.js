@@ -1,9 +1,15 @@
-export async function generateSignedUrl (signingURL, file) {
-    let result = await makeRequest("GET", `${signingURL}?name=${file.name}&type=${file.type}`);
+export async function generateSignedUrl (signingURL, file, includeFile) {
+    var fd = new FormData();
+    fd.append('name', file.name);
+    fd.append('type', file.type);
+    if (includeFile) {
+      fd.append('file', file);
+    }
+    let result = await makeRequest("POST", `${signingURL}`, fd);
     return result
 }
 
-function makeRequest(method, url) {
+function makeRequest(method, url, params) {
     return new Promise(function (resolve, reject) {
         let xhr = new XMLHttpRequest();
         xhr.responseType = 'json'
@@ -24,6 +30,6 @@ function makeRequest(method, url) {
                 statusText: xhr.statusText
             });
         };
-        xhr.send();
+        xhr.send(params);
     });
 }
