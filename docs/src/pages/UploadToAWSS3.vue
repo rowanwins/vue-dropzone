@@ -2,7 +2,7 @@
   <div>
     <h1>Upload directly to AWS S3</h1>
     <p v-html="marked(description)"></p>
-    <vue-dropzone ref="myVueDropzone" id="dropzone" v-on:vdropzone-sending="sendingEvent" :awss3="awss3" v-on:vdropzone-s3-upload-error="s3UploadError" v-on:vdropzone-s3-upload-success="s3UploadSuccess" :options="dropzoneOptions">
+    <vue-dropzone ref="myVueDropzone" id="dropzone" :awss3="awss3" v-on:vdropzone-s3-upload-error="s3UploadError" v-on:vdropzone-s3-upload-success="s3UploadSuccess" :options="dropzoneOptions">
     </vue-dropzone>
     <hr>
     <label>Enter your URL Signer Endpoint</label>
@@ -93,8 +93,7 @@ export default {
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 200,
-        addRemoveLinks: true,
-        autoProcessQueue: false,
+        addRemoveLinks: true
       },
       awss3: {
         signingURL: '',
@@ -104,9 +103,6 @@ export default {
     }
   },
   methods: {
-    sendingEvent(file, xhr, formData) {
-      formData.append('paramName', 'some value or other');
-    },
     s3UploadError(error) {
       console.log(error)
     },
