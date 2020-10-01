@@ -25,7 +25,7 @@ export default {
         ['vdropzone-canceled(file)', 'Called when a file upload gets canceled.'],
         ['vdropzone-error(file, message, xhr)', 'An error occured. Receives the error `message` as second parameter and if the error was due to the XMLHttpRequest the xhr object as third.'],
         ['vdropzone-error-multiple(files, message, xhr)', 'See `vdropzone-error` for description.'],
-        ['vdropzone-removed-file(file, error, xhr)', 'A file was removed from the dropzone.'],
+        ['vdropzone-removed-file(file)', 'A file was removed from the dropzone.'],
         ['vdropzone-sending(file, xhr, formData)', 'Modify the request and add addtional parameters to request before sending.'],
         ['vdropzone-complete-multiple(response)', 'Called when all files are uploaded.'],
         ['vdropzone-canceled(file)', 'Called when a file upload gets canceled.'],
