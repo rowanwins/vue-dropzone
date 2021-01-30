@@ -46,6 +46,7 @@ export default {
         ['vdropzone-drag-enter(event)', 'The user dragged a file onto the Dropzone.'],
         ['vdropzone-drag-over(event)', 'The user is dragging a file over the Dropzone.'],
         ['vdropzone-drag-leave(event)', 'The user dragged a file out of the Dropzone.'],
+        ['vdropzone-reset()', 'Fired when dropzone component is reset.'],
         ['vdropzone-s3-upload-success(s3ObjectLocation)', 'When file is uploaded to AWS S3 successfully.'],
         ['vdropzone-s3-upload-error(errorMessage)', 'If error occures in AWS S3 upload.'],
       ]
