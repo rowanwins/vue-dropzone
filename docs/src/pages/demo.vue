@@ -195,7 +195,7 @@ var example = `
 dropzoneOptions: {
     url: 'https://httpbin.org/post',
     thumbnailWidth: 150,
-    maxFilesize: 0.5,
+    maxFilesize: 30,
     headers: { "My-Awesome-Header": "header value" }
 }`
 
@@ -207,7 +207,7 @@ export default {
       dropzoneOptions: {
         url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
-        maxFilesize: 0.5,
+        maxFilesize: 30,
         headers: { "My-Awesome-Header": "header value" },
         addRemoveLinks: true
       },
