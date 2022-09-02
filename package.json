@@ -6,7 +6,7 @@
     "Vaibhavraj Roham <@vrajroham>",
     "Alexander Wennerstrøm <@AlexanderYW>"
   ],
-  "version": "3.6.0",
+  "version": "3.6.1",
   "license": "MIT",
   "main": "./dist/vue2Dropzone.js",
   "repository": "git@github.com:rowanwins/vue-dropzone.git",
@@ -57,6 +57,6 @@
     "dist"
   ],
   "dependencies": {
-    "dropzone": "^5.5.1"
+    "dropzone": "^5.9.3"
   }
 }
