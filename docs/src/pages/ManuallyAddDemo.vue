@@ -24,9 +24,9 @@ var html = `
     `
 var js = `
     ....
-    mounted: () {
+    mounted () {
       var file = { size: 123, name: "Icon", type: "image/png" };
-      var url = "https://myvizo.com/img/logo_sm.png";
+      var url = "https://avatars.githubusercontent.com/u/6735870;
       this.$refs.myVueDropzone.manuallyAddFile(file, url);
     }
     ....
