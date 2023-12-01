@@ -83,9 +83,6 @@ export default {
     }
   },
   mounted() {
-    if (this.$isServer && this.hasBeenMounted) {
-      return;
-    }
     this.hasBeenMounted = true;
 
     this.dropzone = new Dropzone(
