@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Demo</h1>
+    <h1>esta man</h1>
     <p>Below you can see Vue2-Dropzone in action.</p>
     <vue-dropzone ref="myVueDropzone" id="dropzone"
       @vdropzone-file-added="vfileAdded"
